@@ -1,0 +1,49 @@
+{
+  "asset": "ETH",
+  "news_asset": "ETH",
+  "horizons": [
+    "4h",
+    "1h"
+  ],
+  "windows": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "source_windows": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "window_label_offset": 2,
+  "lr_p1": 0.0001,
+  "lr_p2": 0.0001,
+  "cryptobert_pca_k": 256,
+  "hidden": [
+    128,
+    32
+  ],
+  "batch_size": 64,
+  "grad_clip": 1.0,
+  "p1_max_epochs": 100,
+  "p2_max_epochs": 120,
+  "p1_patience": 15,
+  "p2_patience": 15,
+  "aux_weight": 0.0,
+  "loss_log_every": 1,
+  "loss_plot": true,
+  "skip_egarch_ned": false,
+  "models": [
+    "HAR",
+    "EGARCH",
+    "EGARCH+NED",
+    "TS MLP",
+    "Main Model"
+  ]
+}
