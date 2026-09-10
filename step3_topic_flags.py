@@ -296,11 +296,11 @@ RECAP_TAGS_SET = {
     "Crypto Long & Short", "Markets Daily", "Asia Pacific", "Trading",
 }
 SAFE_RECAP_TITLE_PATTERNS = [
-    r"(?i)\bmarket\s+wrap\b",
-    r"(?i)^(?:bitcoin|btc)\s+\$",
-    r"(?i)^first\s+mover\s+(asia|americas|europe)",
+    r"\bmarket\s+wrap\b",
+    r"^(?:bitcoin|btc)\s+\$",
+    r"^first\s+mover\s+(asia|americas|europe)",
 ]
-_SAFE_RECAP_RE = re.compile("|".join(SAFE_RECAP_TITLE_PATTERNS))
+_SAFE_RECAP_RE = re.compile("|".join(SAFE_RECAP_TITLE_PATTERNS), flags=re.IGNORECASE)
 
 
 def reactive_mask(df):

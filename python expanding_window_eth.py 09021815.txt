@@ -1,0 +1,1728 @@
+Device: cuda
+Price asset: ETH; News asset: ETH
+Results dir: results/main/eth_cryptobert
+Windows: [1, 2, 3, 4, 5, 6] (2023-based labels; source windows [3, 4, 5, 6, 7, 8])
+Horizons: 4h, 1h
+CryptoBERT full 768-dim (no PCA), hidden=(128, 32), batch_size=64
+LRs: P1=0.0001, P2 news=5e-05, P2 ts_scale=0
+Loss: Huber-on-log(vol), delta=0.5
+Loss: primary only (aux disabled)
+Epoch caps: P1=100/pat15, P2=120/pat20
+Bars after news overlap: 285,137
+CryptoBERT embeddings: (10383, 768)
+
+========================================================================
+Window 1/6: test 2023-01-01 -> 2023-06-30 (source window 3)
+Train=156,723 Val=17,569 Test=17,276
+========================================================================
+  CryptoBERT raw 768-dim: 4,534 train articles (no PCA reduction)
+  EGARCH fit/filter: 1s
+
+  Horizon 4h (RV_4h)
+    P1 ep   1  train=1.0901  val=0.3373  best=0.3373  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.3435  val=0.3042  best=0.3042  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.2751  val=0.2820  best=0.2820  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.2383  val=0.2824  best=0.2820  pat=1  ts_lr=1.00e-04
+    P1 ep   5  train=0.2225  val=0.2816  best=0.2816  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.2176  val=0.2629  best=0.2629  pat=0  ts_lr=1.00e-04 *
+    P1 ep   7  train=0.2156  val=0.2803  best=0.2629  pat=1  ts_lr=1.00e-04
+    P1 ep   8  train=0.2143  val=0.2599  best=0.2599  pat=0  ts_lr=1.00e-04 *
+    P1 ep   9  train=0.2131  val=0.2650  best=0.2599  pat=1  ts_lr=1.00e-04
+    P1 ep  10  train=0.2125  val=0.2585  best=0.2585  pat=0  ts_lr=1.00e-04 *
+    P1 ep  11  train=0.2117  val=0.2540  best=0.2540  pat=0  ts_lr=1.00e-04 *
+    P1 ep  12  train=0.2110  val=0.2522  best=0.2522  pat=0  ts_lr=1.00e-04 *
+    P1 ep  13  train=0.2106  val=0.2557  best=0.2522  pat=1  ts_lr=1.00e-04
+    P1 ep  14  train=0.2096  val=0.2536  best=0.2522  pat=2  ts_lr=1.00e-04
+    P1 ep  15  train=0.2091  val=0.2544  best=0.2522  pat=3  ts_lr=1.00e-04
+    P1 ep  16  train=0.2091  val=0.2482  best=0.2482  pat=0  ts_lr=1.00e-04 *
+    P1 ep  17  train=0.2086  val=0.2414  best=0.2414  pat=0  ts_lr=1.00e-04 *
+    P1 ep  18  train=0.2082  val=0.2434  best=0.2414  pat=1  ts_lr=1.00e-04
+    P1 ep  19  train=0.2079  val=0.2515  best=0.2414  pat=2  ts_lr=1.00e-04
+    P1 ep  20  train=0.2073  val=0.2398  best=0.2398  pat=0  ts_lr=1.00e-04 *
+    P1 ep  21  train=0.2070  val=0.2440  best=0.2398  pat=1  ts_lr=1.00e-04
+    P1 ep  22  train=0.2062  val=0.2424  best=0.2398  pat=2  ts_lr=1.00e-04
+    P1 ep  23  train=0.2061  val=0.2379  best=0.2379  pat=0  ts_lr=1.00e-04 *
+    P1 ep  24  train=0.2054  val=0.2471  best=0.2379  pat=1  ts_lr=1.00e-04
+    P1 ep  25  train=0.2056  val=0.2442  best=0.2379  pat=2  ts_lr=1.00e-04
+    P1 ep  26  train=0.2055  val=0.2454  best=0.2379  pat=3  ts_lr=1.00e-04
+    P1 ep  27  train=0.2052  val=0.2373  best=0.2373  pat=0  ts_lr=1.00e-04 *
+    P1 ep  28  train=0.2047  val=0.2451  best=0.2373  pat=1  ts_lr=1.00e-04
+    P1 ep  29  train=0.2044  val=0.2444  best=0.2373  pat=2  ts_lr=1.00e-04
+    P1 ep  30  train=0.2044  val=0.2436  best=0.2373  pat=3  ts_lr=1.00e-04
+    P1 ep  31  train=0.2042  val=0.2439  best=0.2373  pat=4  ts_lr=1.00e-04
+    P1 ep  32  train=0.2039  val=0.2420  best=0.2373  pat=5  ts_lr=1.00e-04
+    P1 ep  33  train=0.2039  val=0.2510  best=0.2373  pat=6  ts_lr=1.00e-04
+    P1 ep  34  train=0.2039  val=0.2415  best=0.2373  pat=7  ts_lr=1.00e-04
+    P1 ep  35  train=0.2037  val=0.2423  best=0.2373  pat=8  ts_lr=1.00e-04
+    P1 ep  36  train=0.2037  val=0.2430  best=0.2373  pat=9  ts_lr=1.00e-04
+    P1 ep  37  train=0.2035  val=0.2435  best=0.2373  pat=10  ts_lr=1.00e-04
+    P1 ep  38  train=0.2034  val=0.2362  best=0.2362  pat=0  ts_lr=1.00e-04 *
+    P1 ep  39  train=0.2031  val=0.2387  best=0.2362  pat=1  ts_lr=1.00e-04
+    P1 ep  40  train=0.2031  val=0.2406  best=0.2362  pat=2  ts_lr=1.00e-04
+    P1 ep  41  train=0.2029  val=0.2425  best=0.2362  pat=3  ts_lr=1.00e-04
+    P1 ep  42  train=0.2025  val=0.2379  best=0.2362  pat=4  ts_lr=1.00e-04
+    P1 ep  43  train=0.2025  val=0.2413  best=0.2362  pat=5  ts_lr=1.00e-04
+    P1 ep  44  train=0.2025  val=0.2387  best=0.2362  pat=6  ts_lr=1.00e-04
+    P1 ep  45  train=0.2022  val=0.2385  best=0.2362  pat=7  ts_lr=1.00e-04
+    P1 ep  46  train=0.2023  val=0.2415  best=0.2362  pat=8  ts_lr=1.00e-04
+    P1 ep  47  train=0.2023  val=0.2404  best=0.2362  pat=9  ts_lr=1.00e-04
+    P1 ep  48  train=0.2020  val=0.2381  best=0.2362  pat=10  ts_lr=1.00e-04
+    P1 ep  49  train=0.2020  val=0.2460  best=0.2362  pat=11  ts_lr=1.00e-04
+    P1 ep  50  train=0.2020  val=0.2434  best=0.2362  pat=12  ts_lr=1.00e-04
+    P1 ep  51  train=0.2019  val=0.2371  best=0.2362  pat=13  ts_lr=1.00e-04
+    P1 ep  52  train=0.2015  val=0.2444  best=0.2362  pat=14  ts_lr=1.00e-04
+    P1 ep  53  train=0.2018  val=0.2386  best=0.2362  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.2362
+    P2 ep   1  train=0.2025  val=0.2369  best=0.2369  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.2021  val=0.2381  best=0.2369  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   3  train=0.2019  val=0.2381  best=0.2369  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   4  train=0.2015  val=0.2407  best=0.2369  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   5  train=0.2004  val=0.2379  best=0.2369  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   6  train=0.2000  val=0.2375  best=0.2369  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   7  train=0.1989  val=0.2398  best=0.2369  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   8  train=0.1982  val=0.2385  best=0.2369  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.1976  val=0.2419  best=0.2369  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  10  train=0.1969  val=0.2400  best=0.2369  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.1963  val=0.2397  best=0.2369  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  12  train=0.1956  val=0.2412  best=0.2369  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  13  train=0.1951  val=0.2400  best=0.2369  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.1944  val=0.2445  best=0.2369  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.1938  val=0.2408  best=0.2369  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  16  train=0.1936  val=0.2504  best=0.2369  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.1933  val=0.2424  best=0.2369  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.1926  val=0.2380  best=0.2369  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.1924  val=0.2437  best=0.2369  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.1923  val=0.2403  best=0.2369  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.1920  val=0.2392  best=0.2369  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.2369
+  ts_scale learned: 1.0000
+  Main Model trained [713s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w1_4h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w1_4h_loss.png
+  EGARCH+NED trained [360s]
+    HAR          R2=-0.7909 MSE=2.37752 QLIKE=0.75783 DA=0.500
+    EGARCH       R2=-0.0117 MSE=1.34307 QLIKE=0.74108 DA=0.615
+    EGARCH+NED   R2=0.1167 MSE=1.17268 QLIKE=0.97608 DA=0.628
+    TS MLP       R2=0.2362 MSE=1.01406 QLIKE=0.68422 DA=0.659
+    Main Model   R2=0.2327 MSE=1.01868 QLIKE=0.66213 DA=0.659
+
+  Horizon 1h (RV_1h)
+    P1 ep   1  train=1.4109  val=0.4657  best=0.4657  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.4825  val=0.4052  best=0.4052  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.4061  val=0.3743  best=0.3743  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.3618  val=0.3824  best=0.3743  pat=1  ts_lr=1.00e-04
+    P1 ep   5  train=0.3347  val=0.3673  best=0.3673  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.3224  val=0.3536  best=0.3536  pat=0  ts_lr=1.00e-04 *
+    P1 ep   7  train=0.3172  val=0.3679  best=0.3536  pat=1  ts_lr=1.00e-04
+    P1 ep   8  train=0.3153  val=0.3640  best=0.3536  pat=2  ts_lr=1.00e-04
+    P1 ep   9  train=0.3140  val=0.3651  best=0.3536  pat=3  ts_lr=1.00e-04
+    P1 ep  10  train=0.3130  val=0.3646  best=0.3536  pat=4  ts_lr=1.00e-04
+    P1 ep  11  train=0.3120  val=0.3438  best=0.3438  pat=0  ts_lr=1.00e-04 *
+    P1 ep  12  train=0.3111  val=0.3521  best=0.3438  pat=1  ts_lr=1.00e-04
+    P1 ep  13  train=0.3109  val=0.3511  best=0.3438  pat=2  ts_lr=1.00e-04
+    P1 ep  14  train=0.3100  val=0.3451  best=0.3438  pat=3  ts_lr=1.00e-04
+    P1 ep  15  train=0.3099  val=0.3584  best=0.3438  pat=4  ts_lr=1.00e-04
+    P1 ep  16  train=0.3096  val=0.3454  best=0.3438  pat=5  ts_lr=1.00e-04
+    P1 ep  17  train=0.3092  val=0.3447  best=0.3438  pat=6  ts_lr=1.00e-04
+    P1 ep  18  train=0.3087  val=0.3429  best=0.3429  pat=0  ts_lr=1.00e-04 *
+    P1 ep  19  train=0.3085  val=0.3483  best=0.3429  pat=1  ts_lr=1.00e-04
+    P1 ep  20  train=0.3082  val=0.3428  best=0.3428  pat=0  ts_lr=1.00e-04 *
+    P1 ep  21  train=0.3077  val=0.3454  best=0.3428  pat=1  ts_lr=1.00e-04
+    P1 ep  22  train=0.3071  val=0.3442  best=0.3428  pat=2  ts_lr=1.00e-04
+    P1 ep  23  train=0.3072  val=0.3432  best=0.3428  pat=3  ts_lr=1.00e-04
+    P1 ep  24  train=0.3064  val=0.3471  best=0.3428  pat=4  ts_lr=1.00e-04
+    P1 ep  25  train=0.3065  val=0.3352  best=0.3352  pat=0  ts_lr=1.00e-04 *
+    P1 ep  26  train=0.3063  val=0.3385  best=0.3352  pat=1  ts_lr=1.00e-04
+    P1 ep  27  train=0.3059  val=0.3373  best=0.3352  pat=2  ts_lr=1.00e-04
+    P1 ep  28  train=0.3055  val=0.3398  best=0.3352  pat=3  ts_lr=1.00e-04
+    P1 ep  29  train=0.3053  val=0.3406  best=0.3352  pat=4  ts_lr=1.00e-04
+    P1 ep  30  train=0.3051  val=0.3407  best=0.3352  pat=5  ts_lr=1.00e-04
+    P1 ep  31  train=0.3049  val=0.3448  best=0.3352  pat=6  ts_lr=1.00e-04
+    P1 ep  32  train=0.3047  val=0.3378  best=0.3352  pat=7  ts_lr=1.00e-04
+    P1 ep  33  train=0.3045  val=0.3401  best=0.3352  pat=8  ts_lr=1.00e-04
+    P1 ep  34  train=0.3046  val=0.3304  best=0.3304  pat=0  ts_lr=1.00e-04 *
+    P1 ep  35  train=0.3042  val=0.3327  best=0.3304  pat=1  ts_lr=1.00e-04
+    P1 ep  36  train=0.3042  val=0.3352  best=0.3304  pat=2  ts_lr=1.00e-04
+    P1 ep  37  train=0.3039  val=0.3318  best=0.3304  pat=3  ts_lr=1.00e-04
+    P1 ep  38  train=0.3038  val=0.3320  best=0.3304  pat=4  ts_lr=1.00e-04
+    P1 ep  39  train=0.3036  val=0.3302  best=0.3302  pat=0  ts_lr=1.00e-04 *
+    P1 ep  40  train=0.3036  val=0.3311  best=0.3302  pat=1  ts_lr=1.00e-04
+    P1 ep  41  train=0.3036  val=0.3393  best=0.3302  pat=2  ts_lr=1.00e-04
+    P1 ep  42  train=0.3033  val=0.3270  best=0.3270  pat=0  ts_lr=1.00e-04 *
+    P1 ep  43  train=0.3030  val=0.3348  best=0.3270  pat=1  ts_lr=1.00e-04
+    P1 ep  44  train=0.3033  val=0.3286  best=0.3270  pat=2  ts_lr=1.00e-04
+    P1 ep  45  train=0.3029  val=0.3288  best=0.3270  pat=3  ts_lr=1.00e-04
+    P1 ep  46  train=0.3027  val=0.3290  best=0.3270  pat=4  ts_lr=1.00e-04
+    P1 ep  47  train=0.3027  val=0.3339  best=0.3270  pat=5  ts_lr=1.00e-04
+    P1 ep  48  train=0.3025  val=0.3255  best=0.3255  pat=0  ts_lr=1.00e-04 *
+    P1 ep  49  train=0.3025  val=0.3292  best=0.3255  pat=1  ts_lr=1.00e-04
+    P1 ep  50  train=0.3026  val=0.3292  best=0.3255  pat=2  ts_lr=1.00e-04
+    P1 ep  51  train=0.3024  val=0.3287  best=0.3255  pat=3  ts_lr=1.00e-04
+    P1 ep  52  train=0.3021  val=0.3313  best=0.3255  pat=4  ts_lr=1.00e-04
+    P1 ep  53  train=0.3024  val=0.3282  best=0.3255  pat=5  ts_lr=1.00e-04
+    P1 ep  54  train=0.3022  val=0.3312  best=0.3255  pat=6  ts_lr=1.00e-04
+    P1 ep  55  train=0.3022  val=0.3257  best=0.3255  pat=7  ts_lr=1.00e-04
+    P1 ep  56  train=0.3020  val=0.3380  best=0.3255  pat=8  ts_lr=1.00e-04
+    P1 ep  57  train=0.3021  val=0.3271  best=0.3255  pat=9  ts_lr=1.00e-04
+    P1 ep  58  train=0.3019  val=0.3274  best=0.3255  pat=10  ts_lr=1.00e-04
+    P1 ep  59  train=0.3019  val=0.3319  best=0.3255  pat=11  ts_lr=1.00e-04
+    P1 ep  60  train=0.3020  val=0.3303  best=0.3255  pat=12  ts_lr=1.00e-04
+    P1 ep  61  train=0.3015  val=0.3350  best=0.3255  pat=13  ts_lr=1.00e-04
+    P1 ep  62  train=0.3020  val=0.3261  best=0.3255  pat=14  ts_lr=1.00e-04
+    P1 ep  63  train=0.3015  val=0.3273  best=0.3255  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.3255
+    P2 ep   1  train=0.3022  val=0.3266  best=0.3266  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.3016  val=0.3264  best=0.3264  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   3  train=0.3017  val=0.3271  best=0.3264  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   4  train=0.3016  val=0.3265  best=0.3264  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   5  train=0.3014  val=0.3266  best=0.3264  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   6  train=0.3015  val=0.3274  best=0.3264  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   7  train=0.3014  val=0.3268  best=0.3264  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   8  train=0.3011  val=0.3267  best=0.3264  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.3014  val=0.3267  best=0.3264  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  10  train=0.3010  val=0.3268  best=0.3264  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.3011  val=0.3268  best=0.3264  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  12  train=0.3008  val=0.3278  best=0.3264  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  13  train=0.3002  val=0.3282  best=0.3264  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.3002  val=0.3284  best=0.3264  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.2997  val=0.3264  best=0.3264  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  16  train=0.2999  val=0.3292  best=0.3264  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.3001  val=0.3285  best=0.3264  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.2995  val=0.3275  best=0.3264  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.2993  val=0.3279  best=0.3264  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.2992  val=0.3292  best=0.3264  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.2991  val=0.3311  best=0.3264  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  22  train=0.2988  val=0.3297  best=0.3264  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  23  train=0.2986  val=0.3296  best=0.3264  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  24  train=0.2987  val=0.3271  best=0.3264  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  25  train=0.2984  val=0.3282  best=0.3264  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  26  train=0.2984  val=0.3280  best=0.3264  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  27  train=0.2982  val=0.3294  best=0.3264  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  28  train=0.2979  val=0.3289  best=0.3264  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  29  train=0.2978  val=0.3297  best=0.3264  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  30  train=0.2977  val=0.3304  best=0.3264  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  31  train=0.2976  val=0.3327  best=0.3264  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  32  train=0.2973  val=0.3293  best=0.3264  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  33  train=0.2972  val=0.3308  best=0.3264  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  34  train=0.2974  val=0.3325  best=0.3264  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  35  train=0.2972  val=0.3327  best=0.3264  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.3264
+  ts_scale learned: 1.0000
+  Main Model trained [991s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w1_1h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w1_1h_loss.png
+  EGARCH+NED trained [705s]
+    HAR          R2=-0.5895 MSE=3.13140 QLIKE=1.09877 DA=0.500
+    EGARCH       R2=-0.1565 MSE=2.27840 QLIKE=1.02304 DA=0.585
+    EGARCH+NED   R2=0.1702 MSE=1.63475 QLIKE=1.47644 DA=0.659
+    TS MLP       R2=0.2693 MSE=1.43950 QLIKE=1.23757 DA=0.689
+    Main Model   R2=0.2623 MSE=1.45334 QLIKE=1.19082 DA=0.684
+
+========================================================================
+Window 2/6: test 2023-07-01 -> 2023-12-31 (source window 4)
+Train=174,387 Val=17,276 Test=17,569
+========================================================================
+  CryptoBERT raw 768-dim: 5,490 train articles (no PCA reduction)
+  EGARCH fit/filter: 1s
+
+  Horizon 4h (RV_4h)
+    P1 ep   1  train=1.0299  val=0.3717  best=0.3717  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.3338  val=0.3607  best=0.3607  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.2672  val=0.3403  best=0.3403  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.2342  val=0.3651  best=0.3403  pat=1  ts_lr=1.00e-04
+    P1 ep   5  train=0.2239  val=0.3191  best=0.3191  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.2207  val=0.3390  best=0.3191  pat=1  ts_lr=1.00e-04
+    P1 ep   7  train=0.2184  val=0.3323  best=0.3191  pat=2  ts_lr=1.00e-04
+    P1 ep   8  train=0.2174  val=0.3336  best=0.3191  pat=3  ts_lr=1.00e-04
+    P1 ep   9  train=0.2162  val=0.3178  best=0.3178  pat=0  ts_lr=1.00e-04 *
+    P1 ep  10  train=0.2154  val=0.3211  best=0.3178  pat=1  ts_lr=1.00e-04
+    P1 ep  11  train=0.2145  val=0.3225  best=0.3178  pat=2  ts_lr=1.00e-04
+    P1 ep  12  train=0.2139  val=0.3119  best=0.3119  pat=0  ts_lr=1.00e-04 *
+    P1 ep  13  train=0.2131  val=0.3142  best=0.3119  pat=1  ts_lr=1.00e-04
+    P1 ep  14  train=0.2124  val=0.3119  best=0.3119  pat=2  ts_lr=1.00e-04
+    P1 ep  15  train=0.2120  val=0.3082  best=0.3082  pat=0  ts_lr=1.00e-04 *
+    P1 ep  16  train=0.2113  val=0.3017  best=0.3017  pat=0  ts_lr=1.00e-04 *
+    P1 ep  17  train=0.2107  val=0.2989  best=0.2989  pat=0  ts_lr=1.00e-04 *
+    P1 ep  18  train=0.2103  val=0.2995  best=0.2989  pat=1  ts_lr=1.00e-04
+    P1 ep  19  train=0.2100  val=0.2833  best=0.2833  pat=0  ts_lr=1.00e-04 *
+    P1 ep  20  train=0.2096  val=0.2949  best=0.2833  pat=1  ts_lr=1.00e-04
+    P1 ep  21  train=0.2092  val=0.2948  best=0.2833  pat=2  ts_lr=1.00e-04
+    P1 ep  22  train=0.2089  val=0.2929  best=0.2833  pat=3  ts_lr=1.00e-04
+    P1 ep  23  train=0.2089  val=0.3006  best=0.2833  pat=4  ts_lr=1.00e-04
+    P1 ep  24  train=0.2088  val=0.2998  best=0.2833  pat=5  ts_lr=1.00e-04
+    P1 ep  25  train=0.2082  val=0.2937  best=0.2833  pat=6  ts_lr=1.00e-04
+    P1 ep  26  train=0.2084  val=0.2910  best=0.2833  pat=7  ts_lr=1.00e-04
+    P1 ep  27  train=0.2082  val=0.2919  best=0.2833  pat=8  ts_lr=1.00e-04
+    P1 ep  28  train=0.2077  val=0.2875  best=0.2833  pat=9  ts_lr=1.00e-04
+    P1 ep  29  train=0.2076  val=0.2939  best=0.2833  pat=10  ts_lr=1.00e-04
+    P1 ep  30  train=0.2075  val=0.2883  best=0.2833  pat=11  ts_lr=1.00e-04
+    P1 ep  31  train=0.2073  val=0.2939  best=0.2833  pat=12  ts_lr=1.00e-04
+    P1 ep  32  train=0.2071  val=0.2870  best=0.2833  pat=13  ts_lr=1.00e-04
+    P1 ep  33  train=0.2072  val=0.2818  best=0.2818  pat=0  ts_lr=1.00e-04 *
+    P1 ep  34  train=0.2068  val=0.2854  best=0.2818  pat=1  ts_lr=1.00e-04
+    P1 ep  35  train=0.2066  val=0.2870  best=0.2818  pat=2  ts_lr=1.00e-04
+    P1 ep  36  train=0.2066  val=0.2856  best=0.2818  pat=3  ts_lr=1.00e-04
+    P1 ep  37  train=0.2066  val=0.2852  best=0.2818  pat=4  ts_lr=1.00e-04
+    P1 ep  38  train=0.2064  val=0.2902  best=0.2818  pat=5  ts_lr=1.00e-04
+    P1 ep  39  train=0.2061  val=0.2886  best=0.2818  pat=6  ts_lr=1.00e-04
+    P1 ep  40  train=0.2062  val=0.2936  best=0.2818  pat=7  ts_lr=1.00e-04
+    P1 ep  41  train=0.2058  val=0.2971  best=0.2818  pat=8  ts_lr=1.00e-04
+    P1 ep  42  train=0.2060  val=0.3088  best=0.2818  pat=9  ts_lr=1.00e-04
+    P1 ep  43  train=0.2059  val=0.2916  best=0.2818  pat=10  ts_lr=1.00e-04
+    P1 ep  44  train=0.2057  val=0.2836  best=0.2818  pat=11  ts_lr=1.00e-04
+    P1 ep  45  train=0.2054  val=0.2944  best=0.2818  pat=12  ts_lr=1.00e-04
+    P1 ep  46  train=0.2055  val=0.2916  best=0.2818  pat=13  ts_lr=1.00e-04
+    P1 ep  47  train=0.2053  val=0.2979  best=0.2818  pat=14  ts_lr=1.00e-04
+    P1 ep  48  train=0.2053  val=0.2848  best=0.2818  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.2818
+    P2 ep   1  train=0.2062  val=0.2836  best=0.2836  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.2059  val=0.2843  best=0.2836  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   3  train=0.2053  val=0.2841  best=0.2836  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   4  train=0.2049  val=0.2849  best=0.2836  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   5  train=0.2040  val=0.2853  best=0.2836  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   6  train=0.2031  val=0.2842  best=0.2836  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   7  train=0.2023  val=0.2861  best=0.2836  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   8  train=0.2012  val=0.2852  best=0.2836  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.2004  val=0.2844  best=0.2836  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  10  train=0.1992  val=0.2891  best=0.2836  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.1984  val=0.2878  best=0.2836  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  12  train=0.1974  val=0.2865  best=0.2836  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  13  train=0.1970  val=0.2883  best=0.2836  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.1963  val=0.2866  best=0.2836  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.1958  val=0.2852  best=0.2836  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  16  train=0.1953  val=0.2856  best=0.2836  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.1949  val=0.2879  best=0.2836  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.1944  val=0.2949  best=0.2836  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.1942  val=0.2918  best=0.2836  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.1938  val=0.2901  best=0.2836  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.1937  val=0.2902  best=0.2836  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.2836
+  ts_scale learned: 1.0000
+  Main Model trained [751s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w2_4h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w2_4h_loss.png
+  EGARCH+NED trained [636s]
+    HAR          R2=-1.4007 MSE=3.47440 QLIKE=0.99410 DA=0.500
+    EGARCH       R2=0.1542 MSE=1.22405 QLIKE=0.69260 DA=0.675
+    EGARCH+NED   R2=0.3208 MSE=0.98291 QLIKE=0.89154 DA=0.712
+    TS MLP       R2=0.3620 MSE=0.92336 QLIKE=0.91348 DA=0.743
+    Main Model   R2=0.3598 MSE=0.92654 QLIKE=0.85997 DA=0.743
+
+  Horizon 1h (RV_1h)
+    P1 ep   1  train=1.3295  val=0.4545  best=0.4545  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.4643  val=0.4462  best=0.4462  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.3896  val=0.4125  best=0.4125  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.3476  val=0.4083  best=0.4083  pat=0  ts_lr=1.00e-04 *
+    P1 ep   5  train=0.3275  val=0.4025  best=0.4025  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.3215  val=0.4028  best=0.4025  pat=1  ts_lr=1.00e-04
+    P1 ep   7  train=0.3187  val=0.3881  best=0.3881  pat=0  ts_lr=1.00e-04 *
+    P1 ep   8  train=0.3172  val=0.3916  best=0.3881  pat=1  ts_lr=1.00e-04
+    P1 ep   9  train=0.3163  val=0.3980  best=0.3881  pat=2  ts_lr=1.00e-04
+    P1 ep  10  train=0.3154  val=0.3833  best=0.3833  pat=0  ts_lr=1.00e-04 *
+    P1 ep  11  train=0.3144  val=0.3806  best=0.3806  pat=0  ts_lr=1.00e-04 *
+    P1 ep  12  train=0.3138  val=0.3881  best=0.3806  pat=1  ts_lr=1.00e-04
+    P1 ep  13  train=0.3133  val=0.3932  best=0.3806  pat=2  ts_lr=1.00e-04
+    P1 ep  14  train=0.3124  val=0.3755  best=0.3755  pat=0  ts_lr=1.00e-04 *
+    P1 ep  15  train=0.3119  val=0.3757  best=0.3755  pat=1  ts_lr=1.00e-04
+    P1 ep  16  train=0.3116  val=0.3822  best=0.3755  pat=2  ts_lr=1.00e-04
+    P1 ep  17  train=0.3107  val=0.3622  best=0.3622  pat=0  ts_lr=1.00e-04 *
+    P1 ep  18  train=0.3104  val=0.3692  best=0.3622  pat=1  ts_lr=1.00e-04
+    P1 ep  19  train=0.3103  val=0.3575  best=0.3575  pat=0  ts_lr=1.00e-04 *
+    P1 ep  20  train=0.3099  val=0.3649  best=0.3575  pat=1  ts_lr=1.00e-04
+    P1 ep  21  train=0.3089  val=0.3681  best=0.3575  pat=2  ts_lr=1.00e-04
+    P1 ep  22  train=0.3089  val=0.3563  best=0.3563  pat=0  ts_lr=1.00e-04 *
+    P1 ep  23  train=0.3087  val=0.3614  best=0.3563  pat=1  ts_lr=1.00e-04
+    P1 ep  24  train=0.3086  val=0.3645  best=0.3563  pat=2  ts_lr=1.00e-04
+    P1 ep  25  train=0.3080  val=0.3704  best=0.3563  pat=3  ts_lr=1.00e-04
+    P1 ep  26  train=0.3082  val=0.3525  best=0.3525  pat=0  ts_lr=1.00e-04 *
+    P1 ep  27  train=0.3080  val=0.3539  best=0.3525  pat=1  ts_lr=1.00e-04
+    P1 ep  28  train=0.3076  val=0.3459  best=0.3459  pat=0  ts_lr=1.00e-04 *
+    P1 ep  29  train=0.3077  val=0.3538  best=0.3459  pat=1  ts_lr=1.00e-04
+    P1 ep  30  train=0.3074  val=0.3552  best=0.3459  pat=2  ts_lr=1.00e-04
+    P1 ep  31  train=0.3072  val=0.3517  best=0.3459  pat=3  ts_lr=1.00e-04
+    P1 ep  32  train=0.3071  val=0.3667  best=0.3459  pat=4  ts_lr=1.00e-04
+    P1 ep  33  train=0.3068  val=0.3556  best=0.3459  pat=5  ts_lr=1.00e-04
+    P1 ep  34  train=0.3066  val=0.3520  best=0.3459  pat=6  ts_lr=1.00e-04
+    P1 ep  35  train=0.3065  val=0.3456  best=0.3456  pat=0  ts_lr=1.00e-04 *
+    P1 ep  36  train=0.3063  val=0.3568  best=0.3456  pat=1  ts_lr=1.00e-04
+    P1 ep  37  train=0.3065  val=0.3470  best=0.3456  pat=2  ts_lr=1.00e-04
+    P1 ep  38  train=0.3062  val=0.3564  best=0.3456  pat=3  ts_lr=1.00e-04
+    P1 ep  39  train=0.3059  val=0.3524  best=0.3456  pat=4  ts_lr=1.00e-04
+    P1 ep  40  train=0.3059  val=0.3487  best=0.3456  pat=5  ts_lr=1.00e-04
+    P1 ep  41  train=0.3055  val=0.3531  best=0.3456  pat=6  ts_lr=1.00e-04
+    P1 ep  42  train=0.3054  val=0.3650  best=0.3456  pat=7  ts_lr=1.00e-04
+    P1 ep  43  train=0.3054  val=0.3527  best=0.3456  pat=8  ts_lr=1.00e-04
+    P1 ep  44  train=0.3054  val=0.3599  best=0.3456  pat=9  ts_lr=1.00e-04
+    P1 ep  45  train=0.3051  val=0.3591  best=0.3456  pat=10  ts_lr=1.00e-04
+    P1 ep  46  train=0.3050  val=0.3444  best=0.3444  pat=0  ts_lr=1.00e-04 *
+    P1 ep  47  train=0.3051  val=0.3549  best=0.3444  pat=1  ts_lr=1.00e-04
+    P1 ep  48  train=0.3049  val=0.3476  best=0.3444  pat=2  ts_lr=1.00e-04
+    P1 ep  49  train=0.3051  val=0.3604  best=0.3444  pat=3  ts_lr=1.00e-04
+    P1 ep  50  train=0.3050  val=0.3589  best=0.3444  pat=4  ts_lr=1.00e-04
+    P1 ep  51  train=0.3049  val=0.3540  best=0.3444  pat=5  ts_lr=1.00e-04
+    P1 ep  52  train=0.3047  val=0.3485  best=0.3444  pat=6  ts_lr=1.00e-04
+    P1 ep  53  train=0.3047  val=0.3575  best=0.3444  pat=7  ts_lr=1.00e-04
+    P1 ep  54  train=0.3044  val=0.3621  best=0.3444  pat=8  ts_lr=1.00e-04
+    P1 ep  55  train=0.3045  val=0.3482  best=0.3444  pat=9  ts_lr=1.00e-04
+    P1 ep  56  train=0.3042  val=0.3467  best=0.3444  pat=10  ts_lr=1.00e-04
+    P1 ep  57  train=0.3045  val=0.3448  best=0.3444  pat=11  ts_lr=1.00e-04
+    P1 ep  58  train=0.3043  val=0.3499  best=0.3444  pat=12  ts_lr=1.00e-04
+    P1 ep  59  train=0.3044  val=0.3496  best=0.3444  pat=13  ts_lr=1.00e-04
+    P1 ep  60  train=0.3044  val=0.3548  best=0.3444  pat=14  ts_lr=1.00e-04
+    P1 ep  61  train=0.3043  val=0.3560  best=0.3444  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.3444
+    P2 ep   1  train=0.3048  val=0.3464  best=0.3464  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.3043  val=0.3465  best=0.3464  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   3  train=0.3043  val=0.3463  best=0.3463  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   4  train=0.3043  val=0.3463  best=0.3463  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   5  train=0.3043  val=0.3460  best=0.3460  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   6  train=0.3041  val=0.3460  best=0.3460  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   7  train=0.3043  val=0.3467  best=0.3460  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   8  train=0.3040  val=0.3465  best=0.3460  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.3037  val=0.3471  best=0.3460  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  10  train=0.3038  val=0.3473  best=0.3460  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.3036  val=0.3469  best=0.3460  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  12  train=0.3038  val=0.3462  best=0.3460  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  13  train=0.3037  val=0.3461  best=0.3460  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.3034  val=0.3474  best=0.3460  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.3035  val=0.3469  best=0.3460  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  16  train=0.3033  val=0.3471  best=0.3460  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.3032  val=0.3462  best=0.3460  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.3026  val=0.3469  best=0.3460  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.3029  val=0.3495  best=0.3460  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.3028  val=0.3475  best=0.3460  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.3025  val=0.3472  best=0.3460  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  22  train=0.3024  val=0.3472  best=0.3460  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  23  train=0.3023  val=0.3469  best=0.3460  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  24  train=0.3021  val=0.3485  best=0.3460  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  25  train=0.3021  val=0.3458  best=0.3458  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  26  train=0.3019  val=0.3478  best=0.3458  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  27  train=0.3017  val=0.3465  best=0.3458  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  28  train=0.3017  val=0.3467  best=0.3458  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  29  train=0.3014  val=0.3481  best=0.3458  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  30  train=0.3013  val=0.3462  best=0.3458  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  31  train=0.3011  val=0.3474  best=0.3458  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  32  train=0.3012  val=0.3474  best=0.3458  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  33  train=0.3011  val=0.3486  best=0.3458  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  34  train=0.3012  val=0.3471  best=0.3458  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  35  train=0.3010  val=0.3463  best=0.3458  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  36  train=0.3009  val=0.3482  best=0.3458  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  37  train=0.3008  val=0.3487  best=0.3458  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  38  train=0.3004  val=0.3456  best=0.3456  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  39  train=0.3006  val=0.3478  best=0.3456  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  40  train=0.3004  val=0.3472  best=0.3456  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  41  train=0.3002  val=0.3487  best=0.3456  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  42  train=0.3002  val=0.3490  best=0.3456  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  43  train=0.3002  val=0.3486  best=0.3456  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  44  train=0.3000  val=0.3495  best=0.3456  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  45  train=0.3000  val=0.3487  best=0.3456  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  46  train=0.2998  val=0.3491  best=0.3456  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  47  train=0.2995  val=0.3473  best=0.3456  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  48  train=0.2997  val=0.3480  best=0.3456  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  49  train=0.2997  val=0.3486  best=0.3456  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  50  train=0.2995  val=0.3477  best=0.3456  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  51  train=0.2995  val=0.3471  best=0.3456  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  52  train=0.2996  val=0.3487  best=0.3456  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  53  train=0.2995  val=0.3461  best=0.3456  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  54  train=0.2993  val=0.3481  best=0.3456  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  55  train=0.2994  val=0.3517  best=0.3456  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  56  train=0.2992  val=0.3466  best=0.3456  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  57  train=0.2992  val=0.3487  best=0.3456  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  58  train=0.2991  val=0.3487  best=0.3456  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.3456
+  ts_scale learned: 1.0000
+  Main Model trained [1476s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w2_1h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w2_1h_loss.png
+  EGARCH+NED trained [564s]
+    HAR          R2=-0.9663 MSE=4.08900 QLIKE=1.20933 DA=0.500
+    EGARCH       R2=-0.0243 MSE=2.13008 QLIKE=0.96660 DA=0.619
+    EGARCH+NED   R2=0.3044 MSE=1.44647 QLIKE=1.45845 DA=0.708
+    TS MLP       R2=0.3751 MSE=1.29954 QLIKE=1.39805 DA=0.735
+    Main Model   R2=0.3776 MSE=1.29429 QLIKE=1.35513 DA=0.736
+
+========================================================================
+Window 3/6: test 2024-01-01 -> 2024-06-30 (source window 5)
+Train=191,758 Val=17,569 Test=17,377
+========================================================================
+  CryptoBERT raw 768-dim: 6,499 train articles (no PCA reduction)
+  EGARCH fit/filter: 1s
+
+  Horizon 4h (RV_4h)
+    P1 ep   1  train=0.9921  val=0.3599  best=0.3599  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.3378  val=0.3594  best=0.3594  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.2751  val=0.3612  best=0.3594  pat=1  ts_lr=1.00e-04
+    P1 ep   4  train=0.2424  val=0.3666  best=0.3594  pat=2  ts_lr=1.00e-04
+    P1 ep   5  train=0.2318  val=0.3441  best=0.3441  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.2276  val=0.3260  best=0.3260  pat=0  ts_lr=1.00e-04 *
+    P1 ep   7  train=0.2255  val=0.3110  best=0.3110  pat=0  ts_lr=1.00e-04 *
+    P1 ep   8  train=0.2240  val=0.3085  best=0.3085  pat=0  ts_lr=1.00e-04 *
+    P1 ep   9  train=0.2228  val=0.2997  best=0.2997  pat=0  ts_lr=1.00e-04 *
+    P1 ep  10  train=0.2213  val=0.2893  best=0.2893  pat=0  ts_lr=1.00e-04 *
+    P1 ep  11  train=0.2201  val=0.3082  best=0.2893  pat=1  ts_lr=1.00e-04
+    P1 ep  12  train=0.2196  val=0.2751  best=0.2751  pat=0  ts_lr=1.00e-04 *
+    P1 ep  13  train=0.2189  val=0.2762  best=0.2751  pat=1  ts_lr=1.00e-04
+    P1 ep  14  train=0.2181  val=0.2771  best=0.2751  pat=2  ts_lr=1.00e-04
+    P1 ep  15  train=0.2180  val=0.2871  best=0.2751  pat=3  ts_lr=1.00e-04
+    P1 ep  16  train=0.2176  val=0.2685  best=0.2685  pat=0  ts_lr=1.00e-04 *
+    P1 ep  17  train=0.2172  val=0.2950  best=0.2685  pat=1  ts_lr=1.00e-04
+    P1 ep  18  train=0.2168  val=0.2754  best=0.2685  pat=2  ts_lr=1.00e-04
+    P1 ep  19  train=0.2167  val=0.2774  best=0.2685  pat=3  ts_lr=1.00e-04
+    P1 ep  20  train=0.2163  val=0.2684  best=0.2684  pat=0  ts_lr=1.00e-04 *
+    P1 ep  21  train=0.2161  val=0.2706  best=0.2684  pat=1  ts_lr=1.00e-04
+    P1 ep  22  train=0.2158  val=0.2700  best=0.2684  pat=2  ts_lr=1.00e-04
+    P1 ep  23  train=0.2156  val=0.2680  best=0.2680  pat=0  ts_lr=1.00e-04 *
+    P1 ep  24  train=0.2153  val=0.2626  best=0.2626  pat=0  ts_lr=1.00e-04 *
+    P1 ep  25  train=0.2149  val=0.2638  best=0.2626  pat=1  ts_lr=1.00e-04
+    P1 ep  26  train=0.2148  val=0.2594  best=0.2594  pat=0  ts_lr=1.00e-04 *
+    P1 ep  27  train=0.2146  val=0.2763  best=0.2594  pat=1  ts_lr=1.00e-04
+    P1 ep  28  train=0.2142  val=0.2659  best=0.2594  pat=2  ts_lr=1.00e-04
+    P1 ep  29  train=0.2144  val=0.2570  best=0.2570  pat=0  ts_lr=1.00e-04 *
+    P1 ep  30  train=0.2140  val=0.2667  best=0.2570  pat=1  ts_lr=1.00e-04
+    P1 ep  31  train=0.2136  val=0.2576  best=0.2570  pat=2  ts_lr=1.00e-04
+    P1 ep  32  train=0.2137  val=0.2603  best=0.2570  pat=3  ts_lr=1.00e-04
+    P1 ep  33  train=0.2136  val=0.2660  best=0.2570  pat=4  ts_lr=1.00e-04
+    P1 ep  34  train=0.2133  val=0.2541  best=0.2541  pat=0  ts_lr=1.00e-04 *
+    P1 ep  35  train=0.2133  val=0.2566  best=0.2541  pat=1  ts_lr=1.00e-04
+    P1 ep  36  train=0.2131  val=0.2581  best=0.2541  pat=2  ts_lr=1.00e-04
+    P1 ep  37  train=0.2129  val=0.2568  best=0.2541  pat=3  ts_lr=1.00e-04
+    P1 ep  38  train=0.2129  val=0.2555  best=0.2541  pat=4  ts_lr=1.00e-04
+    P1 ep  39  train=0.2128  val=0.2788  best=0.2541  pat=5  ts_lr=1.00e-04
+    P1 ep  40  train=0.2126  val=0.2574  best=0.2541  pat=6  ts_lr=1.00e-04
+    P1 ep  41  train=0.2127  val=0.2548  best=0.2541  pat=7  ts_lr=1.00e-04
+    P1 ep  42  train=0.2125  val=0.2528  best=0.2528  pat=0  ts_lr=1.00e-04 *
+    P1 ep  43  train=0.2123  val=0.2540  best=0.2528  pat=1  ts_lr=1.00e-04
+    P1 ep  44  train=0.2124  val=0.2580  best=0.2528  pat=2  ts_lr=1.00e-04
+    P1 ep  45  train=0.2123  val=0.2564  best=0.2528  pat=3  ts_lr=1.00e-04
+    P1 ep  46  train=0.2121  val=0.2545  best=0.2528  pat=4  ts_lr=1.00e-04
+    P1 ep  47  train=0.2118  val=0.2578  best=0.2528  pat=5  ts_lr=1.00e-04
+    P1 ep  48  train=0.2119  val=0.2567  best=0.2528  pat=6  ts_lr=1.00e-04
+    P1 ep  49  train=0.2118  val=0.2589  best=0.2528  pat=7  ts_lr=1.00e-04
+    P1 ep  50  train=0.2117  val=0.2529  best=0.2528  pat=8  ts_lr=1.00e-04
+    P1 ep  51  train=0.2118  val=0.2637  best=0.2528  pat=9  ts_lr=1.00e-04
+    P1 ep  52  train=0.2117  val=0.2639  best=0.2528  pat=10  ts_lr=1.00e-04
+    P1 ep  53  train=0.2116  val=0.2650  best=0.2528  pat=11  ts_lr=1.00e-04
+    P1 ep  54  train=0.2115  val=0.2511  best=0.2511  pat=0  ts_lr=1.00e-04 *
+    P1 ep  55  train=0.2116  val=0.2714  best=0.2511  pat=1  ts_lr=1.00e-04
+    P1 ep  56  train=0.2115  val=0.2583  best=0.2511  pat=2  ts_lr=1.00e-04
+    P1 ep  57  train=0.2114  val=0.2548  best=0.2511  pat=3  ts_lr=1.00e-04
+    P1 ep  58  train=0.2112  val=0.2545  best=0.2511  pat=4  ts_lr=1.00e-04
+    P1 ep  59  train=0.2113  val=0.2513  best=0.2511  pat=5  ts_lr=1.00e-04
+    P1 ep  60  train=0.2110  val=0.2664  best=0.2511  pat=6  ts_lr=1.00e-04
+    P1 ep  61  train=0.2110  val=0.2532  best=0.2511  pat=7  ts_lr=1.00e-04
+    P1 ep  62  train=0.2109  val=0.2617  best=0.2511  pat=8  ts_lr=1.00e-04
+    P1 ep  63  train=0.2110  val=0.2498  best=0.2498  pat=0  ts_lr=1.00e-04 *
+    P1 ep  64  train=0.2110  val=0.2551  best=0.2498  pat=1  ts_lr=1.00e-04
+    P1 ep  65  train=0.2109  val=0.2516  best=0.2498  pat=2  ts_lr=1.00e-04
+    P1 ep  66  train=0.2107  val=0.2506  best=0.2498  pat=3  ts_lr=1.00e-04
+    P1 ep  67  train=0.2107  val=0.2535  best=0.2498  pat=4  ts_lr=1.00e-04
+    P1 ep  68  train=0.2107  val=0.2475  best=0.2475  pat=0  ts_lr=1.00e-04 *
+    P1 ep  69  train=0.2106  val=0.2570  best=0.2475  pat=1  ts_lr=1.00e-04
+    P1 ep  70  train=0.2106  val=0.2576  best=0.2475  pat=2  ts_lr=1.00e-04
+    P1 ep  71  train=0.2107  val=0.2547  best=0.2475  pat=3  ts_lr=1.00e-04
+    P1 ep  72  train=0.2107  val=0.2525  best=0.2475  pat=4  ts_lr=1.00e-04
+    P1 ep  73  train=0.2104  val=0.2543  best=0.2475  pat=5  ts_lr=1.00e-04
+    P1 ep  74  train=0.2102  val=0.2581  best=0.2475  pat=6  ts_lr=1.00e-04
+    P1 ep  75  train=0.2107  val=0.2474  best=0.2474  pat=0  ts_lr=1.00e-04 *
+    P1 ep  76  train=0.2105  val=0.2512  best=0.2474  pat=1  ts_lr=1.00e-04
+    P1 ep  77  train=0.2104  val=0.2471  best=0.2471  pat=0  ts_lr=1.00e-04 *
+    P1 ep  78  train=0.2104  val=0.2502  best=0.2471  pat=1  ts_lr=1.00e-04
+    P1 ep  79  train=0.2104  val=0.2491  best=0.2471  pat=2  ts_lr=1.00e-04
+    P1 ep  80  train=0.2102  val=0.2474  best=0.2471  pat=3  ts_lr=1.00e-04
+    P1 ep  81  train=0.2104  val=0.2486  best=0.2471  pat=4  ts_lr=1.00e-04
+    P1 ep  82  train=0.2103  val=0.2485  best=0.2471  pat=5  ts_lr=1.00e-04
+    P1 ep  83  train=0.2100  val=0.2488  best=0.2471  pat=6  ts_lr=1.00e-04
+    P1 ep  84  train=0.2103  val=0.2500  best=0.2471  pat=7  ts_lr=1.00e-04
+    P1 ep  85  train=0.2101  val=0.2500  best=0.2471  pat=8  ts_lr=1.00e-04
+    P1 ep  86  train=0.2102  val=0.2622  best=0.2471  pat=9  ts_lr=1.00e-04
+    P1 ep  87  train=0.2100  val=0.2502  best=0.2471  pat=10  ts_lr=1.00e-04
+    P1 ep  88  train=0.2099  val=0.2551  best=0.2471  pat=11  ts_lr=1.00e-04
+    P1 ep  89  train=0.2098  val=0.2535  best=0.2471  pat=12  ts_lr=1.00e-04
+    P1 ep  90  train=0.2099  val=0.2508  best=0.2471  pat=13  ts_lr=1.00e-04
+    P1 ep  91  train=0.2098  val=0.2504  best=0.2471  pat=14  ts_lr=1.00e-04
+    P1 ep  92  train=0.2100  val=0.2472  best=0.2471  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.2471
+    P2 ep   1  train=0.2097  val=0.2473  best=0.2473  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.2093  val=0.2469  best=0.2469  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   3  train=0.2090  val=0.2468  best=0.2468  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   4  train=0.2086  val=0.2467  best=0.2467  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   5  train=0.2077  val=0.2469  best=0.2467  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   6  train=0.2068  val=0.2469  best=0.2467  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   7  train=0.2061  val=0.2464  best=0.2464  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   8  train=0.2051  val=0.2469  best=0.2464  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.2046  val=0.2480  best=0.2464  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  10  train=0.2035  val=0.2472  best=0.2464  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.2029  val=0.2495  best=0.2464  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  12  train=0.2020  val=0.2514  best=0.2464  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  13  train=0.2014  val=0.2499  best=0.2464  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.2006  val=0.2500  best=0.2464  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.2003  val=0.2514  best=0.2464  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  16  train=0.1997  val=0.2486  best=0.2464  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.1992  val=0.2496  best=0.2464  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.1987  val=0.2507  best=0.2464  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.1982  val=0.2541  best=0.2464  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.1978  val=0.2527  best=0.2464  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.1975  val=0.2501  best=0.2464  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  22  train=0.1970  val=0.2513  best=0.2464  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  23  train=0.1966  val=0.2530  best=0.2464  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  24  train=0.1962  val=0.2501  best=0.2464  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  25  train=0.1961  val=0.2533  best=0.2464  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  26  train=0.1958  val=0.2515  best=0.2464  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  27  train=0.1955  val=0.2497  best=0.2464  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.2464
+  ts_scale learned: 1.0000
+  Main Model trained [1335s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w3_4h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w3_4h_loss.png
+  EGARCH+NED trained [522s]
+    HAR          R2=-0.0862 MSE=1.21985 QLIKE=0.59038 DA=0.500
+    EGARCH       R2=0.1817 MSE=0.91900 QLIKE=0.47256 DA=0.662
+    EGARCH+NED   R2=0.3135 MSE=0.77098 QLIKE=0.64545 DA=0.693
+    TS MLP       R2=0.3834 MSE=0.69244 QLIKE=0.58244 DA=0.711
+    Main Model   R2=0.3798 MSE=0.69648 QLIKE=0.56986 DA=0.714
+
+  Horizon 1h (RV_1h)
+    P1 ep   1  train=1.2779  val=0.4116  best=0.4116  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.4650  val=0.4226  best=0.4116  pat=1  ts_lr=1.00e-04
+    P1 ep   3  train=0.3912  val=0.3943  best=0.3943  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.3493  val=0.3967  best=0.3943  pat=1  ts_lr=1.00e-04
+    P1 ep   5  train=0.3316  val=0.3905  best=0.3905  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.3254  val=0.3831  best=0.3831  pat=0  ts_lr=1.00e-04 *
+    P1 ep   7  train=0.3229  val=0.3725  best=0.3725  pat=0  ts_lr=1.00e-04 *
+    P1 ep   8  train=0.3210  val=0.3720  best=0.3720  pat=0  ts_lr=1.00e-04 *
+    P1 ep   9  train=0.3199  val=0.3521  best=0.3521  pat=0  ts_lr=1.00e-04 *
+    P1 ep  10  train=0.3184  val=0.3452  best=0.3452  pat=0  ts_lr=1.00e-04 *
+    P1 ep  11  train=0.3171  val=0.3543  best=0.3452  pat=1  ts_lr=1.00e-04
+    P1 ep  12  train=0.3168  val=0.3376  best=0.3376  pat=0  ts_lr=1.00e-04 *
+    P1 ep  13  train=0.3160  val=0.3416  best=0.3376  pat=1  ts_lr=1.00e-04
+    P1 ep  14  train=0.3153  val=0.3484  best=0.3376  pat=2  ts_lr=1.00e-04
+    P1 ep  15  train=0.3146  val=0.3538  best=0.3376  pat=3  ts_lr=1.00e-04
+    P1 ep  16  train=0.3142  val=0.3343  best=0.3343  pat=0  ts_lr=1.00e-04 *
+    P1 ep  17  train=0.3137  val=0.3492  best=0.3343  pat=1  ts_lr=1.00e-04
+    P1 ep  18  train=0.3133  val=0.3294  best=0.3294  pat=0  ts_lr=1.00e-04 *
+    P1 ep  19  train=0.3133  val=0.3342  best=0.3294  pat=1  ts_lr=1.00e-04
+    P1 ep  20  train=0.3127  val=0.3322  best=0.3294  pat=2  ts_lr=1.00e-04
+    P1 ep  21  train=0.3127  val=0.3339  best=0.3294  pat=3  ts_lr=1.00e-04
+    P1 ep  22  train=0.3122  val=0.3331  best=0.3294  pat=4  ts_lr=1.00e-04
+    P1 ep  23  train=0.3124  val=0.3286  best=0.3286  pat=0  ts_lr=1.00e-04 *
+    P1 ep  24  train=0.3119  val=0.3279  best=0.3279  pat=0  ts_lr=1.00e-04 *
+    P1 ep  25  train=0.3117  val=0.3296  best=0.3279  pat=1  ts_lr=1.00e-04
+    P1 ep  26  train=0.3115  val=0.3299  best=0.3279  pat=2  ts_lr=1.00e-04
+    P1 ep  27  train=0.3116  val=0.3289  best=0.3279  pat=3  ts_lr=1.00e-04
+    P1 ep  28  train=0.3112  val=0.3287  best=0.3279  pat=4  ts_lr=1.00e-04
+    P1 ep  29  train=0.3113  val=0.3311  best=0.3279  pat=5  ts_lr=1.00e-04
+    P1 ep  30  train=0.3109  val=0.3259  best=0.3259  pat=0  ts_lr=1.00e-04 *
+    P1 ep  31  train=0.3107  val=0.3260  best=0.3259  pat=1  ts_lr=1.00e-04
+    P1 ep  32  train=0.3104  val=0.3253  best=0.3253  pat=0  ts_lr=1.00e-04 *
+    P1 ep  33  train=0.3105  val=0.3313  best=0.3253  pat=1  ts_lr=1.00e-04
+    P1 ep  34  train=0.3106  val=0.3244  best=0.3244  pat=0  ts_lr=1.00e-04 *
+    P1 ep  35  train=0.3098  val=0.3244  best=0.3244  pat=0  ts_lr=1.00e-04 *
+    P1 ep  36  train=0.3100  val=0.3249  best=0.3244  pat=1  ts_lr=1.00e-04
+    P1 ep  37  train=0.3096  val=0.3263  best=0.3244  pat=2  ts_lr=1.00e-04
+    P1 ep  38  train=0.3096  val=0.3276  best=0.3244  pat=3  ts_lr=1.00e-04
+    P1 ep  39  train=0.3096  val=0.3313  best=0.3244  pat=4  ts_lr=1.00e-04
+    P1 ep  40  train=0.3093  val=0.3226  best=0.3226  pat=0  ts_lr=1.00e-04 *
+    P1 ep  41  train=0.3092  val=0.3246  best=0.3226  pat=1  ts_lr=1.00e-04
+    P1 ep  42  train=0.3094  val=0.3232  best=0.3226  pat=2  ts_lr=1.00e-04
+    P1 ep  43  train=0.3090  val=0.3226  best=0.3226  pat=0  ts_lr=1.00e-04 *
+    P1 ep  44  train=0.3091  val=0.3276  best=0.3226  pat=1  ts_lr=1.00e-04
+    P1 ep  45  train=0.3089  val=0.3256  best=0.3226  pat=2  ts_lr=1.00e-04
+    P1 ep  46  train=0.3090  val=0.3218  best=0.3218  pat=0  ts_lr=1.00e-04 *
+    P1 ep  47  train=0.3087  val=0.3229  best=0.3218  pat=1  ts_lr=1.00e-04
+    P1 ep  48  train=0.3086  val=0.3238  best=0.3218  pat=2  ts_lr=1.00e-04
+    P1 ep  49  train=0.3084  val=0.3236  best=0.3218  pat=3  ts_lr=1.00e-04
+    P1 ep  50  train=0.3086  val=0.3220  best=0.3218  pat=4  ts_lr=1.00e-04
+    P1 ep  51  train=0.3085  val=0.3273  best=0.3218  pat=5  ts_lr=1.00e-04
+    P1 ep  52  train=0.3087  val=0.3216  best=0.3216  pat=0  ts_lr=1.00e-04 *
+    P1 ep  53  train=0.3085  val=0.3284  best=0.3216  pat=1  ts_lr=1.00e-04
+    P1 ep  54  train=0.3084  val=0.3208  best=0.3208  pat=0  ts_lr=1.00e-04 *
+    P1 ep  55  train=0.3083  val=0.3296  best=0.3208  pat=1  ts_lr=1.00e-04
+    P1 ep  56  train=0.3083  val=0.3212  best=0.3208  pat=2  ts_lr=1.00e-04
+    P1 ep  57  train=0.3082  val=0.3238  best=0.3208  pat=3  ts_lr=1.00e-04
+    P1 ep  58  train=0.3079  val=0.3225  best=0.3208  pat=4  ts_lr=1.00e-04
+    P1 ep  59  train=0.3083  val=0.3206  best=0.3206  pat=0  ts_lr=1.00e-04 *
+    P1 ep  60  train=0.3077  val=0.3254  best=0.3206  pat=1  ts_lr=1.00e-04
+    P1 ep  61  train=0.3077  val=0.3196  best=0.3196  pat=0  ts_lr=1.00e-04 *
+    P1 ep  62  train=0.3078  val=0.3206  best=0.3196  pat=1  ts_lr=1.00e-04
+    P1 ep  63  train=0.3078  val=0.3237  best=0.3196  pat=2  ts_lr=1.00e-04
+    P1 ep  64  train=0.3079  val=0.3222  best=0.3196  pat=3  ts_lr=1.00e-04
+    P1 ep  65  train=0.3077  val=0.3209  best=0.3196  pat=4  ts_lr=1.00e-04
+    P1 ep  66  train=0.3075  val=0.3197  best=0.3196  pat=5  ts_lr=1.00e-04
+    P1 ep  67  train=0.3074  val=0.3230  best=0.3196  pat=6  ts_lr=1.00e-04
+    P1 ep  68  train=0.3076  val=0.3198  best=0.3196  pat=7  ts_lr=1.00e-04
+    P1 ep  69  train=0.3073  val=0.3199  best=0.3196  pat=8  ts_lr=1.00e-04
+    P1 ep  70  train=0.3074  val=0.3258  best=0.3196  pat=9  ts_lr=1.00e-04
+    P1 ep  71  train=0.3075  val=0.3188  best=0.3188  pat=0  ts_lr=1.00e-04 *
+    P1 ep  72  train=0.3073  val=0.3234  best=0.3188  pat=1  ts_lr=1.00e-04
+    P1 ep  73  train=0.3072  val=0.3210  best=0.3188  pat=2  ts_lr=1.00e-04
+    P1 ep  74  train=0.3072  val=0.3191  best=0.3188  pat=3  ts_lr=1.00e-04
+    P1 ep  75  train=0.3075  val=0.3187  best=0.3187  pat=0  ts_lr=1.00e-04 *
+    P1 ep  76  train=0.3074  val=0.3181  best=0.3181  pat=0  ts_lr=1.00e-04 *
+    P1 ep  77  train=0.3074  val=0.3181  best=0.3181  pat=0  ts_lr=1.00e-04 *
+    P1 ep  78  train=0.3071  val=0.3182  best=0.3181  pat=1  ts_lr=1.00e-04
+    P1 ep  79  train=0.3074  val=0.3183  best=0.3181  pat=2  ts_lr=1.00e-04
+    P1 ep  80  train=0.3073  val=0.3190  best=0.3181  pat=3  ts_lr=1.00e-04
+    P1 ep  81  train=0.3072  val=0.3183  best=0.3181  pat=4  ts_lr=1.00e-04
+    P1 ep  82  train=0.3069  val=0.3198  best=0.3181  pat=5  ts_lr=1.00e-04
+    P1 ep  83  train=0.3070  val=0.3188  best=0.3181  pat=6  ts_lr=1.00e-04
+    P1 ep  84  train=0.3070  val=0.3183  best=0.3181  pat=7  ts_lr=1.00e-04
+    P1 ep  85  train=0.3070  val=0.3183  best=0.3181  pat=8  ts_lr=1.00e-04
+    P1 ep  86  train=0.3068  val=0.3240  best=0.3181  pat=9  ts_lr=1.00e-04
+    P1 ep  87  train=0.3067  val=0.3191  best=0.3181  pat=10  ts_lr=1.00e-04
+    P1 ep  88  train=0.3068  val=0.3198  best=0.3181  pat=11  ts_lr=1.00e-04
+    P1 ep  89  train=0.3067  val=0.3206  best=0.3181  pat=12  ts_lr=1.00e-04
+    P1 ep  90  train=0.3067  val=0.3288  best=0.3181  pat=13  ts_lr=1.00e-04
+    P1 ep  91  train=0.3068  val=0.3178  best=0.3178  pat=0  ts_lr=1.00e-04 *
+    P1 ep  92  train=0.3067  val=0.3191  best=0.3178  pat=1  ts_lr=1.00e-04
+    P1 ep  93  train=0.3066  val=0.3178  best=0.3178  pat=0  ts_lr=1.00e-04 *
+    P1 ep  94  train=0.3066  val=0.3175  best=0.3175  pat=0  ts_lr=1.00e-04 *
+    P1 ep  95  train=0.3065  val=0.3177  best=0.3175  pat=1  ts_lr=1.00e-04
+    P1 ep  96  train=0.3066  val=0.3172  best=0.3172  pat=0  ts_lr=1.00e-04 *
+    P1 ep  97  train=0.3067  val=0.3230  best=0.3172  pat=1  ts_lr=1.00e-04
+    P1 ep  98  train=0.3067  val=0.3166  best=0.3166  pat=0  ts_lr=1.00e-04 *
+    P1 ep  99  train=0.3066  val=0.3175  best=0.3166  pat=1  ts_lr=1.00e-04
+    P1 ep 100  train=0.3063  val=0.3175  best=0.3166  pat=2  ts_lr=1.00e-04
+    P1 best val: 0.3166
+    P2 ep   1  train=0.3060  val=0.3156  best=0.3156  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.3055  val=0.3154  best=0.3154  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   3  train=0.3056  val=0.3153  best=0.3153  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   4  train=0.3057  val=0.3150  best=0.3150  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   5  train=0.3054  val=0.3151  best=0.3150  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   6  train=0.3052  val=0.3152  best=0.3150  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   7  train=0.3053  val=0.3148  best=0.3148  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   8  train=0.3048  val=0.3153  best=0.3148  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.3051  val=0.3148  best=0.3148  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  10  train=0.3050  val=0.3150  best=0.3148  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.3049  val=0.3147  best=0.3147  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  12  train=0.3045  val=0.3147  best=0.3147  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  13  train=0.3046  val=0.3147  best=0.3147  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.3044  val=0.3150  best=0.3147  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.3042  val=0.3149  best=0.3147  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  16  train=0.3040  val=0.3148  best=0.3147  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.3037  val=0.3150  best=0.3147  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.3036  val=0.3150  best=0.3147  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.3035  val=0.3153  best=0.3147  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.3033  val=0.3153  best=0.3147  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.3033  val=0.3153  best=0.3147  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  22  train=0.3029  val=0.3153  best=0.3147  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  23  train=0.3031  val=0.3155  best=0.3147  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  24  train=0.3027  val=0.3154  best=0.3147  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  25  train=0.3028  val=0.3156  best=0.3147  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  26  train=0.3025  val=0.3155  best=0.3147  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  27  train=0.3021  val=0.3155  best=0.3147  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  28  train=0.3022  val=0.3159  best=0.3147  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  29  train=0.3022  val=0.3158  best=0.3147  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  30  train=0.3020  val=0.3160  best=0.3147  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  31  train=0.3017  val=0.3157  best=0.3147  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  32  train=0.3018  val=0.3155  best=0.3147  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.3147
+  ts_scale learned: 1.0000
+  Main Model trained [1505s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w3_1h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w3_1h_loss.png
+  EGARCH+NED trained [492s]
+    HAR          R2=-0.0297 MSE=1.81043 QLIKE=1.01775 DA=0.500
+    EGARCH       R2=-0.0058 MSE=1.76833 QLIKE=0.72725 DA=0.607
+    EGARCH+NED   R2=0.2787 MSE=1.26814 QLIKE=1.12079 DA=0.679
+    TS MLP       R2=0.3493 MSE=1.14410 QLIKE=0.96251 DA=0.706
+    Main Model   R2=0.3496 MSE=1.14355 QLIKE=0.94901 DA=0.706
+
+========================================================================
+Window 4/6: test 2024-07-01 -> 2024-12-31 (source window 6)
+Train=209,422 Val=17,377 Test=17,569
+========================================================================
+  CryptoBERT raw 768-dim: 7,200 train articles (no PCA reduction)
+  EGARCH fit/filter: 1s
+
+  Horizon 4h (RV_4h)
+    P1 ep   1  train=0.9572  val=0.2550  best=0.2550  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.3309  val=0.2302  best=0.2302  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.2677  val=0.2266  best=0.2266  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.2421  val=0.2266  best=0.2266  pat=0  ts_lr=1.00e-04 *
+    P1 ep   5  train=0.2346  val=0.2268  best=0.2266  pat=1  ts_lr=1.00e-04
+    P1 ep   6  train=0.2314  val=0.2231  best=0.2231  pat=0  ts_lr=1.00e-04 *
+    P1 ep   7  train=0.2292  val=0.2248  best=0.2231  pat=1  ts_lr=1.00e-04
+    P1 ep   8  train=0.2271  val=0.2274  best=0.2231  pat=2  ts_lr=1.00e-04
+    P1 ep   9  train=0.2258  val=0.2245  best=0.2231  pat=3  ts_lr=1.00e-04
+    P1 ep  10  train=0.2244  val=0.2289  best=0.2231  pat=4  ts_lr=1.00e-04
+    P1 ep  11  train=0.2234  val=0.2289  best=0.2231  pat=5  ts_lr=1.00e-04
+    P1 ep  12  train=0.2225  val=0.2223  best=0.2223  pat=0  ts_lr=1.00e-04 *
+    P1 ep  13  train=0.2219  val=0.2257  best=0.2223  pat=1  ts_lr=1.00e-04
+    P1 ep  14  train=0.2212  val=0.2246  best=0.2223  pat=2  ts_lr=1.00e-04
+    P1 ep  15  train=0.2211  val=0.2247  best=0.2223  pat=3  ts_lr=1.00e-04
+    P1 ep  16  train=0.2202  val=0.2248  best=0.2223  pat=4  ts_lr=1.00e-04
+    P1 ep  17  train=0.2197  val=0.2234  best=0.2223  pat=5  ts_lr=1.00e-04
+    P1 ep  18  train=0.2195  val=0.2233  best=0.2223  pat=6  ts_lr=1.00e-04
+    P1 ep  19  train=0.2192  val=0.2218  best=0.2218  pat=0  ts_lr=1.00e-04 *
+    P1 ep  20  train=0.2188  val=0.2204  best=0.2204  pat=0  ts_lr=1.00e-04 *
+    P1 ep  21  train=0.2184  val=0.2245  best=0.2204  pat=1  ts_lr=1.00e-04
+    P1 ep  22  train=0.2182  val=0.2258  best=0.2204  pat=2  ts_lr=1.00e-04
+    P1 ep  23  train=0.2180  val=0.2240  best=0.2204  pat=3  ts_lr=1.00e-04
+    P1 ep  24  train=0.2176  val=0.2264  best=0.2204  pat=4  ts_lr=1.00e-04
+    P1 ep  25  train=0.2176  val=0.2231  best=0.2204  pat=5  ts_lr=1.00e-04
+    P1 ep  26  train=0.2173  val=0.2248  best=0.2204  pat=6  ts_lr=1.00e-04
+    P1 ep  27  train=0.2169  val=0.2238  best=0.2204  pat=7  ts_lr=1.00e-04
+    P1 ep  28  train=0.2168  val=0.2217  best=0.2204  pat=8  ts_lr=1.00e-04
+    P1 ep  29  train=0.2166  val=0.2188  best=0.2188  pat=0  ts_lr=1.00e-04 *
+    P1 ep  30  train=0.2163  val=0.2207  best=0.2188  pat=1  ts_lr=1.00e-04
+    P1 ep  31  train=0.2163  val=0.2199  best=0.2188  pat=2  ts_lr=1.00e-04
+    P1 ep  32  train=0.2161  val=0.2197  best=0.2188  pat=3  ts_lr=1.00e-04
+    P1 ep  33  train=0.2158  val=0.2197  best=0.2188  pat=4  ts_lr=1.00e-04
+    P1 ep  34  train=0.2159  val=0.2213  best=0.2188  pat=5  ts_lr=1.00e-04
+    P1 ep  35  train=0.2157  val=0.2176  best=0.2176  pat=0  ts_lr=1.00e-04 *
+    P1 ep  36  train=0.2155  val=0.2190  best=0.2176  pat=1  ts_lr=1.00e-04
+    P1 ep  37  train=0.2153  val=0.2184  best=0.2176  pat=2  ts_lr=1.00e-04
+    P1 ep  38  train=0.2154  val=0.2217  best=0.2176  pat=3  ts_lr=1.00e-04
+    P1 ep  39  train=0.2150  val=0.2216  best=0.2176  pat=4  ts_lr=1.00e-04
+    P1 ep  40  train=0.2150  val=0.2175  best=0.2175  pat=0  ts_lr=1.00e-04 *
+    P1 ep  41  train=0.2149  val=0.2192  best=0.2175  pat=1  ts_lr=1.00e-04
+    P1 ep  42  train=0.2148  val=0.2266  best=0.2175  pat=2  ts_lr=1.00e-04
+    P1 ep  43  train=0.2149  val=0.2263  best=0.2175  pat=3  ts_lr=1.00e-04
+    P1 ep  44  train=0.2148  val=0.2196  best=0.2175  pat=4  ts_lr=1.00e-04
+    P1 ep  45  train=0.2146  val=0.2196  best=0.2175  pat=5  ts_lr=1.00e-04
+    P1 ep  46  train=0.2143  val=0.2192  best=0.2175  pat=6  ts_lr=1.00e-04
+    P1 ep  47  train=0.2144  val=0.2165  best=0.2165  pat=0  ts_lr=1.00e-04 *
+    P1 ep  48  train=0.2144  val=0.2178  best=0.2165  pat=1  ts_lr=1.00e-04
+    P1 ep  49  train=0.2142  val=0.2187  best=0.2165  pat=2  ts_lr=1.00e-04
+    P1 ep  50  train=0.2143  val=0.2184  best=0.2165  pat=3  ts_lr=1.00e-04
+    P1 ep  51  train=0.2141  val=0.2181  best=0.2165  pat=4  ts_lr=1.00e-04
+    P1 ep  52  train=0.2139  val=0.2167  best=0.2165  pat=5  ts_lr=1.00e-04
+    P1 ep  53  train=0.2139  val=0.2187  best=0.2165  pat=6  ts_lr=1.00e-04
+    P1 ep  54  train=0.2141  val=0.2169  best=0.2165  pat=7  ts_lr=1.00e-04
+    P1 ep  55  train=0.2139  val=0.2170  best=0.2165  pat=8  ts_lr=1.00e-04
+    P1 ep  56  train=0.2136  val=0.2168  best=0.2165  pat=9  ts_lr=1.00e-04
+    P1 ep  57  train=0.2136  val=0.2182  best=0.2165  pat=10  ts_lr=1.00e-04
+    P1 ep  58  train=0.2135  val=0.2162  best=0.2162  pat=0  ts_lr=1.00e-04 *
+    P1 ep  59  train=0.2135  val=0.2177  best=0.2162  pat=1  ts_lr=1.00e-04
+    P1 ep  60  train=0.2134  val=0.2177  best=0.2162  pat=2  ts_lr=1.00e-04
+    P1 ep  61  train=0.2134  val=0.2192  best=0.2162  pat=3  ts_lr=1.00e-04
+    P1 ep  62  train=0.2134  val=0.2181  best=0.2162  pat=4  ts_lr=1.00e-04
+    P1 ep  63  train=0.2132  val=0.2194  best=0.2162  pat=5  ts_lr=1.00e-04
+    P1 ep  64  train=0.2134  val=0.2173  best=0.2162  pat=6  ts_lr=1.00e-04
+    P1 ep  65  train=0.2132  val=0.2228  best=0.2162  pat=7  ts_lr=1.00e-04
+    P1 ep  66  train=0.2132  val=0.2163  best=0.2162  pat=8  ts_lr=1.00e-04
+    P1 ep  67  train=0.2132  val=0.2178  best=0.2162  pat=9  ts_lr=1.00e-04
+    P1 ep  68  train=0.2131  val=0.2181  best=0.2162  pat=10  ts_lr=1.00e-04
+    P1 ep  69  train=0.2128  val=0.2158  best=0.2158  pat=0  ts_lr=1.00e-04 *
+    P1 ep  70  train=0.2128  val=0.2169  best=0.2158  pat=1  ts_lr=1.00e-04
+    P1 ep  71  train=0.2126  val=0.2210  best=0.2158  pat=2  ts_lr=1.00e-04
+    P1 ep  72  train=0.2128  val=0.2177  best=0.2158  pat=3  ts_lr=1.00e-04
+    P1 ep  73  train=0.2129  val=0.2163  best=0.2158  pat=4  ts_lr=1.00e-04
+    P1 ep  74  train=0.2127  val=0.2224  best=0.2158  pat=5  ts_lr=1.00e-04
+    P1 ep  75  train=0.2127  val=0.2166  best=0.2158  pat=6  ts_lr=1.00e-04
+    P1 ep  76  train=0.2126  val=0.2211  best=0.2158  pat=7  ts_lr=1.00e-04
+    P1 ep  77  train=0.2127  val=0.2181  best=0.2158  pat=8  ts_lr=1.00e-04
+    P1 ep  78  train=0.2125  val=0.2168  best=0.2158  pat=9  ts_lr=1.00e-04
+    P1 ep  79  train=0.2125  val=0.2170  best=0.2158  pat=10  ts_lr=1.00e-04
+    P1 ep  80  train=0.2126  val=0.2194  best=0.2158  pat=11  ts_lr=1.00e-04
+    P1 ep  81  train=0.2123  val=0.2169  best=0.2158  pat=12  ts_lr=1.00e-04
+    P1 ep  82  train=0.2124  val=0.2198  best=0.2158  pat=13  ts_lr=1.00e-04
+    P1 ep  83  train=0.2123  val=0.2168  best=0.2158  pat=14  ts_lr=1.00e-04
+    P1 ep  84  train=0.2124  val=0.2164  best=0.2158  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.2158
+    P2 ep   1  train=0.2121  val=0.2155  best=0.2155  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.2118  val=0.2160  best=0.2155  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   3  train=0.2113  val=0.2164  best=0.2155  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   4  train=0.2108  val=0.2168  best=0.2155  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   5  train=0.2100  val=0.2179  best=0.2155  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   6  train=0.2094  val=0.2173  best=0.2155  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   7  train=0.2082  val=0.2189  best=0.2155  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   8  train=0.2079  val=0.2211  best=0.2155  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.2067  val=0.2194  best=0.2155  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  10  train=0.2061  val=0.2190  best=0.2155  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.2053  val=0.2223  best=0.2155  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  12  train=0.2045  val=0.2245  best=0.2155  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  13  train=0.2041  val=0.2201  best=0.2155  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.2032  val=0.2233  best=0.2155  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.2028  val=0.2224  best=0.2155  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  16  train=0.2023  val=0.2251  best=0.2155  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.2016  val=0.2218  best=0.2155  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.2011  val=0.2235  best=0.2155  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.2007  val=0.2229  best=0.2155  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.2001  val=0.2227  best=0.2155  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.1995  val=0.2244  best=0.2155  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.2155
+  ts_scale learned: 1.0000
+  Main Model trained [1253s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w4_4h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w4_4h_loss.png
+  EGARCH+NED trained [693s]
+    HAR          R2=0.0948 MSE=0.93064 QLIKE=0.57161 DA=0.500
+    EGARCH       R2=0.1356 MSE=0.88871 QLIKE=0.42400 DA=0.645
+    EGARCH+NED   R2=0.2530 MSE=0.76801 QLIKE=0.54133 DA=0.667
+    TS MLP       R2=0.3519 MSE=0.66634 QLIKE=0.51952 DA=0.699
+    Main Model   R2=0.3689 MSE=0.64884 QLIKE=0.48172 DA=0.703
+
+  Horizon 1h (RV_1h)
+    P1 ep   1  train=1.2312  val=0.3543  best=0.3543  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.4562  val=0.3177  best=0.3177  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.3832  val=0.3090  best=0.3090  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.3455  val=0.3067  best=0.3067  pat=0  ts_lr=1.00e-04 *
+    P1 ep   5  train=0.3307  val=0.3056  best=0.3056  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.3267  val=0.3043  best=0.3043  pat=0  ts_lr=1.00e-04 *
+    P1 ep   7  train=0.3239  val=0.3043  best=0.3043  pat=1  ts_lr=1.00e-04
+    P1 ep   8  train=0.3223  val=0.3054  best=0.3043  pat=2  ts_lr=1.00e-04
+    P1 ep   9  train=0.3212  val=0.3044  best=0.3043  pat=3  ts_lr=1.00e-04
+    P1 ep  10  train=0.3200  val=0.3050  best=0.3043  pat=4  ts_lr=1.00e-04
+    P1 ep  11  train=0.3188  val=0.3105  best=0.3043  pat=5  ts_lr=1.00e-04
+    P1 ep  12  train=0.3179  val=0.3043  best=0.3043  pat=6  ts_lr=1.00e-04
+    P1 ep  13  train=0.3171  val=0.3048  best=0.3043  pat=7  ts_lr=1.00e-04
+    P1 ep  14  train=0.3162  val=0.3057  best=0.3043  pat=8  ts_lr=1.00e-04
+    P1 ep  15  train=0.3159  val=0.3060  best=0.3043  pat=9  ts_lr=1.00e-04
+    P1 ep  16  train=0.3155  val=0.3046  best=0.3043  pat=10  ts_lr=1.00e-04
+    P1 ep  17  train=0.3148  val=0.3046  best=0.3043  pat=11  ts_lr=1.00e-04
+    P1 ep  18  train=0.3146  val=0.3051  best=0.3043  pat=12  ts_lr=1.00e-04
+    P1 ep  19  train=0.3140  val=0.3045  best=0.3043  pat=13  ts_lr=1.00e-04
+    P1 ep  20  train=0.3139  val=0.3061  best=0.3043  pat=14  ts_lr=1.00e-04
+    P1 ep  21  train=0.3137  val=0.3048  best=0.3043  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.3043
+    P2 ep   1  train=0.3237  val=0.3039  best=0.3039  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.3238  val=0.3038  best=0.3038  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   3  train=0.3237  val=0.3036  best=0.3036  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   4  train=0.3239  val=0.3036  best=0.3036  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   5  train=0.3235  val=0.3036  best=0.3036  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   6  train=0.3239  val=0.3036  best=0.3036  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   7  train=0.3230  val=0.3040  best=0.3036  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   8  train=0.3240  val=0.3037  best=0.3036  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.3232  val=0.3039  best=0.3036  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  10  train=0.3233  val=0.3039  best=0.3036  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.3229  val=0.3036  best=0.3036  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  12  train=0.3226  val=0.3037  best=0.3036  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  13  train=0.3229  val=0.3037  best=0.3036  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.3227  val=0.3041  best=0.3036  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.3224  val=0.3038  best=0.3036  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  16  train=0.3223  val=0.3047  best=0.3036  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.3222  val=0.3046  best=0.3036  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.3217  val=0.3046  best=0.3036  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.3216  val=0.3055  best=0.3036  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.3207  val=0.3050  best=0.3036  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.3213  val=0.3054  best=0.3036  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  22  train=0.3207  val=0.3041  best=0.3036  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  23  train=0.3206  val=0.3051  best=0.3036  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  24  train=0.3205  val=0.3048  best=0.3036  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  25  train=0.3205  val=0.3048  best=0.3036  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.3036
+  ts_scale learned: 1.0000
+  Main Model trained [710s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w4_1h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w4_1h_loss.png
+  EGARCH+NED trained [603s]
+    HAR          R2=0.0745 MSE=1.52347 QLIKE=1.10281 DA=0.500
+    EGARCH       R2=-0.0407 MSE=1.71297 QLIKE=0.68636 DA=0.605
+    EGARCH+NED   R2=0.2337 MSE=1.26136 QLIKE=1.01413 DA=0.667
+    TS MLP       R2=0.3202 MSE=1.11892 QLIKE=0.90866 DA=0.703
+    Main Model   R2=0.3251 MSE=1.11097 QLIKE=0.87337 DA=0.704
+
+========================================================================
+Window 5/6: test 2025-01-01 -> 2025-06-30 (source window 7)
+Train=226,894 Val=17,569 Test=17,281
+========================================================================
+  CryptoBERT raw 768-dim: 7,891 train articles (no PCA reduction)
+  EGARCH fit/filter: 1s
+
+  Horizon 4h (RV_4h)
+    P1 ep   1  train=0.9174  val=0.2546  best=0.2546  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.3246  val=0.2334  best=0.2334  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.2628  val=0.2234  best=0.2234  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.2394  val=0.2187  best=0.2187  pat=0  ts_lr=1.00e-04 *
+    P1 ep   5  train=0.2335  val=0.2173  best=0.2173  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.2308  val=0.2168  best=0.2168  pat=0  ts_lr=1.00e-04 *
+    P1 ep   7  train=0.2283  val=0.2174  best=0.2168  pat=1  ts_lr=1.00e-04
+    P1 ep   8  train=0.2266  val=0.2191  best=0.2168  pat=2  ts_lr=1.00e-04
+    P1 ep   9  train=0.2254  val=0.2166  best=0.2166  pat=0  ts_lr=1.00e-04 *
+    P1 ep  10  train=0.2241  val=0.2168  best=0.2166  pat=1  ts_lr=1.00e-04
+    P1 ep  11  train=0.2232  val=0.2163  best=0.2163  pat=0  ts_lr=1.00e-04 *
+    P1 ep  12  train=0.2223  val=0.2170  best=0.2163  pat=1  ts_lr=1.00e-04
+    P1 ep  13  train=0.2219  val=0.2185  best=0.2163  pat=2  ts_lr=1.00e-04
+    P1 ep  14  train=0.2213  val=0.2161  best=0.2161  pat=0  ts_lr=1.00e-04 *
+    P1 ep  15  train=0.2209  val=0.2157  best=0.2157  pat=0  ts_lr=1.00e-04 *
+    P1 ep  16  train=0.2205  val=0.2149  best=0.2149  pat=0  ts_lr=1.00e-04 *
+    P1 ep  17  train=0.2199  val=0.2149  best=0.2149  pat=1  ts_lr=1.00e-04
+    P1 ep  18  train=0.2194  val=0.2156  best=0.2149  pat=2  ts_lr=1.00e-04
+    P1 ep  19  train=0.2189  val=0.2149  best=0.2149  pat=0  ts_lr=1.00e-04 *
+    P1 ep  20  train=0.2186  val=0.2144  best=0.2144  pat=0  ts_lr=1.00e-04 *
+    P1 ep  21  train=0.2183  val=0.2157  best=0.2144  pat=1  ts_lr=1.00e-04
+    P1 ep  22  train=0.2180  val=0.2142  best=0.2142  pat=0  ts_lr=1.00e-04 *
+    P1 ep  23  train=0.2176  val=0.2147  best=0.2142  pat=1  ts_lr=1.00e-04
+    P1 ep  24  train=0.2176  val=0.2146  best=0.2142  pat=2  ts_lr=1.00e-04
+    P1 ep  25  train=0.2173  val=0.2150  best=0.2142  pat=3  ts_lr=1.00e-04
+    P1 ep  26  train=0.2168  val=0.2144  best=0.2142  pat=4  ts_lr=1.00e-04
+    P1 ep  27  train=0.2165  val=0.2177  best=0.2142  pat=5  ts_lr=1.00e-04
+    P1 ep  28  train=0.2167  val=0.2144  best=0.2142  pat=6  ts_lr=1.00e-04
+    P1 ep  29  train=0.2164  val=0.2149  best=0.2142  pat=7  ts_lr=1.00e-04
+    P1 ep  30  train=0.2163  val=0.2140  best=0.2140  pat=0  ts_lr=1.00e-04 *
+    P1 ep  31  train=0.2160  val=0.2164  best=0.2140  pat=1  ts_lr=1.00e-04
+    P1 ep  32  train=0.2157  val=0.2147  best=0.2140  pat=2  ts_lr=1.00e-04
+    P1 ep  33  train=0.2158  val=0.2164  best=0.2140  pat=3  ts_lr=1.00e-04
+    P1 ep  34  train=0.2156  val=0.2139  best=0.2139  pat=0  ts_lr=1.00e-04 *
+    P1 ep  35  train=0.2157  val=0.2143  best=0.2139  pat=1  ts_lr=1.00e-04
+    P1 ep  36  train=0.2154  val=0.2134  best=0.2134  pat=0  ts_lr=1.00e-04 *
+    P1 ep  37  train=0.2156  val=0.2142  best=0.2134  pat=1  ts_lr=1.00e-04
+    P1 ep  38  train=0.2154  val=0.2141  best=0.2134  pat=2  ts_lr=1.00e-04
+    P1 ep  39  train=0.2150  val=0.2136  best=0.2134  pat=3  ts_lr=1.00e-04
+    P1 ep  40  train=0.2152  val=0.2132  best=0.2132  pat=0  ts_lr=1.00e-04 *
+    P1 ep  41  train=0.2149  val=0.2138  best=0.2132  pat=1  ts_lr=1.00e-04
+    P1 ep  42  train=0.2149  val=0.2137  best=0.2132  pat=2  ts_lr=1.00e-04
+    P1 ep  43  train=0.2148  val=0.2145  best=0.2132  pat=3  ts_lr=1.00e-04
+    P1 ep  44  train=0.2147  val=0.2132  best=0.2132  pat=0  ts_lr=1.00e-04 *
+    P1 ep  45  train=0.2144  val=0.2132  best=0.2132  pat=1  ts_lr=1.00e-04
+    P1 ep  46  train=0.2143  val=0.2139  best=0.2132  pat=2  ts_lr=1.00e-04
+    P1 ep  47  train=0.2146  val=0.2131  best=0.2131  pat=0  ts_lr=1.00e-04 *
+    P1 ep  48  train=0.2143  val=0.2129  best=0.2129  pat=0  ts_lr=1.00e-04 *
+    P1 ep  49  train=0.2143  val=0.2131  best=0.2129  pat=1  ts_lr=1.00e-04
+    P1 ep  50  train=0.2141  val=0.2132  best=0.2129  pat=2  ts_lr=1.00e-04
+    P1 ep  51  train=0.2142  val=0.2146  best=0.2129  pat=3  ts_lr=1.00e-04
+    P1 ep  52  train=0.2142  val=0.2133  best=0.2129  pat=4  ts_lr=1.00e-04
+    P1 ep  53  train=0.2141  val=0.2137  best=0.2129  pat=5  ts_lr=1.00e-04
+    P1 ep  54  train=0.2140  val=0.2137  best=0.2129  pat=6  ts_lr=1.00e-04
+    P1 ep  55  train=0.2139  val=0.2150  best=0.2129  pat=7  ts_lr=1.00e-04
+    P1 ep  56  train=0.2139  val=0.2132  best=0.2129  pat=8  ts_lr=1.00e-04
+    P1 ep  57  train=0.2137  val=0.2135  best=0.2129  pat=9  ts_lr=1.00e-04
+    P1 ep  58  train=0.2139  val=0.2137  best=0.2129  pat=10  ts_lr=1.00e-04
+    P1 ep  59  train=0.2135  val=0.2136  best=0.2129  pat=11  ts_lr=1.00e-04
+    P1 ep  60  train=0.2137  val=0.2136  best=0.2129  pat=12  ts_lr=1.00e-04
+    P1 ep  61  train=0.2136  val=0.2134  best=0.2129  pat=13  ts_lr=1.00e-04
+    P1 ep  62  train=0.2134  val=0.2138  best=0.2129  pat=14  ts_lr=1.00e-04
+    P1 ep  63  train=0.2134  val=0.2138  best=0.2129  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.2129
+    P2 ep   1  train=0.2133  val=0.2106  best=0.2106  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.2130  val=0.2105  best=0.2105  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   3  train=0.2126  val=0.2104  best=0.2104  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   4  train=0.2121  val=0.2095  best=0.2095  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   5  train=0.2116  val=0.2085  best=0.2085  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   6  train=0.2105  val=0.2088  best=0.2085  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   7  train=0.2096  val=0.2083  best=0.2083  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   8  train=0.2088  val=0.2085  best=0.2083  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.2077  val=0.2081  best=0.2081  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  10  train=0.2069  val=0.2079  best=0.2079  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  11  train=0.2062  val=0.2071  best=0.2071  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  12  train=0.2055  val=0.2074  best=0.2071  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  13  train=0.2047  val=0.2073  best=0.2071  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.2041  val=0.2070  best=0.2070  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  15  train=0.2037  val=0.2066  best=0.2066  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  16  train=0.2030  val=0.2069  best=0.2066  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.2027  val=0.2071  best=0.2066  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.2021  val=0.2064  best=0.2064  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  19  train=0.2015  val=0.2066  best=0.2064  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.2012  val=0.2070  best=0.2064  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.2007  val=0.2069  best=0.2064  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  22  train=0.2002  val=0.2071  best=0.2064  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  23  train=0.2000  val=0.2073  best=0.2064  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  24  train=0.1996  val=0.2065  best=0.2064  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  25  train=0.1993  val=0.2072  best=0.2064  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  26  train=0.1990  val=0.2081  best=0.2064  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  27  train=0.1986  val=0.2074  best=0.2064  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  28  train=0.1983  val=0.2075  best=0.2064  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  29  train=0.1982  val=0.2080  best=0.2064  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  30  train=0.1979  val=0.2075  best=0.2064  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  31  train=0.1978  val=0.2080  best=0.2064  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  32  train=0.1977  val=0.2084  best=0.2064  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  33  train=0.1977  val=0.2078  best=0.2064  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  34  train=0.1972  val=0.2088  best=0.2064  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  35  train=0.1971  val=0.2090  best=0.2064  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  36  train=0.1970  val=0.2090  best=0.2064  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  37  train=0.1969  val=0.2090  best=0.2064  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  38  train=0.1969  val=0.2090  best=0.2064  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.2064
+  ts_scale learned: 1.0000
+  Main Model trained [1497s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w5_4h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w5_4h_loss.png
+  EGARCH+NED trained [559s]
+    HAR          R2=0.1429 MSE=0.93565 QLIKE=0.81026 DA=0.663
+    EGARCH       R2=0.2363 MSE=0.83373 QLIKE=0.44261 DA=0.683
+    EGARCH+NED   R2=0.3229 MSE=0.73921 QLIKE=0.58615 DA=0.709
+    TS MLP       R2=0.4136 MSE=0.64013 QLIKE=0.51445 DA=0.732
+    Main Model   R2=0.4045 MSE=0.65014 QLIKE=0.53879 DA=0.734
+
+  Horizon 1h (RV_1h)
+    P1 ep   1  train=1.1803  val=0.3546  best=0.3546  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.4475  val=0.3170  best=0.3170  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.3751  val=0.3052  best=0.3052  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.3392  val=0.3020  best=0.3020  pat=0  ts_lr=1.00e-04 *
+    P1 ep   5  train=0.3280  val=0.3012  best=0.3012  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.3249  val=0.2995  best=0.2995  pat=0  ts_lr=1.00e-04 *
+    P1 ep   7  train=0.3223  val=0.2999  best=0.2995  pat=1  ts_lr=1.00e-04
+    P1 ep   8  train=0.3209  val=0.3006  best=0.2995  pat=2  ts_lr=1.00e-04
+    P1 ep   9  train=0.3195  val=0.2995  best=0.2995  pat=3  ts_lr=1.00e-04
+    P1 ep  10  train=0.3186  val=0.2996  best=0.2995  pat=4  ts_lr=1.00e-04
+    P1 ep  11  train=0.3175  val=0.2998  best=0.2995  pat=5  ts_lr=1.00e-04
+    P1 ep  12  train=0.3166  val=0.2996  best=0.2995  pat=6  ts_lr=1.00e-04
+    P1 ep  13  train=0.3160  val=0.2994  best=0.2994  pat=0  ts_lr=1.00e-04 *
+    P1 ep  14  train=0.3155  val=0.2997  best=0.2994  pat=1  ts_lr=1.00e-04
+    P1 ep  15  train=0.3147  val=0.3002  best=0.2994  pat=2  ts_lr=1.00e-04
+    P1 ep  16  train=0.3142  val=0.2993  best=0.2993  pat=0  ts_lr=1.00e-04 *
+    P1 ep  17  train=0.3138  val=0.2999  best=0.2993  pat=1  ts_lr=1.00e-04
+    P1 ep  18  train=0.3133  val=0.3006  best=0.2993  pat=2  ts_lr=1.00e-04
+    P1 ep  19  train=0.3131  val=0.3004  best=0.2993  pat=3  ts_lr=1.00e-04
+    P1 ep  20  train=0.3131  val=0.3000  best=0.2993  pat=4  ts_lr=1.00e-04
+    P1 ep  21  train=0.3125  val=0.2991  best=0.2991  pat=0  ts_lr=1.00e-04 *
+    P1 ep  22  train=0.3125  val=0.2997  best=0.2991  pat=1  ts_lr=1.00e-04
+    P1 ep  23  train=0.3124  val=0.2999  best=0.2991  pat=2  ts_lr=1.00e-04
+    P1 ep  24  train=0.3122  val=0.3000  best=0.2991  pat=3  ts_lr=1.00e-04
+    P1 ep  25  train=0.3118  val=0.2988  best=0.2988  pat=0  ts_lr=1.00e-04 *
+    P1 ep  26  train=0.3114  val=0.2995  best=0.2988  pat=1  ts_lr=1.00e-04
+    P1 ep  27  train=0.3112  val=0.2988  best=0.2988  pat=2  ts_lr=1.00e-04
+    P1 ep  28  train=0.3112  val=0.2987  best=0.2987  pat=0  ts_lr=1.00e-04 *
+    P1 ep  29  train=0.3108  val=0.3007  best=0.2987  pat=1  ts_lr=1.00e-04
+    P1 ep  30  train=0.3108  val=0.2985  best=0.2985  pat=0  ts_lr=1.00e-04 *
+    P1 ep  31  train=0.3103  val=0.3002  best=0.2985  pat=1  ts_lr=1.00e-04
+    P1 ep  32  train=0.3104  val=0.2994  best=0.2985  pat=2  ts_lr=1.00e-04
+    P1 ep  33  train=0.3103  val=0.2989  best=0.2985  pat=3  ts_lr=1.00e-04
+    P1 ep  34  train=0.3099  val=0.2984  best=0.2984  pat=0  ts_lr=1.00e-04 *
+    P1 ep  35  train=0.3101  val=0.2986  best=0.2984  pat=1  ts_lr=1.00e-04
+    P1 ep  36  train=0.3099  val=0.2986  best=0.2984  pat=2  ts_lr=1.00e-04
+    P1 ep  37  train=0.3099  val=0.2993  best=0.2984  pat=3  ts_lr=1.00e-04
+    P1 ep  38  train=0.3099  val=0.2982  best=0.2982  pat=0  ts_lr=1.00e-04 *
+    P1 ep  39  train=0.3094  val=0.2982  best=0.2982  pat=0  ts_lr=1.00e-04 *
+    P1 ep  40  train=0.3094  val=0.2988  best=0.2982  pat=1  ts_lr=1.00e-04
+    P1 ep  41  train=0.3093  val=0.2983  best=0.2982  pat=2  ts_lr=1.00e-04
+    P1 ep  42  train=0.3090  val=0.2988  best=0.2982  pat=3  ts_lr=1.00e-04
+    P1 ep  43  train=0.3090  val=0.2982  best=0.2982  pat=4  ts_lr=1.00e-04
+    P1 ep  44  train=0.3091  val=0.2984  best=0.2982  pat=5  ts_lr=1.00e-04
+    P1 ep  45  train=0.3087  val=0.2997  best=0.2982  pat=6  ts_lr=1.00e-04
+    P1 ep  46  train=0.3086  val=0.3001  best=0.2982  pat=7  ts_lr=1.00e-04
+    P1 ep  47  train=0.3089  val=0.2981  best=0.2981  pat=0  ts_lr=1.00e-04 *
+    P1 ep  48  train=0.3087  val=0.2978  best=0.2978  pat=0  ts_lr=1.00e-04 *
+    P1 ep  49  train=0.3087  val=0.2982  best=0.2978  pat=1  ts_lr=1.00e-04
+    P1 ep  50  train=0.3086  val=0.2978  best=0.2978  pat=2  ts_lr=1.00e-04
+    P1 ep  51  train=0.3084  val=0.3037  best=0.2978  pat=3  ts_lr=1.00e-04
+    P1 ep  52  train=0.3086  val=0.2975  best=0.2975  pat=0  ts_lr=1.00e-04 *
+    P1 ep  53  train=0.3081  val=0.2983  best=0.2975  pat=1  ts_lr=1.00e-04
+    P1 ep  54  train=0.3084  val=0.2977  best=0.2975  pat=2  ts_lr=1.00e-04
+    P1 ep  55  train=0.3081  val=0.2999  best=0.2975  pat=3  ts_lr=1.00e-04
+    P1 ep  56  train=0.3081  val=0.2979  best=0.2975  pat=4  ts_lr=1.00e-04
+    P1 ep  57  train=0.3078  val=0.2996  best=0.2975  pat=5  ts_lr=1.00e-04
+    P1 ep  58  train=0.3080  val=0.2976  best=0.2975  pat=6  ts_lr=1.00e-04
+    P1 ep  59  train=0.3080  val=0.2982  best=0.2975  pat=7  ts_lr=1.00e-04
+    P1 ep  60  train=0.3079  val=0.2977  best=0.2975  pat=8  ts_lr=1.00e-04
+    P1 ep  61  train=0.3077  val=0.2980  best=0.2975  pat=9  ts_lr=1.00e-04
+    P1 ep  62  train=0.3077  val=0.2978  best=0.2975  pat=10  ts_lr=1.00e-04
+    P1 ep  63  train=0.3075  val=0.2977  best=0.2975  pat=11  ts_lr=1.00e-04
+    P1 ep  64  train=0.3076  val=0.2980  best=0.2975  pat=12  ts_lr=1.00e-04
+    P1 ep  65  train=0.3077  val=0.2978  best=0.2975  pat=13  ts_lr=1.00e-04
+    P1 ep  66  train=0.3074  val=0.2983  best=0.2975  pat=14  ts_lr=1.00e-04
+    P1 ep  67  train=0.3076  val=0.2988  best=0.2975  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.2975
+    P2 ep   1  train=0.3079  val=0.2969  best=0.2969  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.3075  val=0.2965  best=0.2965  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   3  train=0.3073  val=0.2965  best=0.2965  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   4  train=0.3072  val=0.2966  best=0.2965  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   5  train=0.3073  val=0.2968  best=0.2965  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   6  train=0.3068  val=0.2964  best=0.2964  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   7  train=0.3071  val=0.2961  best=0.2961  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   8  train=0.3069  val=0.2964  best=0.2961  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.3068  val=0.2965  best=0.2961  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  10  train=0.3065  val=0.2963  best=0.2961  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.3065  val=0.2962  best=0.2961  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  12  train=0.3065  val=0.2961  best=0.2961  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  13  train=0.3063  val=0.2960  best=0.2960  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  14  train=0.3059  val=0.2963  best=0.2960  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.3060  val=0.2960  best=0.2960  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep  16  train=0.3057  val=0.2961  best=0.2960  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.3058  val=0.2961  best=0.2960  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.3055  val=0.2960  best=0.2960  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.3050  val=0.2961  best=0.2960  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.3053  val=0.2962  best=0.2960  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.3048  val=0.2961  best=0.2960  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  22  train=0.3048  val=0.2961  best=0.2960  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  23  train=0.3047  val=0.2961  best=0.2960  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  24  train=0.3047  val=0.2962  best=0.2960  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  25  train=0.3044  val=0.2962  best=0.2960  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  26  train=0.3040  val=0.2964  best=0.2960  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  27  train=0.3040  val=0.2964  best=0.2960  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  28  train=0.3040  val=0.2965  best=0.2960  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  29  train=0.3038  val=0.2962  best=0.2960  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  30  train=0.3036  val=0.2965  best=0.2960  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  31  train=0.3035  val=0.2964  best=0.2960  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  32  train=0.3033  val=0.2963  best=0.2960  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  33  train=0.3032  val=0.2966  best=0.2960  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  34  train=0.3029  val=0.2965  best=0.2960  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  35  train=0.3029  val=0.2965  best=0.2960  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.2960
+  ts_scale learned: 1.0000
+  Main Model trained [1462s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w5_1h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w5_1h_loss.png
+  EGARCH+NED trained [630s]
+    HAR          R2=0.1053 MSE=1.44465 QLIKE=1.48235 DA=0.629
+    EGARCH       R2=0.0397 MSE=1.55062 QLIKE=0.65937 DA=0.634
+    EGARCH+NED   R2=0.2777 MSE=1.16624 QLIKE=1.01044 DA=0.695
+    TS MLP       R2=0.3568 MSE=1.03857 QLIKE=0.82881 DA=0.722
+    Main Model   R2=0.3562 MSE=1.03947 QLIKE=0.85650 DA=0.722
+
+========================================================================
+Window 6/6: test 2025-07-01 -> 2025-12-31 (source window 8)
+Train=244,558 Val=17,281 Test=17,569
+========================================================================
+  CryptoBERT raw 768-dim: 8,490 train articles (no PCA reduction)
+  EGARCH fit/filter: 1s
+
+  Horizon 4h (RV_4h)
+    P1 ep   1  train=0.8875  val=0.2405  best=0.2405  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.3162  val=0.2147  best=0.2147  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.2552  val=0.2103  best=0.2103  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.2370  val=0.2100  best=0.2100  pat=0  ts_lr=1.00e-04 *
+    P1 ep   5  train=0.2321  val=0.2087  best=0.2087  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.2295  val=0.2090  best=0.2087  pat=1  ts_lr=1.00e-04
+    P1 ep   7  train=0.2275  val=0.2109  best=0.2087  pat=2  ts_lr=1.00e-04
+    P1 ep   8  train=0.2258  val=0.2102  best=0.2087  pat=3  ts_lr=1.00e-04
+    P1 ep   9  train=0.2245  val=0.2082  best=0.2082  pat=0  ts_lr=1.00e-04 *
+    P1 ep  10  train=0.2238  val=0.2085  best=0.2082  pat=1  ts_lr=1.00e-04
+    P1 ep  11  train=0.2228  val=0.2081  best=0.2081  pat=0  ts_lr=1.00e-04 *
+    P1 ep  12  train=0.2222  val=0.2088  best=0.2081  pat=1  ts_lr=1.00e-04
+    P1 ep  13  train=0.2217  val=0.2085  best=0.2081  pat=2  ts_lr=1.00e-04
+    P1 ep  14  train=0.2212  val=0.2085  best=0.2081  pat=3  ts_lr=1.00e-04
+    P1 ep  15  train=0.2207  val=0.2084  best=0.2081  pat=4  ts_lr=1.00e-04
+    P1 ep  16  train=0.2204  val=0.2090  best=0.2081  pat=5  ts_lr=1.00e-04
+    P1 ep  17  train=0.2197  val=0.2075  best=0.2075  pat=0  ts_lr=1.00e-04 *
+    P1 ep  18  train=0.2194  val=0.2080  best=0.2075  pat=1  ts_lr=1.00e-04
+    P1 ep  19  train=0.2190  val=0.2087  best=0.2075  pat=2  ts_lr=1.00e-04
+    P1 ep  20  train=0.2186  val=0.2073  best=0.2073  pat=0  ts_lr=1.00e-04 *
+    P1 ep  21  train=0.2183  val=0.2079  best=0.2073  pat=1  ts_lr=1.00e-04
+    P1 ep  22  train=0.2181  val=0.2070  best=0.2070  pat=0  ts_lr=1.00e-04 *
+    P1 ep  23  train=0.2180  val=0.2075  best=0.2070  pat=1  ts_lr=1.00e-04
+    P1 ep  24  train=0.2175  val=0.2071  best=0.2070  pat=2  ts_lr=1.00e-04
+    P1 ep  25  train=0.2173  val=0.2069  best=0.2069  pat=0  ts_lr=1.00e-04 *
+    P1 ep  26  train=0.2170  val=0.2073  best=0.2069  pat=1  ts_lr=1.00e-04
+    P1 ep  27  train=0.2169  val=0.2073  best=0.2069  pat=2  ts_lr=1.00e-04
+    P1 ep  28  train=0.2168  val=0.2066  best=0.2066  pat=0  ts_lr=1.00e-04 *
+    P1 ep  29  train=0.2165  val=0.2062  best=0.2062  pat=0  ts_lr=1.00e-04 *
+    P1 ep  30  train=0.2162  val=0.2081  best=0.2062  pat=1  ts_lr=1.00e-04
+    P1 ep  31  train=0.2164  val=0.2070  best=0.2062  pat=2  ts_lr=1.00e-04
+    P1 ep  32  train=0.2158  val=0.2067  best=0.2062  pat=3  ts_lr=1.00e-04
+    P1 ep  33  train=0.2162  val=0.2072  best=0.2062  pat=4  ts_lr=1.00e-04
+    P1 ep  34  train=0.2157  val=0.2061  best=0.2061  pat=0  ts_lr=1.00e-04 *
+    P1 ep  35  train=0.2156  val=0.2067  best=0.2061  pat=1  ts_lr=1.00e-04
+    P1 ep  36  train=0.2156  val=0.2064  best=0.2061  pat=2  ts_lr=1.00e-04
+    P1 ep  37  train=0.2155  val=0.2066  best=0.2061  pat=3  ts_lr=1.00e-04
+    P1 ep  38  train=0.2152  val=0.2058  best=0.2058  pat=0  ts_lr=1.00e-04 *
+    P1 ep  39  train=0.2153  val=0.2061  best=0.2058  pat=1  ts_lr=1.00e-04
+    P1 ep  40  train=0.2150  val=0.2066  best=0.2058  pat=2  ts_lr=1.00e-04
+    P1 ep  41  train=0.2150  val=0.2062  best=0.2058  pat=3  ts_lr=1.00e-04
+    P1 ep  42  train=0.2152  val=0.2061  best=0.2058  pat=4  ts_lr=1.00e-04
+    P1 ep  43  train=0.2149  val=0.2056  best=0.2056  pat=0  ts_lr=1.00e-04 *
+    P1 ep  44  train=0.2147  val=0.2051  best=0.2051  pat=0  ts_lr=1.00e-04 *
+    P1 ep  45  train=0.2146  val=0.2062  best=0.2051  pat=1  ts_lr=1.00e-04
+    P1 ep  46  train=0.2145  val=0.2056  best=0.2051  pat=2  ts_lr=1.00e-04
+    P1 ep  47  train=0.2146  val=0.2077  best=0.2051  pat=3  ts_lr=1.00e-04
+    P1 ep  48  train=0.2144  val=0.2064  best=0.2051  pat=4  ts_lr=1.00e-04
+    P1 ep  49  train=0.2142  val=0.2052  best=0.2051  pat=5  ts_lr=1.00e-04
+    P1 ep  50  train=0.2143  val=0.2066  best=0.2051  pat=6  ts_lr=1.00e-04
+    P1 ep  51  train=0.2141  val=0.2057  best=0.2051  pat=7  ts_lr=1.00e-04
+    P1 ep  52  train=0.2141  val=0.2060  best=0.2051  pat=8  ts_lr=1.00e-04
+    P1 ep  53  train=0.2142  val=0.2062  best=0.2051  pat=9  ts_lr=1.00e-04
+    P1 ep  54  train=0.2140  val=0.2059  best=0.2051  pat=10  ts_lr=1.00e-04
+    P1 ep  55  train=0.2139  val=0.2061  best=0.2051  pat=11  ts_lr=1.00e-04
+    P1 ep  56  train=0.2138  val=0.2057  best=0.2051  pat=12  ts_lr=1.00e-04
+    P1 ep  57  train=0.2137  val=0.2064  best=0.2051  pat=13  ts_lr=1.00e-04
+    P1 ep  58  train=0.2138  val=0.2072  best=0.2051  pat=14  ts_lr=1.00e-04
+    P1 ep  59  train=0.2139  val=0.2057  best=0.2051  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.2051
+    P2 ep   1  train=0.2137  val=0.2030  best=0.2030  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.2132  val=0.2032  best=0.2030  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   3  train=0.2125  val=0.2033  best=0.2030  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   4  train=0.2118  val=0.2038  best=0.2030  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   5  train=0.2107  val=0.2030  best=0.2030  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   6  train=0.2094  val=0.2036  best=0.2030  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   7  train=0.2084  val=0.2036  best=0.2030  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   8  train=0.2074  val=0.2039  best=0.2030  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.2067  val=0.2038  best=0.2030  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  10  train=0.2058  val=0.2092  best=0.2030  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.2050  val=0.2075  best=0.2030  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  12  train=0.2044  val=0.2074  best=0.2030  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  13  train=0.2038  val=0.2058  best=0.2030  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.2032  val=0.2077  best=0.2030  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.2029  val=0.2070  best=0.2030  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  16  train=0.2023  val=0.2037  best=0.2030  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.2019  val=0.2068  best=0.2030  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.2015  val=0.2067  best=0.2030  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.2012  val=0.2108  best=0.2030  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.2010  val=0.2071  best=0.2030  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.2006  val=0.2089  best=0.2030  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  22  train=0.2004  val=0.2074  best=0.2030  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  23  train=0.2000  val=0.2131  best=0.2030  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  24  train=0.1999  val=0.2100  best=0.2030  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  25  train=0.1996  val=0.2078  best=0.2030  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.2030
+  ts_scale learned: 1.0000
+  Main Model trained [1254s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w6_4h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w6_4h_loss.png
+  EGARCH+NED trained [577s]
+    HAR          R2=0.0742 MSE=0.98066 QLIKE=0.64018 DA=0.621
+    EGARCH       R2=0.1086 MSE=0.94426 QLIKE=0.51986 DA=0.645
+    EGARCH+NED   R2=0.2124 MSE=0.83429 QLIKE=0.67918 DA=0.674
+    TS MLP       R2=0.3536 MSE=0.68474 QLIKE=0.52301 DA=0.705
+    Main Model   R2=0.3521 MSE=0.68632 QLIKE=0.54835 DA=0.705
+
+  Horizon 1h (RV_1h)
+    P1 ep   1  train=1.1454  val=0.3391  best=0.3391  pat=0  ts_lr=1.00e-04 *
+    P1 ep   2  train=0.4440  val=0.3012  best=0.3012  pat=0  ts_lr=1.00e-04 *
+    P1 ep   3  train=0.3703  val=0.2906  best=0.2906  pat=0  ts_lr=1.00e-04 *
+    P1 ep   4  train=0.3356  val=0.2889  best=0.2889  pat=0  ts_lr=1.00e-04 *
+    P1 ep   5  train=0.3261  val=0.2876  best=0.2876  pat=0  ts_lr=1.00e-04 *
+    P1 ep   6  train=0.3229  val=0.2869  best=0.2869  pat=0  ts_lr=1.00e-04 *
+    P1 ep   7  train=0.3208  val=0.2869  best=0.2869  pat=0  ts_lr=1.00e-04 *
+    P1 ep   8  train=0.3187  val=0.2865  best=0.2865  pat=0  ts_lr=1.00e-04 *
+    P1 ep   9  train=0.3177  val=0.2867  best=0.2865  pat=1  ts_lr=1.00e-04
+    P1 ep  10  train=0.3165  val=0.2866  best=0.2865  pat=2  ts_lr=1.00e-04
+    P1 ep  11  train=0.3156  val=0.2858  best=0.2858  pat=0  ts_lr=1.00e-04 *
+    P1 ep  12  train=0.3148  val=0.2877  best=0.2858  pat=1  ts_lr=1.00e-04
+    P1 ep  13  train=0.3143  val=0.2859  best=0.2858  pat=2  ts_lr=1.00e-04
+    P1 ep  14  train=0.3140  val=0.2887  best=0.2858  pat=3  ts_lr=1.00e-04
+    P1 ep  15  train=0.3136  val=0.2869  best=0.2858  pat=4  ts_lr=1.00e-04
+    P1 ep  16  train=0.3133  val=0.2862  best=0.2858  pat=5  ts_lr=1.00e-04
+    P1 ep  17  train=0.3129  val=0.2854  best=0.2854  pat=0  ts_lr=1.00e-04 *
+    P1 ep  18  train=0.3126  val=0.2854  best=0.2854  pat=1  ts_lr=1.00e-04
+    P1 ep  19  train=0.3124  val=0.2871  best=0.2854  pat=2  ts_lr=1.00e-04
+    P1 ep  20  train=0.3120  val=0.2855  best=0.2854  pat=3  ts_lr=1.00e-04
+    P1 ep  21  train=0.3118  val=0.2857  best=0.2854  pat=4  ts_lr=1.00e-04
+    P1 ep  22  train=0.3113  val=0.2864  best=0.2854  pat=5  ts_lr=1.00e-04
+    P1 ep  23  train=0.3115  val=0.2852  best=0.2852  pat=0  ts_lr=1.00e-04 *
+    P1 ep  24  train=0.3115  val=0.2857  best=0.2852  pat=1  ts_lr=1.00e-04
+    P1 ep  25  train=0.3110  val=0.2848  best=0.2848  pat=0  ts_lr=1.00e-04 *
+    P1 ep  26  train=0.3110  val=0.2856  best=0.2848  pat=1  ts_lr=1.00e-04
+    P1 ep  27  train=0.3107  val=0.2864  best=0.2848  pat=2  ts_lr=1.00e-04
+    P1 ep  28  train=0.3105  val=0.2850  best=0.2848  pat=3  ts_lr=1.00e-04
+    P1 ep  29  train=0.3103  val=0.2854  best=0.2848  pat=4  ts_lr=1.00e-04
+    P1 ep  30  train=0.3102  val=0.2854  best=0.2848  pat=5  ts_lr=1.00e-04
+    P1 ep  31  train=0.3100  val=0.2853  best=0.2848  pat=6  ts_lr=1.00e-04
+    P1 ep  32  train=0.3096  val=0.2847  best=0.2847  pat=0  ts_lr=1.00e-04 *
+    P1 ep  33  train=0.3099  val=0.2858  best=0.2847  pat=1  ts_lr=1.00e-04
+    P1 ep  34  train=0.3094  val=0.2846  best=0.2846  pat=0  ts_lr=1.00e-04 *
+    P1 ep  35  train=0.3096  val=0.2853  best=0.2846  pat=1  ts_lr=1.00e-04
+    P1 ep  36  train=0.3092  val=0.2842  best=0.2842  pat=0  ts_lr=1.00e-04 *
+    P1 ep  37  train=0.3092  val=0.2840  best=0.2840  pat=0  ts_lr=1.00e-04 *
+    P1 ep  38  train=0.3089  val=0.2843  best=0.2840  pat=1  ts_lr=1.00e-04
+    P1 ep  39  train=0.3088  val=0.2849  best=0.2840  pat=2  ts_lr=1.00e-04
+    P1 ep  40  train=0.3087  val=0.2836  best=0.2836  pat=0  ts_lr=1.00e-04 *
+    P1 ep  41  train=0.3085  val=0.2847  best=0.2836  pat=1  ts_lr=1.00e-04
+    P1 ep  42  train=0.3084  val=0.2838  best=0.2836  pat=2  ts_lr=1.00e-04
+    P1 ep  43  train=0.3083  val=0.2842  best=0.2836  pat=3  ts_lr=1.00e-04
+    P1 ep  44  train=0.3082  val=0.2836  best=0.2836  pat=4  ts_lr=1.00e-04
+    P1 ep  45  train=0.3080  val=0.2843  best=0.2836  pat=5  ts_lr=1.00e-04
+    P1 ep  46  train=0.3081  val=0.2848  best=0.2836  pat=6  ts_lr=1.00e-04
+    P1 ep  47  train=0.3079  val=0.2840  best=0.2836  pat=7  ts_lr=1.00e-04
+    P1 ep  48  train=0.3078  val=0.2852  best=0.2836  pat=8  ts_lr=1.00e-04
+    P1 ep  49  train=0.3077  val=0.2869  best=0.2836  pat=9  ts_lr=1.00e-04
+    P1 ep  50  train=0.3075  val=0.2838  best=0.2836  pat=10  ts_lr=1.00e-04
+    P1 ep  51  train=0.3075  val=0.2841  best=0.2836  pat=11  ts_lr=1.00e-04
+    P1 ep  52  train=0.3074  val=0.2842  best=0.2836  pat=12  ts_lr=1.00e-04
+    P1 ep  53  train=0.3073  val=0.2863  best=0.2836  pat=13  ts_lr=1.00e-04
+    P1 ep  54  train=0.3074  val=0.2843  best=0.2836  pat=14  ts_lr=1.00e-04
+    P1 ep  55  train=0.3074  val=0.2844  best=0.2836  pat=15  ts_lr=1.00e-04
+    P1 best val: 0.2836
+    P2 ep   1  train=0.3078  val=0.2830  best=0.2830  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   2  train=0.3076  val=0.2830  best=0.2830  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   3  train=0.3073  val=0.2830  best=0.2830  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   4  train=0.3072  val=0.2833  best=0.2830  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   5  train=0.3074  val=0.2829  best=0.2829  pat=0  news_lr=5.00e-05 ts_lr=0.00e+00 *
+      ts_scale=1.0000
+    P2 ep   6  train=0.3073  val=0.2830  best=0.2829  pat=1  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   7  train=0.3072  val=0.2830  best=0.2829  pat=2  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   8  train=0.3067  val=0.2832  best=0.2829  pat=3  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep   9  train=0.3068  val=0.2832  best=0.2829  pat=4  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  10  train=0.3066  val=0.2833  best=0.2829  pat=5  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  11  train=0.3065  val=0.2832  best=0.2829  pat=6  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  12  train=0.3064  val=0.2833  best=0.2829  pat=7  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  13  train=0.3062  val=0.2839  best=0.2829  pat=8  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  14  train=0.3058  val=0.2834  best=0.2829  pat=9  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  15  train=0.3057  val=0.2835  best=0.2829  pat=10  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  16  train=0.3053  val=0.2835  best=0.2829  pat=11  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  17  train=0.3053  val=0.2839  best=0.2829  pat=12  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  18  train=0.3052  val=0.2843  best=0.2829  pat=13  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  19  train=0.3051  val=0.2838  best=0.2829  pat=14  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  20  train=0.3050  val=0.2837  best=0.2829  pat=15  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  21  train=0.3048  val=0.2840  best=0.2829  pat=16  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  22  train=0.3047  val=0.2838  best=0.2829  pat=17  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  23  train=0.3042  val=0.2841  best=0.2829  pat=18  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  24  train=0.3041  val=0.2843  best=0.2829  pat=19  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 ep  25  train=0.3038  val=0.2844  best=0.2829  pat=20  news_lr=5.00e-05 ts_lr=0.00e+00
+      ts_scale=1.0000
+    P2 best val: 0.2829
+  ts_scale learned: 1.0000
+  Main Model trained [1191s]
+  Main Model loss curve: results/main/eth_cryptobert/loss_curves/main_model_w6_1h_loss.csv
+  Main Model loss plot: results/main/eth_cryptobert/loss_curves/main_model_w6_1h_loss.png
+  EGARCH+NED trained [905s]
+    HAR          R2=0.0636 MSE=1.54146 QLIKE=1.20735 DA=0.624
+    EGARCH       R2=-0.0041 MSE=1.65287 QLIKE=0.73761 DA=0.616
+    EGARCH+NED   R2=0.2519 MSE=1.23152 QLIKE=1.13583 DA=0.674
+    TS MLP       R2=0.3384 MSE=1.08906 QLIKE=0.89307 DA=0.706
+    Main Model   R2=0.3397 MSE=1.08700 QLIKE=0.92135 DA=0.707
+Saved: results/main/eth_cryptobert/expanding_window_metrics.csv
+Saved: results/main/eth_cryptobert/expanding_window_mean_metrics.csv
+Saved: results/main/eth_cryptobert/dm_test_results.csv
+news_asset horizon      model      MSE    QLIKE        R2       DA  DM_MSE_t_vs_TS_MLP  DM_MSE_p_vs_TS_MLP  DM_QLIKE_t_vs_TS_MLP  DM_QLIKE_p_vs_TS_MLP
+       ETH      4h        HAR 1.653120 0.727392 -0.327639 0.547418           33.660461       2.191969e-248              3.713740          2.042184e-04
+       ETH      4h     EGARCH 1.025471 0.548787  0.134115 0.654164           24.837438       3.534741e-136             -3.273566          1.061996e-03
+       ETH      4h EGARCH+NED 0.878011 0.719955  0.256546 0.680472           14.440677        2.870085e-47              5.610511          2.017302e-08
+       ETH      4h     TS MLP 0.770178 0.622852  0.350110 0.708145                 NaN                 NaN                   NaN                   NaN
+       ETH      4h Main Model 0.771166 0.610137  0.349624 0.709721            0.679674        4.967110e-01             -3.749348          1.772952e-04
+       ETH      1h        HAR 2.256735 1.186393 -0.223690 0.542173           61.815476        0.000000e+00              5.275420          1.324525e-07
+       ETH      1h     EGARCH 1.848880 0.800038 -0.031946 0.610920           64.137852        0.000000e+00            -12.490094          8.455324e-36
+       ETH      1h EGARCH+NED 1.334746 1.202678  0.252775 0.680523           29.515889       1.800436e-191             12.625094          1.535583e-36
+       ETH      1h     TS MLP 1.188279 1.038111  0.334852 0.709984                 NaN                 NaN                   NaN                   NaN
+       ETH      1h Main Model 1.188103 1.024362  0.335074 0.709771           -0.269305        7.876953e-01             -6.471406          9.709504e-11

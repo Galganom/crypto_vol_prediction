@@ -23,8 +23,12 @@
   ],
   "window_label_offset": 2,
   "lr_p1": 0.0001,
-  "lr_p2": 0.0001,
-  "cryptobert_pca_k": 256,
+  "lr_p2": 5e-05,
+  "lr_ts_scale": 0.0,
+  "p1_checkpoints_dir": null,
+  "ts_scale_learnable": true,
+  "cryptobert_pca_k": null,
+  "cryptobert_input_dim": 768,
   "hidden": [
     128,
     32
@@ -34,7 +38,7 @@
   "p1_max_epochs": 100,
   "p2_max_epochs": 120,
   "p1_patience": 15,
-  "p2_patience": 15,
+  "p2_patience": 20,
   "aux_weight": 0.0,
   "loss_log_every": 1,
   "loss_plot": true,

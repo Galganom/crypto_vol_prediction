@@ -58,7 +58,6 @@ ASSETS = {
         "price": "data/price/btcusd_bitstamp_1min_2012-2025.csv.gz",
         "price_files": [
             "data/price/btcusd_bitstamp_1min_2012-2025.csv.gz",
-            "data/price/btcusd_bitstamp_1min_latest.csv",
         ],
         # Keep the tiny 2026 lookahead needed to compute end-2025 RV targets.
         "price_end": "2026-01-02",
@@ -153,9 +152,9 @@ RECAP_TAGS = {
 # hundred more articles). Patterns are intentionally narrow to avoid the
 # over-catching that the original full-regex filter caused on macro/mining news.
 SAFE_RECAP_TITLE_PATTERNS = [
-    r"(?i)\bmarket\s+wrap\b",
-    r"(?i)^(?:bitcoin|btc)\s+\$",
-    r"(?i)^first\s+mover\s+(asia|americas|europe)",
+    r"\bmarket\s+wrap\b",
+    r"^(?:bitcoin|btc)\s+\$",
+    r"^first\s+mover\s+(asia|americas|europe)",
 ]
 
 
@@ -172,7 +171,7 @@ def tag_based_recap_mask(news_df):
         lambda t: any(tag in [p.strip() for p in t.split("|")] for tag in RECAP_TAGS)
     )
     titles = news_df["title"].fillna("").astype(str)
-    title_pat = re.compile("|".join(SAFE_RECAP_TITLE_PATTERNS))
+    title_pat = re.compile("|".join(SAFE_RECAP_TITLE_PATTERNS), flags=re.IGNORECASE)
     title_hits = titles.str.contains(title_pat, regex=True, na=False)
     return (tagged | title_hits).values
 
