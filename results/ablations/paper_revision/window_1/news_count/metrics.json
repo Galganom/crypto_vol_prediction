@@ -1,0 +1,15 @@
+{
+  "window": 1,
+  "variant": "news_count",
+  "asset": "BTC",
+  "horizon": "4h",
+  "R2": 0.37354785874587093,
+  "DA": 0.6841039291707656,
+  "MSE": 1.0182009170316,
+  "QLIKE": 0.7516699473169072,
+  "best_validation_loss": 0.26073893904685974,
+  "epochs": 45,
+  "N": 17281,
+  "elapsed_s": 25.420300399999178,
+  "p1_sha256": "994b660f5ed0ba2c3ffe9506e17894fe371e1ef596d3d64f069b4c33845acd7f"
+}

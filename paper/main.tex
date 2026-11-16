@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,setspace}
+\usepackage{newunicodechar}
+\newunicodechar{–}{\textendash}
+\onehalfspacing
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx,booktabs,array,longtable,adjustbox,multirow,makecell,pdflscape,pgfplots,caption}
+\pgfplotsset{compat=1.18}
+\usepackage[round]{natbib}
+\usepackage[affil-it]{authblk}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={How Long Does News Move Crypto? Learning Decay Signals for High-Frequency Volatility Forecasting},
+  pdfauthor={Bong-Gyu Jang, Younwoo Jeong, and Juhwan Park},
+  pdfkeywords={Realized variance; Cryptocurrency; News; CryptoBERT; Exponential decay}
+}
+\newcommand{\RV}{\operatorname{RV}}
+\newcommand{\clip}{\operatorname{clip}}
+\newcommand{\softplus}{\operatorname{softplus}}
+\newcommand{\sigmoid}{\operatorname{sigmoid}}
+\newcommand{\tabnote}[1]{\par\smallskip\begin{minipage}{\textwidth}\footnotesize #1\end{minipage}}
+
+\title{How Long Does News Move Crypto? Learning Decay Signals for High-Frequency Volatility Forecasting}
+\author[1]{Bong-Gyu Jang}
+\author[1]{Younwoo Jeong\thanks{Corresponding author: \texttt{younwoo48@postech.ac.kr}.}}
+\author[1]{Juhwan Park}
+\affil[1]{Pohang University of Science and Technology}
+\date{This draft: September 11, 2026}
+
+\begin{document}
+\maketitle
+\input{sections/abstract}
+\newpage
+\input{sections/introduction}
+\input{sections/methodology}
+\input{sections/results}
+\input{sections/economic}
+\input{sections/robustness}
+\input{sections/conclusion}
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\newpage
+\input{sections/appendix}
+\end{document}

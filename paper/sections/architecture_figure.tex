@@ -1,0 +1,25 @@
+\begin{figure}[htbp]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\begin{tikzpicture}[
+ box/.style={draw,rounded corners,align=center,text width=5.1cm,minimum height=1cm,font=\small},
+ arr/.style={-{Stealth},thick},node distance=7mm]
+\node[box,fill=teal!8] (ts) {12 standardized price features\\MLP: $12\to64\to32\to16\to1$};
+\node[box,fill=orange!8,right=9mm of ts] (news) {Frozen CryptoBERT, token mean pooling\\768 dimensions, $L^2$ normalization};
+\node[box,fill=teal!8,below=of ts] (base) {Positive baseline $v_t^{\mathrm{TS}}$\\P1: train; P2: freeze weights};
+\node[box,fill=orange!8,below=of news] (head) {LayerNorm; MLP $768\to128\to32\to2$\\Per-article $s_k$, $\lambda_k$};
+\node[box,fill=orange!8,below=of head] (agg) {Past 12 hours, publication time $<\tau_t$\\$S_t=\sum_k s_k e^{-\lambda_k\Delta t_{tk}}$};
+\node[box,fill=violet!8,below=24mm of base,text width=5.1cm] (out) {$\widehat{\RV}_{t,H}=v_t^{\mathrm{TS}} e^{\clip(aS_t+b,-2,2)}$\\P2: train the news correction};
+\draw[arr] (ts)--(base);
+\draw[arr] (news)--(head);
+\draw[arr] (head)--(agg);
+\draw[arr] (base)--(out);
+\draw[arr] (agg.south)|-(out.east);
+\end{tikzpicture}
+\end{adjustbox}
+\caption{The NED architecture. The first training phase estimates the
+time-series baseline; the second freezes its weights and learns the
+article-dependent news correction. The final forecast is produced by
+the second-phase model selected on validation loss.}
+\label{fig:architecture}
+\end{figure}

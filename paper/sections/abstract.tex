@@ -1,0 +1,26 @@
+\begin{abstract}
+We propose News Event Decay (NED), a neural architecture for
+high-frequency cryptocurrency volatility forecasting that represents
+news through article-dependent magnitudes and decay rates. Pretrained
+CryptoBERT embeddings determine these parameters, and their decaying
+signals form a bounded correction to a neural time-series variance
+forecast. Across six expanding-window test periods from 2023 to 2025,
+NED reduces Bitcoin QLIKE by 7.38\% at the one-hour horizon and
+10.83\% at four hours, with log-MSE reductions of 0.99\% and 3.11\%
+($p<0.01$). Ethereum QLIKE gains are smaller and its log-MSE differences
+are insignificant. Bitcoin improvements are strongest in the tails of
+the subsequent standardized-return distribution. In BTC four-hour
+models, the article half-life has a median of 42.7 minutes, and negative-classified
+articles receive larger average signal magnitudes than
+positive-classified articles. Macro news receives the largest mean
+magnitudes and longest median half-lives.
+Matched experiments favor learned decay over constant aggregation,
+although the constant kernel also improves forecasts. Sentiment
+with learned decay nearly matches the full embedding, while PCA
+compression improves on it in this run.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Realized volatility; Volatility forecasting;
+News-driven volatility; Cryptocurrency; Hawkes processes; Text embeddings.
+
+\noindent\textbf{JEL Codes:} C45, C53, C58, G17.

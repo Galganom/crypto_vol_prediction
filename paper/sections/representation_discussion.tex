@@ -1,0 +1,37 @@
+Panel A shows that simple news aggregates can already improve the
+time-series forecast. News count, recency-weighted sentiment, and
+mean-pooled CryptoBERT reduce QLIKE by 5.74\%, 6.32\%, and 6.64\%,
+respectively, although their log-MSE gains are below 0.6\%.
+The current-day sentiment average performs better on both losses,
+reducing QLIKE by 9.03\% and log-MSE by 2.01\%. Thus a useful
+news correction does not require a learned article-decay kernel,
+and a higher-dimensional aggregate is not automatically more useful
+than a compact sentiment summary.
+
+Panel B shows that sentiment combined with learned decay nearly
+matches the full-dimensional embedding. Its QLIKE reduction is
+10.68\%, compared with 10.57\% for the refitted CryptoBERT model;
+its log-MSE reduction is 2.34\%, compared with 2.48\%.
+These are small numerical differences with opposite signs across
+the two losses. The sentiment probability vector therefore captures
+most of the improvement in the full-dimensional reference, without
+establishing that the representations are equivalent in other
+samples or training runs.
+
+The PCA representation has the lowest average losses within this
+table. With 256 components, QLIKE falls by 12.55\% and log-MSE
+by 3.02\% relative to TS-only, exceeding the reductions from the
+768-dimensional input. Compression consequently does not sacrifice
+forecast accuracy in this experiment. The result also cautions
+against interpreting embedding dimension as a direct measure of
+the useful information delivered to the news head.
+
+Together, the comparisons support learning how article signals
+change with age, but do not place all of the forecast benefit in
+that mechanism. Deterministic aggregation already helps, while
+sentiment and compressed embeddings remain competitive when learned
+decay is used. Panel A and Panel B also differ in aggregation and
+head structure, so their contrast does not isolate encoder quality.
+The evidence favors evaluating representation and temporal weighting
+jointly, with the matched constant-kernel comparison providing the
+more direct test of within-window discounting.

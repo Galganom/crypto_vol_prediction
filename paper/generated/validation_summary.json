@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "pdf_pages": 32,
+  "latex_warnings": 0,
+  "unresolved_references": 0,
+  "original_outline_headings": 37,
+  "original_outline_exact_match": true,
+  "original_source_hashes_verified": 152,
+  "original_bibliography_entries_preserved": true,
+  "added_bibliography_keys": [
+    "Araci2019"
+  ],
+  "main_metric_rows_verified": 120,
+  "price_pipeline_runs_verified": 24,
+  "max_target_absolute_error": 0.0,
+  "max_ts_relative_error": 3.814697265625e-06,
+  "max_p1_huber_validation_difference": 3.8257705670119435e-08,
+  "main_ned_forecasts_verified": 418422,
+  "main_ned_max_relative_error": 3.874301910400391e-06,
+  "additional_p2_fits": 72,
+  "additional_forecast_observations_reconstructed": 7056,
+  "additional_forecast_max_relative_error": 2.2087856705876874e-06,
+  "classified_unique_articles": 7845,
+  "categories": 12,
+  "main_models_retrained": false,
+  "additional_p2_training_performed": true,
+  "pdf_visual_review": "Title, main results, model and decay diagrams, case and distribution figures, taxonomy and sentiment tables, both ablation tables, landscape appendices and lookback table reviewed."
+}

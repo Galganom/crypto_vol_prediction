@@ -1,0 +1,15 @@
+{
+  "window": 3,
+  "variant": "lookback_6h",
+  "asset": "BTC",
+  "horizon": "4h",
+  "R2": 0.4848090633563671,
+  "DA": 0.7420153075904932,
+  "MSE": 0.699680414720247,
+  "QLIKE": 0.4367521492434875,
+  "best_validation_loss": 0.2575821578502655,
+  "epochs": 25,
+  "N": 17377,
+  "elapsed_s": 35.41330814699904,
+  "p1_sha256": "a444e8ffcc8b0d618f0f6bb3f58f7bebc3564cd1c065104dc931d43656943630"
+}

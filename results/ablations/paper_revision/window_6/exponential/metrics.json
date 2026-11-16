@@ -1,0 +1,15 @@
+{
+  "window": 6,
+  "variant": "exponential",
+  "asset": "BTC",
+  "horizon": "4h",
+  "R2": 0.4274511619444914,
+  "DA": 0.7370937446638967,
+  "MSE": 0.7166896866559422,
+  "QLIKE": 0.4726762242807311,
+  "best_validation_loss": 0.22444170713424683,
+  "epochs": 23,
+  "N": 17569,
+  "elapsed_s": 42.672507660998235,
+  "p1_sha256": "c7890ab9140ffeb19c5fb81dd3c038c83d414bb90b23267ef477d343bf8e80d1"
+}

@@ -1,0 +1,1211 @@
+How Long Does News Move Crypto? Learning Decay
+Signals for High-Frequency Volatility Forecasting
+Bong-Gyu Jang1
+, Younwoo Jeong∗1
+, and Juhwan Park1
+1Pohang University of Science and Technology
+This draft: September 11, 2026
+Abstract
+We propose News Event Decay (NED), a neural architecture for high-frequency
+cryptocurrency volatility forecasting that represents news through article-dependent
+magnitudes and decay rates. Pretrained CryptoBERT embeddings determine these
+parameters, and their decaying signals form a bounded correction to a neural time￾series variance forecast. Across six expanding-window test periods from 2023 to 2025,
+NED reduces Bitcoin QLIKE by 7.38% at the one-hour horizon and 10.83% at four
+hours, with log-MSE reductions of 0.99% and 3.11% (p < 0.01). Ethereum QLIKE
+gains are smaller and its log-MSE differences are insignificant. Bitcoin improvements
+are strongest in the tails of the subsequent standardized-return distribution. In BTC
+four-hour models, the article half-life has a median of 42.7 minutes, and negative￾classified articles receive larger average signal magnitudes than positive-classified arti￾cles. Macro news receives the largest mean magnitudes and longest median half-lives.
+Matched experiments favor learned decay over constant aggregation, although the con￾stant kernel also improves forecasts. Sentiment with learned decay nearly matches the
+full embedding, while PCA compression improves on it in this run.
+Keywords: Realized volatility; Volatility forecasting; News-driven volatility; Cryptocur￾rency; Hawkes processes; Text embeddings.
+JEL Codes: C45, C53, C58, G17.
+∗Corresponding author: younwoo48@postech.ac.kr.
+1
+1 Introduction
+Cryptocurrency markets absorb information at intraday frequencies. A regulatory action
+against an exchange, a macroeconomic announcement, or a disruption to trading infrastruc￾ture can coincide with a sharp change in volatility, while routine commentary may carry
+little new information. For short-horizon forecasting, the operational question is how to
+convert a stream of irregularly arriving text into a useful component of a volatility forecast.
+This requires attention both to what an article says and to how its relevance changes after
+publication.
+Two research traditions motivate our approach. The first, rooted in the point-process
+literature, represents events as discrete impulses whose effects accumulate and dissipate
+over time. Hawkes processes (Hawkes, 1971) and their applications in finance (Bacry et al.,
+2015) provide a natural vocabulary for these dynamics. Neural extensions allow richer de￾pendence on event history (Mei and Eisner, 2017; Zuo et al., 2020). The second tradition
+extracts information from financial text using sentiment classifiers and contextual represen￾tations, including FinBERT (Araci, 2019), CryptoBERT (Kulakowski and Frasincar, 2023),
+and financial word embeddings (Rahimikia et al., 2023). Such representations complement
+the evidence that sentiment and attention can contribute to volatility forecasting (Audrino
+et al., 2020).
+These perspectives suggest that text representation and temporal aggregation should
+be considered together. A fixed-window average does not distinguish an article published
+moments ago from one near the beginning of the window. A common discount factor distin￾guishes their ages but assigns the same persistence to every article. Two articles published
+in the same hour, one describing an enforcement action and another offering routine market
+commentary, may warrant different magnitudes and durations of forecast adjustment. We
+ask whether these two quantities can be learned jointly, at the article level, from the content
+of the news.
+We propose News Event Decay (NED), a neural architecture that maps each article’s
+pretrained CryptoBERT embedding into a positive magnitude sk and a decay rate λk. The
+news branch sums the signals sk exp(−λk∆tk) over a fixed lookback window and maps their
+aggregate into a bounded correction to a time-series forecast. The forecast is multiplicative
+in realized variance and additive in its logarithm. Although the aggregation is inspired
+by event-decay kernels, NED is a conditional forecasting model: it does not estimate an
+event-arrival intensity or a self-exciting point process.
+The separation between the time-series baseline and the news branch serves two purposes.
+It asks news to account for forecast information beyond a baseline already trained on price
+2
+and volume history, and it retains an explicit description of how each article enters the
+aggregate signal. The final forecast also depends on a fitted residual loading, an intercept,
+and clipping. Consequently, article magnitudes are interpretable within the fitted correction,
+rather than as standalone estimates of causal volatility shocks.
+We evaluate one-hour and four-hour realized-variance forecasts on 15-minute Bitcoin and
+Ethereum bars. Six expanding-window test periods cover January 2023 through December
+2025. The price histories used for training begin in 2017 for Bitcoin and 2018 for Ethereum.
+CoinDesk provides the news corpus; a deterministic tag and title filter removes common
+price recaps before articles are aligned to forecast origins. We compare NED with HAR,
+EGARCH, an EGARCH+NED hybrid, and a TS-only model that is exactly the first-phase
+time-series component of NED.
+The main results establish a forecast benefit for Bitcoin. Relative to TS-only, NED
+reduces QLIKE by 7.38% at one hour and 10.83% at four hours, with corresponding log￾MSE reductions of 0.99% and 3.11%. The pooled loss differences are significant at the
+1% level under the Diebold–Mariano test with the small-sample correction of Harvey et al.
+(1997). Ethereum gains are smaller: QLIKE declines by 1.32% and 2.04%, while log-MSE
+differences are not significant. The contrast between assets limits the scope of a general
+claim about the forecasting value of this news source.
+A second finding concerns where the Bitcoin gains arise. Sorting four-hour forecasts
+by the subsequent return scaled by TS-only volatility reveals larger improvements in both
+return tails. In the central deciles, QLIKE improves modestly while log-MSE can deteriorate.
+Similarly, adding the news branch to EGARCH improves log-MSE but worsens QLIKE. News
+augmentation therefore changes the distribution of forecast errors in ways that a single
+accuracy measure does not fully describe.
+A third set of results examines what the article parameters represent. Across the BTC
+four-hour test sample, the median estimated half-life is 42.7 minutes, and larger internal
+signals tend to decay more slowly. The case study, event-category comparison, and senti￾ment analysis describe this heterogeneity from complementary perspectives. Macro news
+receives the largest mean magnitude and longest median half-life among the twelve cate￾gories. Negative-classified articles receive larger average magnitudes than positive-classified
+articles, but sentiment ambiguity does not produce a stable separation. These are properties
+of the learned predictive representation rather than identified structural responses.
+Finally, matched experiments examine the design choices behind the news branch. A
+constant kernel already improves QLIKE, and learned decay provides additional gains, with
+linear decay performing best in the kernel comparison. Sentiment with learned decay nearly
+matches the full-dimensional embedding, while a 256-component PCA representation im￾3
+proves on it in this run. These comparisons, together with lookback sensitivity, distinguish
+the usefulness of the news mechanism from the optimality of the main specification. All
+variants share the same fitted time-series baseline within each expanding window.
+The remainder of the paper proceeds as follows. Section 2 describes the data, architecture,
+training procedure, baselines, and evaluation protocol. Section 3 presents the main results
+and the Z-score analysis. Section 4 studies article persistence, news categories, and sentiment.
+Section 5 compares alternative decay functions and news representations, with lookback
+sensitivity reported in the Appendix. Section 6 concludes.
+2 Methodology
+2.1 Data and preprocessing
+2.1.1 Price data and realized volatility
+We construct realized volatility from cryptocurrency price data sampled at 15-minute inter￾vals. For Bitcoin, we use BTC/USD candles from Bitstamp, resampled from the supplied
+one-minute observations. For Ethereum, we use ETH/USDT candles resampled from five￾minute observations. Duplicate raw timestamps are removed, keeping the last observation,
+and bars without a closing price are dropped. After feature construction and alignment with
+the news sample, the usable histories begin in January 2017 for Bitcoin and January 2018 for
+Ethereum. The out-of-sample analysis covers six half-year test periods from January 2023
+through December 2025.
+At each bar t, the intraday log return is
+rt = log P
+close
+t − log P
+close
+t−1
+. (1)
+Following the realized-variance approach of Andersen et al. (2003), we form the forward
+target as a sum of squared returns:
+RVt,H =
+X
+H
+j=1
+r
+2
+t+j
+. (2)
+We target H = 4 and H = 16, corresponding to one and four hours on the 15-minute
+grid. Although we use the conventional term volatility forecasting, the forecast target is
+realized variance; neither a square root nor annualization is applied in the loss functions.
+The target uses 15-minute close-to-close returns rather than every underlying one-minute
+price observation.
+4
+Realized variance is heavily right-skewed. We therefore evaluate and train the neural
+forecasts using the transformed target yt = log(RVt,H +ϵ), with ϵ = 10−10. The training
+objective is Huber loss on this log scale, described in Section 2.3. Missing price bars are not
+interpolated, so the nominal horizon can span more than H × 15 minutes across a gap. All
+targets are calculated before the chronological data partitions.
+2.1.2 Time-series features
+From the 15-minute OHLCV bars, we engineer twelve features that capture multi-scale
+volatility, return dynamics, and trading activity. The feature set is motivated by the het￾erogeneous autoregressive framework of Corsi (2008), in which information at different ag￾gregation scales contributes to the persistence of realized variance. Table 1 summarizes the
+inputs.
+Table 1: Time-series input features
+Feature Description
+rv4,rv16,rv96,rv384 Sum of squared returns over trailing 1h, 4h, 24h, and 4-
+day windows
+log_ret Log return of the current bar
+mom4, mom16 Cumulative log return over the trailing 1h and 4h
+hl_range4 Trailing 1h mean of (high − low)/close
+vol_ratio4 Current volume divided by the trailing 1h mean volume
+skew16, kurt16 Return skewness and excess kurtosis over the trailing 4h
+log_close Log price level
+The variance aggregates are neural counterparts to the multi-scale HAR components,
+adapted to continuously traded cryptocurrency markets. Higher-order moments describe
+return asymmetry and tail behavior (Patton and Sheppard, 2015), while the volume ratio
+captures a dimension of information flow not contained in past returns alone (Andersen,
+1996). Trailing features include the current completed bar. Each feature is standardized
+using its mean and sample standard deviation in the training portion of the expanding win￾dow, and the standardized values are clipped to [−10, 10]. These normalization parameters
+are held fixed during validation and testing.
+2.1.3 News corpus and reactive filtering
+We use CoinDesk news records with article text and UTC publication timestamps. Before
+January 2026, the processed corpus contains 25,447 BTC-labelled records and 10,277 ETH￾labelled records. These are asset-specific observations: an article associated with both assets
+5
+can appear in both samples. After the recap filter, 19,249 BTC and 8,735 ETH records
+remain. The underlying file also contains early-2026 articles; the publication-time cutoff
+prevents those later records from entering any forecast in the 2023–2025 test sample.
+A key preprocessing step addresses reactive news contamination: articles that describe a
+price movement already in progress rather than report a new information event. We remove
+articles carrying the editorial tags price-news, Markets News, Market Wrap, Bitcoin Price,
+Technical Analysis, First Mover, Bitcoin Long & Short, Crypto Long & Short, Markets
+Daily, Asia Pacific, or Trading. A small title-based augmentation matches “market wrap”,
+Bitcoin/BTC followed by a dollar sign at the beginning of a headline, and the First Mover
+Asia/Americas/Europe series. The filter is deterministic and does not use future returns.
+Filtering reduces the direct use of price-recap language, but it is not a guarantee that ev￾ery retained article represents an exogenous shock. An article reporting a market movement
+can still survive when its tags and title do not match the rules. This distinction matters for
+the interpretation of the case study and category results below.
+For each forecast, we retrieve retained articles in the preceding twelve hours, with publi￾cation times strictly earlier than the stored bar timestamp. The timestamp is the first raw
+observation in the resampled bar, generally its left-hand endpoint. Since the price features
+use the completed current bar, forecasts are interpreted as end-of-bar forecasts with this
+earlier news cutoff. The news age used by the model is measured from the stored timestamp.
+These timing conventions are applied consistently to the main model and its ablations.
+2.1.4 CryptoBERT embeddings
+Each article is represented by a 768-dimensional vector from the pretrained ElKulako/
+cryptobert checkpoint (Kulakowski and Frasincar, 2023). The encoder processes the stored
+article text, truncated to at most 512 tokens. We average its final hidden states over the
+positions enabled by the attention mask and normalize the resulting vector to unit Euclidean
+length. Embeddings are precomputed and held fixed during volatility-model training.
+The main model uses the complete 768-dimensional representation, followed by a learned
+LayerNorm at the input to the news head. No PCA is applied in the primary specification. A
+256-dimensional representation is introduced only in the news-representation ablation, where
+PCA is fitted separately on training-period retained articles in each window. CryptoBERT’s
+cryptocurrency-oriented representation offers a way to encode event descriptions beyond
+a fixed sentiment category. Whether that additional information improves forecasts is an
+empirical question addressed in Section 5.2.
+6
+12 standardized price features
+MLP: 12 → 64 →
+32 → 16 → 1
+Frozen CryptoBERT,
+token mean pooling
+768 dimensions,
+L
+2 normalization
+Positive baseline v
+TS
+t
+P1: train; P2: freeze weights
+LayerNorm; MLP
+768 → 128 → 32 → 2
+Per-article sk, λk
+Past 12 hours, pub￾lication time < τt
+St =
+P
+k
+ske d −λk∆ttk
+RVt,H = v
+TS
+t
+e
+clip(aSt+b,−2,2)
+P2: train the news correction
+Figure 1: The NED architecture. The first training phase estimates the time-series baseline;
+the second freezes its weights and learns the article-dependent news correction. The final
+forecast is produced by the second-phase model selected on validation loss.
+t1 t2 t3 t4
+0
+0.5
+1
+1.5
+Time (hours)
+Event signal
+Article 1 (s=0.6, λ=0.15)
+Article 2 (s=0.4, λ=0.4)
+Article 3 (s=1.0, λ=0.1)
+Article 4 (s=0.3, λ=0.6)
+Summed Psie−λi∆ti
+Figure 2: Event signal accumulation. Each article contributes a decaying signal with magni￾tude sk and rate λk. The aggregate is the sum of the active article kernels. Curves illustrate
+the mechanism and are not empirical parameter estimates; the horizontal scale and the dis￾played rates use hours. The model is inspired by Hawkes-type kernels but does not fit a
+self-exciting arrival intensity.
+7
+2.2 NED architecture
+The News Event Decay model decomposes the log forecast into a time-series component
+and a news-driven correction. Let v
+ts
+t > 0 be the time-series variance forecast and St the
+aggregate article signal. The combination is
+log RVdt,H = log v
+ts
+t + clip(aSt + b, −2, 2). (3)
+Thus the residual is additive in log units and multiplicative on variance levels. The small
+stabilizer ϵ is introduced when calculating the training and evaluation losses, rather than in
+the architecture’s combination rule. Figure 1 illustrates the two branches.
+2.2.1 Time-series branch
+The time-series branch maps the twelve standardized features to a positive variance forecast
+through a feedforward network with widths 12 → 64 → 32 → 16 → 1. Hidden layers
+use ReLU activations, the first hidden layer is followed by dropout with probability 0.2,
+and the output uses Softplus. This can be viewed as a nonlinear extension of the multi-scale
+HAR representation: variance components enter alongside return, range, volume, and higher￾moment features, allowing their interactions to be learned rather than imposed linearly.
+2.2.2 News event branch
+Let ek ∈ R
+768 and τk denote an eligible article’s embedding and publication time. A news
+MLP with hidden widths 128 and 32 and ReLU activations maps its normalized embedding
+to two raw outputs:
+(uk, vk) = gψ(LayerNorm(ek)), (4)
+sk = softplus(uk), λk = 0.001 + 0.499 sigmoid(vk). (5)
+The magnitude sk is positive, while λk lies between 0.001 and 0.5 per minute. For an article
+age ∆tk = (τt − τk)/60 in minutes, the event signal is
+St =
+X
+k∈Nt
+sk exp(−λk∆tk), Nt = {k : τt − 12h ≤ τk < τt}. (6)
+Only retained articles enter Nt
+. Padding is masked out, and the sum is not divided by the
+number of articles.
+The architecture is inspired by the event-kernel structure of Hawkes processes (Hawkes,
+8
+1971). Here the arrival times are observed news timestamps, and both kernel parameters
+depend on article content; no arrival-intensity likelihood or self-excitation parameter is es￾timated. The exponential half-life is h1/2,k = log(2)/λk, bounded approximately between
+1.39 and 693 minutes. The twelve-hour lookback truncates a contribution regardless of its
+untruncated half-life. Figure 2 illustrates how article signals accumulate.
+2.2.3 Residual combination
+The variance forecast corresponding to Equation (3) is
+RVdt,H = v
+ts
+t
+exp[clip(aSt + b, −2, 2)] . (7)
+The residual weight a and intercept b are initialized to zero, so that the news branch begins
+with the unadjusted time-series forecast. Clipping bounds the adjustment factor between
+e
+−2 and e
+2
+. The additional time-series scale parameter remains fixed at one.
+This structure makes the role of the news signal explicit. Away from clipping, article k
+contributes aske
+−λk∆tk to the log correction. The shared loading can be positive or negative,
+and the intercept permits baseline recalibration even when no news is present. Consequently
+a positive sk does not itself identify a positive causal variance shock. The benefit of the
+decomposition is that it separates article timing and persistence from the final calibration
+of the forecast.
+2.3 Training procedure
+Training proceeds in two sequential phases. P1 estimates the time-series branch; P2 holds
+those weights fixed while fitting the news correction. Both phases minimize Huber loss on
+the log variance error,
+et = log(RVdt,H + ϵ) − log(RVt,H +ϵ), (8)
+L =
+1
+N
+X
+t
+ρ0.5(et), ρδ(e) =
+
+
+
+1
+2
+e
+2
+, |e| ≤ δ,
+δ(|e| − 1
+2
+δ), |e| > δ.
+(9)
+The objective downweights large log errors relative to squared loss. It is distinct from both
+log-MSE and QLIKE, the forecast losses used for evaluation. The staged design directs the
+news branch toward errors remaining after the time-series fit, while preserving the P1 model
+as an exact no-news comparator.
+We use AdamW (Loshchilov and Hutter, 2017) with weight decay 0.01. P2 gradients are
+9
+Table 2: Training phase configuration
+Phase 1 Phase 2
+TS weights Trained Frozen
+News branch Frozen Trained
+Learning rate 10−4 5 × 10−5
+Maximum epochs 100 120
+Early-stopping patience 15 20
+Batch size 64 64
+Main-model auxiliary loss Disabled Disabled
+clipped at norm 1.0, and the selected model is the P2 checkpoint with the lowest primary
+validation loss. No joint fine-tuning follows P2. Initialization/P1 use seed 7 and P2 uses
+seed 42. The time-series dropout remains active during P2 training despite its frozen weights;
+evaluation disables dropout. The auxiliary loss of the main model is zero.
+2.3.1 Expanding window evaluation
+Each model is trained on all observations before a six-month validation period and evalu￾ated on the subsequent half-year. The training history expands monotonically, and model
+selection uses validation loss only. The six test periods begin in January 2023, July 2023,
+January 2024, July 2024, January 2025, and July 2025. The total test sample is 104,570
+BTC bars and 104,641 ETH bars at each horizon.
+Two implementation conventions qualify this chronological design. Validation and test
+upper bounds include 00:00 UTC on their final date, omitting the remaining bars on that
+date. Training labels are not purged when their forward returns extend across the start of
+validation. These conventions are held fixed across comparisons; sensitivity to an embargo
+and full end-of-day bounds remains a limitation of the experimental design. The ablations
+reuse each window’s selected P1 state and retrain the alternative P2 branches on the same
+partitions.
+2.4 Baselines
+We compare NED with four benchmarks spanning parametric and neural time-series forecast￾ing, including a parametric model augmented with the same article-level decay mechanism.
+10
+2.4.1 HAR
+The adapted HAR model (Corsi, 2008) forecasts log realized variance from four trailing
+variance components:
+yˆ
+HAR
+t = β0 + β1rv4 + β2rv16 + β3rv96 + β4rv384. (10)
+Coefficients are estimated by ordinary least squares on the training set, and forecasts are
+exponentiated without a lognormal bias correction. The regressors are variance levels, not
+their logarithms. HAR uses four features whereas the neural time-series branch uses twelve,
+so their comparison changes both flexibility and the feature set.
+2.4.2 EGARCH
+The EGARCH model of Nelson (1991) accommodates asymmetric responses of conditional
+variance to return innovations. We estimate an EGARCH(1,1) with one asymmetric term,
+a zero mean, and Student-t innovations on training-period 15-minute returns multiplied by
+100. Parameters are then fixed while the conditional variance recursion is filtered forward.
+The benchmark scales the filtered one-bar variance by the forecast horizon:
+v
+EGARCH
+t,H = Hσˆ
+2
+t
+, (11)
+after undoing the return scaling. This horizon-scaled filtered variance is the comparator
+evaluated here; it is not an iterated sum of future conditional variance forecasts.
+2.4.3 EGARCH+NED
+The hybrid replaces the neural time-series forecast with the EGARCH baseline while pre￾serving the multiplicative news correction:
+RVdEGARCH+NED
+t,H = v
+EGARCH
+t,H e
+clip(aSt+b,−2,2)
+. (12)
+A separate article network is trained against the fixed EGARCH baseline with learning rate
+2 × 10−4
+, a 120-epoch cap, patience 20, and gradient clipping at 1.0. The primary objective
+is Huber-on-log loss. In this hybrid, a news-only auxiliary prediction head adds a loss with
+weight 0.1, while validation selects primary forecast loss. Thus this comparison also includes
+a difference in auxiliary training from the main model, whose auxiliary loss is disabled.
+11
+2.4.4 TS-only
+TS-only is the selected P1 time-series branch, evaluated without the news correction. It uses
+precisely the same time-series weights, features, normalization, and initial training run as
+NED. The NED–TS-only comparison therefore measures the incremental contribution of the
+complete P2 correction, including its intercept, rather than differences between separately
+trained baseline networks.
+2.5 Evaluation metrics and statistical tests
+We compute all metrics within each test window and report their arithmetic means across
+the six windows. This avoids the change in the R2
+reference variance that would occur when
+pooling distinct volatility regimes. Per-window results appear in the appendix.
+2.5.1 Coefficient of determination
+The coefficient of determination uses log realized variance:
+R
+2
+w = 1 −
+P
+t∈w(yt − yˆt)
+2
+P
+t∈w(yt − y¯w)
+2
+, (13)
+where y¯w is the mean of actual log variance in the test window. Negative values indicate
+worse performance than that ex-post constant mean. It is not a comparison with the training￾sample mean forecast.
+2.5.2 Directional accuracy
+We retain the label DA used in the experiment, whose definition is accuracy relative to a
+common volatility threshold:
+DAw =
+1
+Nw
+X
+t∈w
+1
+n
+1(RVt,H > mw) = 1(RVdt,H > mw)
+o
+, (14)
+where mw is the median actual variance in the test window. This measures agreement about
+high versus low variance, not agreement about successive increases or decreases. The median
+is an ex-post threshold.
+12
+2.5.3 QLIKE
+The QLIKE loss is
+QLIKEw =
+1
+Nw
+X
+t∈w
+(qt − log qt − 1), qt =
+RVt,H +ϵ
+RVdt,H + ϵ
+. (15)
+QLIKE is sensitive to underprediction of large realized variances and provides a different
+ranking criterion from log-MSE. Its use with noisy volatility proxies is motivated by Patton
+(2011).
+2.5.4 Mean squared error
+MSE is computed in log units:
+MSEw =
+1
+Nw
+X
+t∈w
+(yt − yˆt)
+2
+. (16)
+It weights proportional errors more evenly across variance levels than level-MSE and remains
+distinct from the robust training objective.
+2.5.5 Diebold-Mariano test with small-sample correction
+For the inference reported in the tables, we apply the loss-differential test of Diebold and
+Mariano (1995) with the finite-sample correction of Harvey et al. (1997). With dt = L
+NED
+t −
+L
+TS
+t
+, the statistic is
+DM∗ =
+s
+N + 1 − 2H + H(H − 1)/N
+N
+¯d
+q
+Ωb /N
+. (17)
+We estimate Ωb using Bartlett weights through lag H − 1 and report two-sided Student-t
+probabilities with N − 1 degrees of freedom. Negative statistics favor NED. The tests are
+recomputed from the saved observation-level forecasts for this paper. Uncorrected normal￾reference tests with bandwidth H, produced by the main training pipeline, are retained as
+a sensitivity check; the aggregate conclusions are unchanged.
+Aggregate tests concatenate chronological loss differentials from the six test windows.
+They therefore weight observations, whereas summary metrics weight windows equally. Lag
+pairs crossing the joins are retained. Reported probabilities are unadjusted for multiple
+comparisons and do not capture variation across independent training seeds. Statistical
+significance is interpreted together with the per-window pattern and the size of the forecast
+13
+improvement.
+3 Results
+3.1 Main Results
+Table 3: Out-of-Sample Forecast Performance
+Panel A: 1-Hour RV
+Asset Model R2 DA QLIKE MSE
+BTC
+HAR -0.139 0.508 1.136 2.338
+EGARCH 0.050 0.634 0.793 1.915
+EGARCH+NED 0.336 0.703 1.153 1.338
+TS-only 0.417 0.733 0.992 1.175
+NED 0.423 0.734 0.919∗∗∗ (-7.4%) 1.163∗∗∗ (-1.0%)
+ETH
+HAR -0.224 0.542 1.186 2.257
+EGARCH -0.032 0.611 0.800 1.849
+EGARCH+NED 0.253 0.681 1.203 1.335
+TS-only 0.335 0.710 1.038 1.188
+NED 0.335 0.710 1.024∗∗∗ (-1.3%) 1.188 (-0.015%)
+Panel B: 4-Hour RV
+Asset Model R2 DA QLIKE MSE
+BTC
+HAR -0.232 0.500 0.711 1.769
+EGARCH 0.191 0.660 0.576 1.127
+EGARCH+NED 0.334 0.695 0.723 0.930
+TS-only 0.419 0.717 0.638 0.810
+NED 0.438 0.723 0.569∗∗∗ (-10.8%) 0.785∗∗∗ (-3.1%)
+ETH
+HAR -0.328 0.547 0.727 1.653
+EGARCH 0.134 0.654 0.549 1.025
+EGARCH+NED 0.257 0.680 0.720 0.878
+TS-only 0.350 0.708 0.623 0.770
+NED 0.350 0.710 0.610∗∗∗ (-2.0%) 0.771 (+0.1%)
+Notes: Arithmetic means across six expanding windows (January 2023–December 2025). R2 and MSE use
+log variance; QLIKE uses levels. DA is the test-median classification measure in Equation (14). Parentheses
+on the NED rows give percentage changes relative to TS-only; negative values indicate improvement. ∗p <
+0.10,
+∗∗p < 0.05,
+∗∗∗p < 0.01 from the corrected DM test in Equation (17), applied to concatenated loss
+differentials.
+Table 3 reports forecast performance at both horizons for Bitcoin and Ethereum. We
+begin with the models that do not use news. The adapted HAR model has negative mean￾window R2 at both horizons for both assets. EGARCH improves on this raw-variance HAR
+specification, and the neural TS-only model further lowers log-MSE. At the BTC four-hour
+14
+horizon, TS-only attains R2 = 0.419, compared with 0.191 for EGARCH. The nonlinear
+model therefore provides a demanding baseline against which to assess the incremental value
+of a news correction.
+Adding NED produces significant BTC gains on both forecast losses. At four hours,
+QLIKE falls from 0.63815 to 0.56902, a reduction of 10.83%, while log-MSE falls from 0.80974
+to 0.78453, a reduction of 3.11%. At one hour, the respective improvements are 7.38% and
+0.99%. All four aggregate BTC comparisons have p < 0.001 under the corrected DM test.
+Improvements in R2 are more modest, from 0.41674 to 0.42278 at one hour and from 0.41932
+to 0.43759 at four hours. The stronger QLIKE response indicates that the news correction
+affects the calibration of variance levels beyond its smaller change in average squared log
+error.
+Ethereum provides a less uniform result. QLIKE improves by 1.32% at one hour and
+2.04% at four hours, with both aggregate comparisons significant at the 1% level. Log-MSE
+is almost unchanged: it falls by about 0.015% at one hour and rises by 0.128% at four hours,
+with neither difference statistically significant. Thus the BTC finding extends to ETH under
+QLIKE, but not under both losses.
+Comparing NED with EGARCH+NED clarifies the role of the baseline. The hybrid
+lowers EGARCH log-MSE in all four asset–horizon settings. For BTC four-hour forecasts,
+log-MSE falls from 1.12726 to 0.92985 and R2
+rises from 0.19067 to 0.33382. These propor￾tional MSE gains are larger than those obtained by correcting the stronger neural baseline.
+However, EGARCH+NED worsens QLIKE in every setting: BTC four-hour QLIKE rises
+from 0.57616 to 0.72304. The forecast value of the correction is therefore loss-dependent,
+rather than an improvement that applies to every measure and every baseline.
+Standalone EGARCH remains the lowest-QLIKE model for BTC one hour and for both
+ETH horizons. NED has the lowest QLIKE for BTC four hours and the lowest log-MSE in
+three of the four settings; TS-only has slightly lower log-MSE for ETH four hours. These
+rankings underscore the importance of evaluating more than one loss function. A model
+trained on robust log errors need not minimize variance-ratio loss, even when it improves on
+an identical time-series checkpoint.
+Per-window results in Tables 10 and 11 show that BTC gains are positive in all six
+windows at both horizons and under both losses. The largest four-hour QLIKE gain, 24.62%,
+occurs in the first half of 2024. ETH improves in QLIKE over the first four windows, but the
+gain reverses in both 2025 windows: QLIKE worsens by 3.34% and 3.17% at one hour, and by
+4.73% and 4.85% at four hours. The aggregate ETH finding consequently masks economically
+relevant variation across periods. Unequal news coverage may be one explanation, but these
+comparisons do not identify the cause of the asset difference.
+15
+3.2 Z-score analysis
+We next ask whether the contribution of news is concentrated in large return-shock regimes.
+For every BTC four-hour forecast, define
+zt =
+P16
+j=1 rt+j
+r
+RVdTS
+t,16
+. (18)
+This is the forward return standardized by the TS-only forecast volatility. We pool the
+test observations and form equal-frequency deciles of this signed score. The grouping distin￾guishes unusually large negative and positive returns from observations near the baseline’s
+predicted scale.
+Table 4: Forecast performance by standardized-return decile (4-Hour RV, BTC)
+Decile z¯ TS-only R2 NED R2 ∆R2 QLIKE (%) MSE (%)
+1 -2.28 -0.235 -0.077 0.158 -16.8 -12.8
+2 -0.94 0.611 0.630 0.019 -13.5 -4.9
+3 -0.55 0.568 0.555 -0.013 -3.3 +3.0
+4 -0.29 0.492 0.470 -0.022 -1.7 +4.3
+5 -0.08 0.427 0.405 -0.021 -1.4 +3.7
+6 0.13 0.446 0.426 -0.021 -1.2 +3.7
+7 0.35 0.485 0.462 -0.023 -1.1 +4.4
+8 0.61 0.511 0.491 -0.020 -3.5 +4.1
+9 1.00 0.569 0.577 0.008 -10.1 -1.9
+10 2.37 -0.384 -0.227 0.156 -12.9 -11.3
+Notes: Deciles use the signed forward-return score zt, not standardized realized variance. Each contains
+10,457 observations. R2
+is computed within each pooled decile on log RV; ∆R2
+is NED minus TS-only.
+Percentage changes are relative to TS-only, with negative values indicating lower loss. The grouping is an
+ex-post diagnostic, not a real-time decision rule.
+Table 4 shows improvements at both tails. In the lowest decile, with mean z = −2.28,
+NED reduces QLIKE by 16.77% and log-MSE by 12.76%. In the highest decile, with mean
+z = 2.37, the corresponding reductions are 12.91% and 11.29%. The R2 gain is about 0.16
+in each tail. These results are consistent with the correction helping when realized returns
+are large relative to the baseline forecast.
+The middle deciles qualify this interpretation. QLIKE improves throughout the distribu￾tion, but log-MSE rises in deciles three through eight. News therefore sharpens some aspects
+of level calibration while trading off squared log accuracy in more typical return states. Since
+the decile labels use future returns, this analysis describes where the model helped ex post;
+it does not establish that favorable states could have been selected in advance.
+16
+4 Economic Interpretation
+The NED framework represents each article through two quantities: an impact magnitude
+sk and a decay rate λk. These parameters provide a way to examine which kinds of text the
+model associates with large and persistent adjustments to a volatility forecast. Their inter￾pretation is conditional on the residual loading a, the intercept b, and the clipping operation
+in Equation (3). In particular, sk is an internal signal magnitude; the initial contribution to
+the unclipped log-variance correction is ask. The parameters describe predictive associations
+rather than causal responses to externally identified news shocks.
+We organize the analysis around three questions: how long does news move volatility
+(Section 4.1), how does news content shape the impact (Section 4.2), and what dimension of
+the text representation does the model use (Section 4.3)? The analysis uses the BTC 4-hour
+model and the 7,845 retained articles that enter at least one of its out-of-sample forecasts
+across the six expanding windows. Each article contributes one parameter pair estimated by
+the corresponding window’s fitted model.
+4.1 Timescale: How long does news move volatility?
+Figure 3 examines the same forecasting episode around Bitcoin’s March 2024 record high. To
+select the displayed articles systematically, we fix the forecast timestamp at 5 March, 18:30
+UTC, and rank eligible articles by their remaining signal sk exp(−λk∆tk). Table 5 reports
+the three highest-ranked articles. They discuss the record price, its possible implications,
+and the subsequent decline. The corresponding half-lives are approximately 148, 407, and
+189 minutes. The forward-looking article therefore receives the most persistent response,
+while the decline report has the largest initial magnitude.
+Table 5: Articles highlighted in the forecasting episode
+No. Article s h1/2
+(min)
+1 Bitcoin Soars to a Record – but What’s the Price?
+And What Was the Old All-Time High?
+9.75 147.6
+2 Bitcoin Hit a Record High. Here’s What Might Hap￾pen Next
+9.61 407.1
+3 Bitcoin Tumbles 10% After Hitting Record High; Trig￾gers $1B Crypto Liquidations
+11.51 188.6
+Articles are ordered by remaining signal at 5 March 2024, 18:30 UTC. Magnitudes and half-lives are extracted
+from the third expanding-window BTC 4-hour model.
+The news signals contribute to a separation between the NED and TS-only forecasts
+during the episode. The residual loading is positive (a = 0.0468), so a larger aggregate
+17
+50
+75
+100
+125
+150
+175
+200
+225
+250
+Annualized volatility (%)
+2 3 1
+Realized TS-only NED
+05 06:00 05 10:00 05 14:00 05 18:00 05 22:00 06 02:00 06 06:00
+March 5--6, 2024 (UTC)
+0
+10
+20
+30
+40
+N
+e
+ws sig
+n
+al ∑
+ske
+−λkΔtk
+1. Half-life 148 min; s=9.75
+2. Half-life 407 min; s=9.61
+3. Half-life 189 min; s=11.51
+All retained articles
+Figure 3: News-driven forecast adjustment around 5 March 2024. The upper panel compares
+4-hour annualized realized volatility with TS-only and NED forecasts. The numbered vertical
+markers identify the three articles with the largest remaining signals at 18:30 UTC. The lower
+panel stacks their learned signals, sk exp(−λk∆tk), and overlays the sum for all retained
+articles in the twelve-hour lookback. The dashed vertical line marks the selection time. The
+signals are inputs to the residual map, rather than additive contributions to annualized
+volatility.
+18
+signal raises the variance forecast until the correction reaches its cap. The figure also makes
+clear why the analysis should not be read as a causal event study: a report of an ongoing
+price decline survives the deterministic recap filter, and realized variance is measured over
+an overlapping forward horizon. The episode illustrates the model’s mechanism and the
+differences among article persistence estimates, rather than identifying an exogenous effect
+of any one publication.
+2 4 6 8 10 12 14
+Learned impact magnitude s
+10
+−3
+10
+−2
+10
+−1
+D
+eca
+y rate
+λ (p
+er min
+ute)
+0
+500
+Count
+0 250
+Count
+Figure 4: Joint distribution of learned article magnitude s and decay rate λ in the BTC
+4-hour models. Each point is one of 7,845 articles entering an out-of-sample forecast; the
+marginal distributions appear above and to the right. Decay rates are measured per minute
+and shown on a logarithmic axis. Larger magnitudes tend to be associated with slower decay.
+Figure 4 examines whether heterogeneous persistence also appears across the full test
+sample. The mean learned magnitude is 6.50 and its median is 6.55. The median half-life is
+42.7 minutes, with an interquartile range from 16.8 to 88.8 minutes. Only 3.4% of articles
+have half-lives exceeding four hours. The model thus assigns most retained news a relatively
+short period of relevance, while allowing a smaller group to influence forecasts for several
+hours.
+Magnitude and decay rate exhibit a negative rank association (Spearman’s ρ = −0.687).
+Articles with larger internal signals tend to retain those signals longer. This relationship is
+19
+not imposed by an explicit constraint linking the two output coordinates, although both are
+produced by the same news head and optimized under the same loss. Pooling parameters
+across independently fitted windows also introduces variation in their scale. The association
+is therefore a descriptive property of the fitted news branch, rather than evidence that large
+economic shocks must necessarily dissipate more slowly.
+4.2 News category and impact heterogeneity
+To examine whether the learned parameters vary across economically meaningful informa￾tion types, we assign the retained test-sample articles to twelve mutually exclusive news
+categories. The category labels are constructed after reactive filtering and are used only for
+interpretation. They are not inputs to the volatility model and do not affect its training or
+forecast evaluation.
+Classification proceeds in two stages. First, deterministic title patterns identify recurring
+branded columns and newsletters and assign them to Newsletter Series. Second, the remain￾ing articles are classified with the zero-shot natural language inference model MoritzLaurer/
+ModernBERT-large-zeroshot-v2.0.
+1
+Its candidate labels are Macro, Geopolitical, Regula￾tory and Legal, Security and Crime, Institutional Flows, Protocol and Infrastructure, On￾Chain Flows, Product Adoption, Market Commentary, Opinion and Editorial, and Other.
+Each label is accompanied by a short definition in a hypothesis about the event reported by
+the article. We apply softmax across the eleven entailment scores, assign the highest-scoring
+label, and use Other when that score is below 0.25. Article premises are truncated to fit the
+512-token input limit.
+Table 6 shows substantial variation across event types. Macro news has the largest mean
+magnitude, 8.96, and the longest median half-life, 78.1 minutes. Geopolitical news ranks
+second in magnitude at 8.08, but its median half-life is 47.1 minutes. Both groups also rank
+highest when magnitudes are multiplied by their fitted window-specific residual loadings.
+The model therefore associates broad macroeconomic information with a particularly large
+and persistent forecast adjustment, while the distinction for geopolitical articles is clearer in
+magnitude than in duration.
+The remaining categories illustrate why magnitude and persistence should be examined
+separately. Newsletter Series has a relatively large mean magnitude of 6.85 but a shorter
+median half-life of 34.4 minutes. Protocol/Infrastructure and Security/Crime have lower
+mean magnitudes, 5.79 and 5.81, yet median half-lives of 56.0 and 52.1 minutes. Opin￾ion/Editorial has the lowest mean magnitude, 5.63, and the shortest median half-life, 25.0
+1Model and configuration: https://huggingface.co/MoritzLaurer/ModernBERT-large-zeroshot-v2.
+0. We fix checkpoint revision a51e07b524299e309dd2b88d48b0cfa2bd9ec598.
+20
+Table 6: News category and learned impact heterogeneity (BTC, 4-hour)
+Category N Mean s Std. s Median h1/2
+(min) Mean as
+Macro 450 8.96 2.22 78.1 0.288
+Geopolitical 134 8.08 2.17 47.1 0.245
+Newsletter series 712 6.85 2.23 34.4 0.223
+On-chain flows 399 6.73 1.94 51.1 0.206
+Institutional Flows 849 6.62 1.91 37.0 0.218
+Other 663 6.44 1.92 41.3 0.207
+Market Commentary 2287 6.43 1.91 43.0 0.205
+Regulatory/Legal 816 6.04 1.58 45.4 0.209
+Security/Crime 165 5.81 1.61 52.1 0.185
+Protocol/Infrastructure 436 5.79 1.85 56.0 0.180
+Product Adoption 379 5.74 1.54 43.2 0.170
+Opinion/Editorial 555 5.63 1.64 25.0 0.181
+Each of the 7,845 articles receives equal weight. Categories are ordered by mean s. The final column in￾corporates the residual loading from the article’s expanding window and reports the mean initial unclipped
+log-variance contribution as. Half-lives are measured in minutes. Labels are automatically generated de￾scriptive annotations.
+minutes. Product Adoption also receives a relatively small magnitude, 5.74, although its
+43.2-minute median half-life is close to the sample-wide value. The temporal ordering is thus
+not a simple restatement of the magnitude ordering.
+These comparisons concern article-level fitted parameters and should be distinguished
+from the volume of coverage. Market Commentary is the largest category, with 2,287 articles,
+whereas Macro and Geopolitical contain 450 and 134. Category composition can differ across
+the independently fitted windows, and the labels themselves are automated annotations: 613
+articles fall below the confidence threshold and are assigned to Other. The results provide
+an economically recognizable description of the learned news signals, while leaving causal
+explanations of category differences open.
+4.3 Sentiment versus event content: What does CryptoBERT con￾tribute?
+An article representation can encode both the direction of a statement and the nature of
+the event it describes. To examine their relationship to the learned news parameters, we
+use the precomputed three-class probabilities from ProsusAI/finbert (Araci, 2019). These
+sentiment scores are distinct from the CryptoBERT embeddings used by the main forecasting
+model. For each article, an individual class is decisive when its probability exceeds 0.60;
+otherwise the article is assigned to the ambiguous group.
+21
+Table 7: FinBERT sentiment and learned article magnitude (BTC, 4-hour)
+Group N Mean s Median s Std. s Median h1/2
+(min)
+Positive-decisive 1841 6.941 7.015 2.036 46.9
+Neutral-decisive 2736 5.580 5.864 1.595 33.4
+Negative-decisive 2315 7.286 7.269 2.127 52.8
+Ambiguous 953 6.382 6.538 1.829 44.7
+A decisive class has probability greater than 0.60. All other articles are ambiguous. Probabilities are matched
+to articles using their original asset-specific row indices and verified publication timestamps. Each article
+receives equal weight.
+Table 7 shows that negative-decisive articles have a mean magnitude of 7.29, compared
+with 6.94 for positive-decisive articles and 5.58 for neutral-decisive articles. Their median
+half-life is also longer: 52.8 minutes for negative, 46.9 minutes for positive, and 33.4 minutes
+for neutral articles. A two-sided Mann–Whitney comparison between negative and positive
+magnitudes yields p = 1.86 × 10−7
+. The difference remains significant at decisiveness thresh￾olds of 0.50 and 0.70. These comparisons indicate a polarity-related asymmetry in the fitted
+parameters, but do not identify the leverage mechanism of an asset-pricing model.
+Ambiguous articles have a mean magnitude of 6.38 and a median half-life of 44.7 minutes.
+Their magnitude distribution does not differ significantly from the combined decisive group
+at the 0.60 cutoff (p = 0.130). Moreover, this comparison changes with the decisiveness
+threshold. The evidence therefore supports a negative–positive difference more clearly than
+a general claim that ambiguity itself induces a distinct volatility response.
+The sentiment comparison describes how the full model organizes its article signals; it
+does not determine whether sentiment alone would be sufficient for forecasting. Section 5.2
+addresses that separate question by replacing the article representation and refitting the
+news branch under matched conditions.
+5 Robustness and sensitivity analysis
+The main specification combines a rich article representation with a particular temporal
+aggregation rule. This section asks how forecast accuracy changes when those components
+are varied. We focus on BTC four-hour forecasts and use all six expanding windows. Each
+experiment loads the same fitted first-phase TS-only model used in the main results, freezes
+its weights, and estimates a new second-phase news correction. The learning rate, loss,
+batch size, epoch limit, early stopping rule, and gradient clipping match the main NED
+specification. Thus, a difference between variants reflects the fitted news correction rather
+than a different first-phase baseline.
+22
+We refit the full-dimensional exponential specification along with the alternatives. This
+provides a common reference trained with the same numerical implementation and shuffled
+batch sequence as the ablation models. It need not reproduce the main-results checkpoint
+exactly, since the latter uses a different batch-generation path. The experiments use one fixed
+training seed and report arithmetic means across the six test windows. Their differences are
+descriptive comparisons rather than estimates averaged over training seeds.
+5.1 Alternative decay specifications
+We first replace the exponential kernel while retaining the 768-dimensional input, LayerNorm,
+article head, residual map, and twelve-hour lookback. If uk is the second unconstrained
+output of the article head, the four article signals are
+Constant: sk,
+Power-law: sk(1 + ∆tk/60)− softplus(uk)
+,
+Exponential: sk exp{−λk∆tk}, λk = 0.001 + 0.499 sigmoid(uk),
+Linear: sk max(
+0, 1 −
+∆tk
+1 + 60 softplus(uk)
+)
+.
+Article age ∆tk is measured in minutes. The power-law specification fixes its time scale
+at sixty minutes and learns a positive exponent. The linear specification learns a positive
+duration exceeding one minute. All signals are truncated at the lookback boundary. The
+constant variant leaves its second output unused and provides no within-window discounting.
+Table 8: Alternative decay specifications (4-Hour RV, BTC)
+Decay function R2 MSE QLIKE DA
+TS-only (no news) 0.419 0.810 0.638 0.717
+Constant (no decay) 0.423 ±0.035 0.805 (-0.6%) 0.592 (-7.2%) 0.718
+Power-law 0.433 ±0.038 0.791 (-2.3%) 0.568 (-10.9%) 0.722
+Exponential 0.434 ±0.040 0.790 (-2.5%) 0.571 (-10.6%) 0.723
+Linear 0.440 ±0.037 0.781 (-3.6%) 0.549 (-14.0%) 0.725
+Results are averaged across six expanding windows. ± denotes the sample standard deviation of R2 across
+windows. MSE and R2 are calculated on log-RV; QLIKE and DA use levels. Parentheses give percentage
+changes relative to TS-only, with negative values indicating lower loss. Every news specification, including
+exponential, is fitted in the matched ablation experiment.
+Table 8 shows that the constant kernel already improves the shared TS-only baseline.
+Its mean QLIKE is 0.59249, a reduction of 7.16%, and its mean log-MSE is 0.80461, a
+reduction of 0.63%. A model without within-window discounting can therefore improve
+23
+forecast accuracy. The evidence does not support treating temporal decay as a necessary
+condition for any benefit from the news correction.
+All three decaying specifications improve further on both average losses. The refitted
+exponential model reduces QLIKE by 10.57% and log-MSE by 2.48% relative to TS-only.
+Power-law decay yields a slightly larger QLIKE reduction, 10.94%, and a slightly smaller
+log-MSE reduction, 2.31%. Linear decay has the lowest losses in this comparison: QLIKE is
+0.54907 and log-MSE is 0.78077, corresponding to reductions of 13.96% and 3.58%. It also
+has the highest mean R2
+, 0.440, and DA, 0.725.
+The comparison supports a role for temporal discounting beyond a constant aggregation
+of article magnitudes, while qualifying a stronger claim that the gain disappears without
+decay. It also shows that functional form can matter quantitatively. Exponential decay
+offers a smooth response and a direct half-life interpretation, but it is not the most accurate
+kernel in this experiment. Since each specification is estimated with one fixed seed, these
+rankings describe the fitted models rather than establishing an ordering that is invariant to
+optimization variability.
+5.2 Alternative news representations
+The second exercise varies the information supplied to the news correction. Panel A of Table 9
+uses deterministic per-bar news aggregates without learned article decay. These are the log
+of one plus the twelve-hour article count, sentiment probabilities averaged with weights
+proportional to 1/(1+∆tk), sentiment probabilities averaged over the current UTC calendar
+day up to the forecast cutoff, and the mean 768-dimensional CryptoBERT embedding over
+the preceding twelve hours. The daily aggregate uses only articles already published; it is
+not an end-of-day sentiment measure.
+For these variants, a small residual head maps the bar-level news feature into a log￾variance correction, clipped to [−2, 2]. The count uses a linear map; the other inputs use
+a hidden layer of width sixteen. Except for the log-count, features are standardized using
+training-period moments. Empty sets are represented by zero before standardization. The
+price branch remains frozen, as in the article-decay models.
+Panel B retains the learned exponential article-decay mechanism and changes its input to
+the three FinBERT class probabilities, a 256-dimensional PCA projection of CryptoBERT,
+or the full 768-dimensional CryptoBERT embedding. PCA is fitted separately in each ex￾panding window using retained training-period articles only. All three article heads have
+hidden widths 128 and 32; LayerNorm is applied to the embedding inputs and omitted for
+sentiment probabilities. Thus the sentiment comparison uses a three-dimensional probability
+24
+vector rather than a single signed score.
+Table 9: Alternative news representations (4-Hour RV, BTC)
+Representation R2 MSE QLIKE
+A. Without learned decay
+TS-only (no news) 0.419 0.810 0.638
++ News count 0.421 0.807 (-0.4%) 0.602 (-5.7%)
++ Sentiment × recency 0.420 0.808 (-0.2%) 0.598 (-6.3%)
++ Daily agg. sentiment 0.431 0.793 (-2.0%) 0.581 (-9.0%)
++ CryptoBERT 768-dim mean-pool 0.422 0.805 (-0.5%) 0.596 (-6.6%)
+B. With learned (s, λ) decay
++ Sentiment 0.433 0.791 (-2.3%) 0.570 (-10.7%)
++ CryptoBERT 256-dim (PCA) 0.437 0.785 (-3.0%) 0.558 (-12.6%)
++ CryptoBERT 768-dim 0.434 0.790 (-2.5%) 0.571 (-10.6%)
+Results are arithmetic means across six windows. Parentheses show loss changes relative to the shared TS￾only baseline (negative indicates improvement). Panel A uses bar-level news residuals without learned article
+decay. Panel B learns article-level (s, λ) and an aggregate residual map. All variants use frozen first-phase
+price weights. The full-dimensional entry is the same refitted exponential model as in Table 8.
+Panel A shows that simple news aggregates can already improve the time-series forecast.
+News count, recency-weighted sentiment, and mean-pooled CryptoBERT reduce QLIKE by
+5.74%, 6.32%, and 6.64%, respectively, although their log-MSE gains are below 0.6%. The
+current-day sentiment average performs better on both losses, reducing QLIKE by 9.03% and
+log-MSE by 2.01%. Thus a useful news correction does not require a learned article-decay
+kernel, and a higher-dimensional aggregate is not automatically more useful than a compact
+sentiment summary.
+Panel B shows that sentiment combined with learned decay nearly matches the full￾dimensional embedding. Its QLIKE reduction is 10.68%, compared with 10.57% for the
+refitted CryptoBERT model; its log-MSE reduction is 2.34%, compared with 2.48%. These
+are small numerical differences with opposite signs across the two losses. The sentiment prob￾ability vector therefore captures most of the improvement in the full-dimensional reference,
+without establishing that the representations are equivalent in other samples or training
+runs.
+The PCA representation has the lowest average losses within this table. With 256 com￾ponents, QLIKE falls by 12.55% and log-MSE by 3.02% relative to TS-only, exceeding the
+reductions from the 768-dimensional input. Compression consequently does not sacrifice fore￾cast accuracy in this experiment. The result also cautions against interpreting embedding
+dimension as a direct measure of the useful information delivered to the news head.
+Together, the comparisons support learning how article signals change with age, but do
+25
+not place all of the forecast benefit in that mechanism. Deterministic aggregation already
+helps, while sentiment and compressed embeddings remain competitive when learned decay
+is used. Panel A and Panel B also differ in aggregation and head structure, so their contrast
+does not isolate encoder quality. The evidence favors evaluating representation and temporal
+weighting jointly, with the matched constant-kernel comparison providing the more direct
+test of within-window discounting.
+6 Conclusion
+This paper has asked whether irregularly arriving cryptocurrency news can be represented by
+article-specific magnitudes and temporal decay profiles that improve short-horizon volatility
+forecasts. NED maps a fixed text embedding into these two quantities, sums their decaying
+signals, and learns a bounded residual correction to a time-series variance forecast. The
+staged training procedure preserves a common no-news baseline and makes the incremental
+forecast comparison explicit.
+Across six expanding-window test periods, the main model improves Bitcoin QLIKE by
+7.38% at one hour and 10.83% at four hours, alongside smaller but significant reductions in
+squared log error. The gains are present in every BTC test window and are strongest in the
+tails of the subsequent return distribution. For Ethereum, average QLIKE improvements
+are smaller, reverse in the 2025 windows, and are not accompanied by significant log-MSE
+improvements. The contrast illustrates that the value of a news correction depends on the
+asset, period, and evaluation loss.
+The same qualification applies to the choice of baseline. Adding a news residual to
+EGARCH improves log-MSE more than adding it to the stronger neural baseline, but wors￾ens QLIKE. NED has the lowest QLIKE among the evaluated models for BTC four-hour
+forecasts; standalone EGARCH retains that position in the other three asset–horizon set￾tings. These results favor evaluating news augmentation through several complementary
+measures rather than treating it as a uniform improvement in forecast quality.
+The ablations qualify a simple claim that either temporal decay or encoder richness is
+sufficient to explain the gains. A constant article kernel already reduces QLIKE by 7.16%;
+learned decay improves further, with linear decay producing the lowest losses in the kernel
+comparison. Sentiment probabilities combined with learned decay nearly match the full￾dimensional CryptoBERT reference, and the 256-component PCA representation improves
+on it in this run. These results support compact text representations and explicit tempo￾ral weighting as useful design choices, while showing that the exponential, full-dimensional
+specification is not uniquely favored by the forecast comparison. Forecast improvements also
+26
+persist with lookbacks of six, twelve, and twenty-four hours, with six hours giving the lowest
+mean losses in the lookback comparison.
+The learned parameters also offer a useful description of the model’s response to text.
+Most BTC four-hour article signals have short half-lives, with a median of 42.7 minutes,
+while a smaller group persists for several hours. Larger signals tend to decay more slowly,
+and negative sentiment is associated with larger magnitudes than positive sentiment. Macro
+news has the largest mean magnitude and longest median half-life among the event categories.
+The March 2024 episode adds context to these patterns. Their interpretation remains condi￾tional on the residual loading and calibration, and on the limits of automated filtering and
+classification.
+Several limitations suggest directions for further work. The news corpus comes from one
+English-language publisher and has unequal coverage of the two assets. Broader sources
+would help assess whether the cross-asset difference persists. Training labels overlap the
+validation boundary, and the current date bounds omit most of the last day of each evalu￾ation period; an embargoed design with complete calendar endpoints would strengthen the
+chronology. The price features and news cutoff also use different points within the same bar,
+which should be reconciled in a deployment-oriented timing study. Finally, the single-seed
+ablations do not quantify optimization variability, and the interpretable signal decomposition
+does not identify causal news effects. Multiple-seed comparisons, placebo news assignments,
+and an intercept-only residual control would help distinguish content-specific information
+from general forecast recalibration.
+The contribution of NED is to make article timing and persistence explicit parts of a
+volatility forecast while retaining a compact description of the news correction. The evidence
+supports that mechanism for Bitcoin in the evaluated sample and defines the conditions under
+which its apparent advantages require further testing.
+27
+References
+Torben G. Andersen. Return volatility and trading volume: An information flow interpre￾tation of stochastic volatility. The Journal of Finance, 51(1):169–204, March 1996. ISSN
+1540-6261. doi: 10.1111/j.1540-6261.1996.tb05206.x. URL http://dx.doi.org/10.1111/
+j.1540-6261.1996.tb05206.x.
+Torben G. Andersen, Tim Bollerslev, Francis X. Diebold, and Paul Labys. Modeling and
+forecasting realized volatility. Econometrica, 71(2):579–625, March 2003. ISSN 1468-0262.
+doi: 10.1111/1468-0262.00418. URL http://dx.doi.org/10.1111/1468-0262.00418.
+Dogu Araci. FinBERT: Financial sentiment analysis with pre-trained language models, 2019.
+URL https://arxiv.org/abs/1908.10063.
+Francesco Audrino, Fabio Sigrist, and Daniele Ballinari. The impact of sentiment and at￾tention measures on stock market volatility. International Journal of Forecasting, 36(2):
+334–357, 2020.
+Emmanuel Bacry, Iacopo Mastromatteo, and Jean-François Muzy. Hawkes processes in
+finance. Market Microstructure and Liquidity, 1(1):1550005, 2015.
+F. Corsi. A simple approximate long-memory model of realized volatility. Journal of Finan￾cial Econometrics, 7(2):174–196, November 2008. ISSN 1479-8417. doi: 10.1093/jjfinec/
+nbp001. URL http://dx.doi.org/10.1093/jjfinec/nbp001.
+Francis X Diebold and Roberto S Mariano. Comparing predictive accuracy. Journal of
+Business & Economic Statistics, 13(3):253–263, 1995.
+David Harvey, Stephen Leybourne, and Paul Newbold. Testing the equality of prediction
+mean squared errors. International Journal of Forecasting, 13(2):281–291, June 1997. ISSN
+0169-2070. doi: 10.1016/s0169-2070(96)00719-4. URL http://dx.doi.org/10.1016/
+S0169-2070(96)00719-4.
+Alan G. Hawkes. Spectra of some self-exciting and mutually exciting point processes.
+Biometrika, 58(1):83–90, 1971. ISSN 1464-3510. doi: 10.1093/biomet/58.1.83. URL
+http://dx.doi.org/10.1093/biomet/58.1.83.
+Mikolaj Kulakowski and Flavius Frasincar. Sentiment classification of cryptocurrency-related
+social media posts. IEEE Intelligent Systems, 38(4):5–9, 2023.
+Ilya Loshchilov and Frank Hutter. Decoupled weight decay regularization, 2017. URL https:
+//arxiv.org/abs/1711.05101.
+28
+Hongyuan Mei and Jason Eisner. The neural Hawkes process: A neurally self-modulating
+multivariate point process. In Advances in Neural Information Processing Systems, vol￾ume 30, 2017.
+Daniel B Nelson. Conditional heteroskedasticity in asset returns: A new approach. Econo￾metrica, 59(2):347–370, 1991.
+Andrew J. Patton. Volatility forecast comparison using imperfect volatility proxies. Journal
+of Econometrics, 160(1):246–256, January 2011. ISSN 0304-4076. doi: 10.1016/j.jeconom.
+2010.03.034. URL http://dx.doi.org/10.1016/j.jeconom.2010.03.034.
+Andrew J. Patton and Kevin Sheppard. Good volatility, bad volatility: Signed jumps and
+the persistence of volatility. Review of Economics and Statistics, 97(3):683–697, July 2015.
+ISSN 1530-9142. doi: 10.1162/rest_a_00503. URL http://dx.doi.org/10.1162/REST_
+a_00503.
+Eghbal Rahimikia, Stefan Zohren, and Ser-Huang Poon. Realised volatility forecasting:
+Machine learning via financial word embedding. arXiv:2108.00480, 2023.
+Simiao Zuo, Haoming Jiang, Zichong Li, Tuo Zhao, and Hongyuan Zha. Transformer Hawkes
+process. In International Conference on Machine Learning (ICML), pages 11692–11702,
+2020.
+29
+Appendix
+Table 10: Expanding Window Results: Bitcoin (BTC)
+Panel A: 1-Hour RV
+Window Model R2 DA QLIKE MSE
+2023 Jan–Jun
+HAR -0.253 0.500 1.207 2.940
+EGARCH -0.001 0.615 1.038 2.349
+EGARCH+NED 0.280 0.675 1.528 1.689
+TS-only 0.378 0.717 1.323 1.460
+NED 0.380 0.716 1.246∗∗∗ (-5.9%) 1.455∗∗ (-0.3%)
+2023 Jul–Dec
+HAR -0.584 0.500 1.169 3.652
+EGARCH 0.078 0.648 0.956 2.125
+EGARCH+NED 0.381 0.731 1.423 1.428
+TS-only 0.451 0.758 1.372 1.267
+NED 0.454 0.762 1.281∗ (-6.6%) 1.259∗∗ (-0.6%)
+2024 Jan–Jun
+HAR 0.043 0.500 1.188 1.854
+EGARCH 0.088 0.641 0.724 1.766
+EGARCH+NED 0.359 0.705 1.059 1.241
+TS-only 0.438 0.735 0.890 1.089
+NED 0.449 0.737 0.772∗∗∗ (-13.2%) 1.068∗∗∗ (-1.9%)
+2024 Jul–Dec
+HAR 0.060 0.550 1.171 1.655
+EGARCH -0.020 0.609 0.677 1.796
+EGARCH+NED 0.268 0.673 0.964 1.290
+TS-only 0.352 0.704 0.833 1.141
+NED 0.361 0.703 0.776∗∗∗ (-6.8%) 1.125∗∗∗ (-1.4%)
+2025 Jan–Jun
+HAR 0.035 0.500 1.143 1.835
+EGARCH 0.110 0.647 0.674 1.694
+EGARCH+NED 0.382 0.726 0.941 1.175
+TS-only 0.462 0.750 0.749 1.024
+NED 0.468 0.751 0.693∗∗∗ (-7.5%) 1.011∗∗∗ (-1.3%)
+2025 Jul–Dec
+HAR -0.136 0.500 0.939 2.094
+EGARCH 0.045 0.643 0.688 1.760
+EGARCH+NED 0.346 0.706 1.004 1.206
+TS-only 0.421 0.735 0.784 1.067
+NED 0.425 0.735 0.743∗∗∗ (-5.3%) 1.060∗∗∗ (-0.7%)
+Panel B: 4-Hour RV
+Window Model R2 DA QLIKE MSE
+2023 Jan–Jun
+HAR -0.338 0.500 0.769 2.175
+EGARCH 0.137 0.639 0.783 1.403
+EGARCH+NED 0.244 0.654 1.041 1.229
+TS-only 0.370 0.684 0.806 1.024
+NED 0.382 0.689 0.737∗∗∗ (-8.5%) 1.005∗∗∗ (-1.8%)
+2023 Jul–Dec
+HAR -0.868 0.500 0.915 3.118
+EGARCH 0.220 0.677 0.735 1.302
+EGARCH+NED 0.367 0.710 0.949 1.057
+TS-only 0.439 0.741 0.940 0.936
+NED 0.457 0.747 0.867∗∗∗ (-7.8%) 0.906∗∗∗ (-3.2%)
+2024 Jan–Jun
+HAR 0.013 0.500 0.685 1.340
+EGARCH 0.232 0.668 0.506 1.043
+EGARCH+NED 0.363 0.706 0.671 0.865
+TS-only 0.438 0.732 0.578 0.763
+NED 0.469 0.735 0.436∗∗∗ (-24.6%) 0.721∗∗∗ (-5.5%)
+2024 Jul–Dec
+HAR 0.069 0.500 0.613 1.034
+EGARCH 0.121 0.629 0.453 0.976
+EGARCH+NED 0.278 0.653 0.556 0.803
+TS-only 0.379 0.682 0.479 0.690
+NED 0.402 0.688 0.428∗∗∗ (-10.5%) 0.664∗∗∗ (-3.7%)
+2025 Jan–Jun
+HAR 0.000 0.500 0.685 1.356
+EGARCH 0.246 0.666 0.502 1.022
+EGARCH+NED 0.399 0.724 0.566 0.816
+TS-only 0.470 0.732 0.511 0.719
+NED 0.490 0.741 0.474∗∗∗ (-7.4%) 0.692∗∗∗ (-3.8%)
+2025 Jul–Dec
+HAR -0.269 0.500 0.598 1.588
+EGARCH 0.188 0.683 0.478 1.017
+EGARCH+NED 0.353 0.721 0.557 0.810
+TS-only 0.420 0.730 0.515 0.727
+NED 0.426 0.738 0.473∗∗∗ (-8.2%) 0.719 (-1.0%)
+Notes: Definitions follow Table 3. Parentheses on the NED row give percentage loss changes relative to TS-only; negative means improvement.
+∗p < 0.10, ∗∗p < 0.05, ∗∗∗p < 0.01 from the corrected DM test within each window.
+30
+Table 11: Expanding Window Results: Ethereum (ETH)
+Panel A: 1-Hour RV
+Window Model R2 DA QLIKE MSE
+2023 Jan–Jun
+HAR -0.589 0.500 1.099 3.131
+EGARCH -0.156 0.585 1.023 2.278
+EGARCH+NED 0.170 0.659 1.476 1.635
+TS-only 0.269 0.689 1.238 1.439
+NED 0.262 0.684 1.191∗∗∗ (-3.8%) 1.453∗∗∗ (+1.0%)
+2023 Jul–Dec
+HAR -0.966 0.500 1.209 4.089
+EGARCH -0.024 0.619 0.967 2.130
+EGARCH+NED 0.304 0.708 1.458 1.446
+TS-only 0.375 0.735 1.398 1.300
+NED 0.378 0.736 1.355∗∗∗ (-3.1%) 1.294∗∗ (-0.4%)
+2024 Jan–Jun
+HAR -0.030 0.500 1.018 1.810
+EGARCH -0.006 0.607 0.727 1.768
+EGARCH+NED 0.279 0.679 1.121 1.268
+TS-only 0.349 0.706 0.963 1.144
+NED 0.350 0.706 0.949∗∗∗ (-1.4%) 1.144 (-0.048%)
+2024 Jul–Dec
+HAR 0.074 0.500 1.103 1.523
+EGARCH -0.041 0.605 0.686 1.713
+EGARCH+NED 0.234 0.667 1.014 1.261
+TS-only 0.320 0.703 0.909 1.119
+NED 0.325 0.704 0.873∗∗∗ (-3.9%) 1.111∗∗∗ (-0.7%)
+2025 Jan–Jun
+HAR 0.105 0.629 1.482 1.445
+EGARCH 0.040 0.634 0.659 1.551
+EGARCH+NED 0.278 0.695 1.010 1.166
+TS-only 0.357 0.722 0.829 1.039
+NED 0.356 0.722 0.856∗∗∗ (+3.3%) 1.039 (+0.1%)
+2025 Jul–Dec
+HAR 0.064 0.624 1.207 1.541
+EGARCH -0.004 0.616 0.738 1.653
+EGARCH+NED 0.252 0.674 1.136 1.232
+TS-only 0.338 0.706 0.893 1.089
+NED 0.340 0.707 0.921∗∗∗ (+3.2%) 1.087∗ (-0.2%)
+Panel B: 4-Hour RV
+Window Model R2 DA QLIKE MSE
+2023 Jan–Jun
+HAR -0.791 0.500 0.758 2.378
+EGARCH -0.012 0.615 0.741 1.343
+EGARCH+NED 0.117 0.628 0.976 1.173
+TS-only 0.236 0.659 0.684 1.014
+NED 0.233 0.659 0.662∗∗∗ (-3.2%) 1.019∗∗ (+0.5%)
+2023 Jul–Dec
+HAR -1.401 0.500 0.994 3.474
+EGARCH 0.154 0.675 0.693 1.224
+EGARCH+NED 0.321 0.712 0.892 0.983
+TS-only 0.362 0.743 0.913 0.923
+NED 0.360 0.743 0.860∗∗∗ (-5.9%) 0.927 (+0.3%)
+2024 Jan–Jun
+HAR -0.086 0.500 0.590 1.220
+EGARCH 0.182 0.662 0.473 0.919
+EGARCH+NED 0.313 0.693 0.645 0.771
+TS-only 0.383 0.711 0.582 0.692
+NED 0.380 0.714 0.570∗∗∗ (-2.2%) 0.696 (+0.6%)
+2024 Jul–Dec
+HAR 0.095 0.500 0.572 0.931
+EGARCH 0.136 0.645 0.424 0.889
+EGARCH+NED 0.253 0.667 0.541 0.768
+TS-only 0.352 0.699 0.520 0.666
+NED 0.369 0.703 0.482∗∗∗ (-7.3%) 0.649∗∗∗ (-2.6%)
+2025 Jan–Jun
+HAR 0.143 0.663 0.810 0.936
+EGARCH 0.236 0.683 0.443 0.834
+EGARCH+NED 0.323 0.709 0.586 0.739
+TS-only 0.414 0.732 0.514 0.640
+NED 0.404 0.734 0.539∗∗∗ (+4.7%) 0.650∗∗ (+1.6%)
+2025 Jul–Dec
+HAR 0.074 0.621 0.640 0.981
+EGARCH 0.109 0.645 0.520 0.944
+EGARCH+NED 0.212 0.674 0.679 0.834
+TS-only 0.354 0.705 0.523 0.685
+NED 0.352 0.705 0.548∗∗∗ (+4.8%) 0.686 (+0.2%)
+Notes: Metric definitions, percentage-change conventions, and significance levels are identical to Table 10.
+31
+Sensitivity to lookback horizon
+We repeat the BTC four-hour exponential-decay experiment with lookbacks of six, twelve,
+and twenty-four hours, keeping the P1 baseline fixed and refitting P2 at each horizon. All
+comparisons use the same six test periods and the same training objective, learning rate,
+batch size, and stopping rule. This separates a change in the available news history from a
+change in the time-series model.
+Table 12: Sensitivity to the news lookback (4-Hour RV, BTC)
+Lookback R2 DA QLIKE MSE
+6 hours 0.437 0.724 0.559 0.786
+12 hours 0.434 0.723 0.571 0.790
+24 hours 0.436 0.723 0.566 0.786
+Notes: Arithmetic means across six windows. The twelve-hour specification is the refitted exponential
+reference reported in Table 8. These are separate P2 fits, not test-time truncations of a fixed twelve-hour
+model.
+The forecast improvement persists across all three lookbacks in Table 12. Six hours
+produces the lowest mean QLIKE, 0.55898, and log-MSE, 0.78577. At twelve hours the losses
+are 0.57071 and 0.78967, while extending the window to twenty-four hours gives 0.56564 and
+0.78618. The six-hour and twenty-four-hour log-MSE values are particularly close. Thus the
+main result is not confined to a twelve-hour news history, and a longer lookback does not
+produce a monotonic improvement. These separately fitted single-seed comparisons do not
+identify an optimal lookback beyond the evaluated sample; choosing a new default would
+require further validation.
+32

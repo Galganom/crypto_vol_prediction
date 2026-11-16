@@ -1,0 +1,117 @@
+\section{Results}\label{sec:results}
+\subsection{Main Results}
+\begin{table}[htbp]
+\centering\small
+\caption{Out-of-Sample Forecast Performance}\label{tab:forecast_summary}
+\textit{Panel A: 1-Hour RV}\par\smallskip
+\begin{adjustbox}{max width=\textwidth}\input{generated/original_main_1h.tex}\end{adjustbox}
+\par\medskip
+\textit{Panel B: 4-Hour RV}\par\smallskip
+\begin{adjustbox}{max width=\textwidth}\input{generated/original_main_4h.tex}\end{adjustbox}
+\tabnote{\textit{Notes:} Arithmetic means across six expanding windows
+(January 2023--December 2025). $R^2$ and MSE use log variance; QLIKE
+uses levels. DA is the test-median classification measure in
+Equation~\eqref{eq:da}. Parentheses on the NED rows give percentage
+changes relative to TS-only; negative values indicate improvement.
+$^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$ from the corrected DM test
+in Equation~\eqref{eq:dm}, applied to concatenated loss differentials.}
+\end{table}
+
+Table~\ref{tab:forecast_summary} reports forecast performance at both
+horizons for Bitcoin and Ethereum. We begin with the models that do
+not use news. The adapted HAR model has negative mean-window $R^2$
+at both horizons for both assets. EGARCH improves on this raw-variance
+HAR specification, and the neural TS-only model further lowers
+log-MSE. At the BTC four-hour horizon, TS-only attains
+$R^2=0.419$, compared with 0.191 for EGARCH. The nonlinear model
+therefore provides a demanding baseline against which to assess
+the incremental value of a news correction.
+
+Adding NED produces significant BTC gains on both forecast losses.
+At four hours, QLIKE falls from 0.63815 to 0.56902, a reduction of
+10.83\%, while log-MSE falls from 0.80974 to 0.78453, a reduction
+of 3.11\%. At one hour, the respective improvements are 7.38\%
+and 0.99\%. All four aggregate BTC comparisons have $p<0.001$
+under the corrected DM test. Improvements in $R^2$ are more modest,
+from 0.41674 to 0.42278 at one hour and from 0.41932 to 0.43759
+at four hours. The stronger QLIKE response indicates that the news
+correction affects the calibration of variance levels beyond its
+smaller change in average squared log error.
+
+Ethereum provides a less uniform result. QLIKE improves by 1.32\%
+at one hour and 2.04\% at four hours, with both aggregate comparisons
+significant at the 1\% level. Log-MSE is almost unchanged: it falls
+by about 0.015\% at one hour and rises by 0.128\% at four hours,
+with neither difference statistically significant. Thus the BTC
+finding extends to ETH under QLIKE, but not under both losses.
+
+Comparing NED with EGARCH+NED clarifies the role of the baseline.
+The hybrid lowers EGARCH log-MSE in all four asset--horizon settings.
+For BTC four-hour forecasts, log-MSE falls from 1.12726 to 0.92985
+and $R^2$ rises from 0.19067 to 0.33382. These proportional MSE
+gains are larger than those obtained by correcting the stronger
+neural baseline. However, EGARCH+NED worsens QLIKE in every setting:
+BTC four-hour QLIKE rises from 0.57616 to 0.72304. The forecast
+value of the correction is therefore loss-dependent, rather than
+an improvement that applies to every measure and every baseline.
+
+Standalone EGARCH remains the lowest-QLIKE model for BTC one hour
+and for both ETH horizons. NED has the lowest QLIKE for BTC four
+hours and the lowest log-MSE in three of the four settings; TS-only
+has slightly lower log-MSE for ETH four hours. These rankings
+underscore the importance of evaluating more than one loss function.
+A model trained on robust log errors need not minimize variance-ratio
+loss, even when it improves on an identical time-series checkpoint.
+
+Per-window results in Tables~\ref{tab:expanding_btc}
+and~\ref{tab:expanding_eth} show that BTC gains are positive in all
+six windows at both horizons and under both losses. The largest
+four-hour QLIKE gain, 24.62\%, occurs in the first half of 2024.
+ETH improves in QLIKE over the first four windows, but the gain
+reverses in both 2025 windows: QLIKE worsens by 3.34\% and 3.17\%
+at one hour, and by 4.73\% and 4.85\% at four hours. The aggregate
+ETH finding consequently masks economically relevant variation
+across periods. Unequal news coverage may be one explanation,
+but these comparisons do not identify the cause of the asset difference.
+
+\subsection{Z-score analysis}
+We next ask whether the contribution of news is concentrated in
+large return-shock regimes. For every BTC four-hour forecast, define
+\begin{equation}
+ z_t=\frac{\sum_{j=1}^{16}r_{t+j}}
+            {\sqrt{\widehat{\RV}_{t,16}^{\mathrm{TS}}}}.
+\end{equation}
+This is the forward return standardized by the TS-only forecast
+volatility. We pool the test observations and form equal-frequency
+deciles of this signed score. The grouping distinguishes unusually
+large negative and positive returns from observations near the
+baseline's predicted scale.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Forecast performance by standardized-return decile (4-Hour RV, BTC)}
+\label{tab:decile_performance}
+\begin{adjustbox}{max width=\textwidth}\input{generated/original_deciles.tex}\end{adjustbox}
+\tabnote{\textit{Notes:} Deciles use the signed forward-return score
+$z_t$, not standardized realized variance. Each contains 10,457
+observations. $R^2$ is computed within each pooled decile on log RV;
+$\Delta R^2$ is NED minus TS-only. Percentage changes are relative
+to TS-only, with negative values indicating lower loss. The grouping
+is an ex-post diagnostic, not a real-time decision rule.}
+\end{table}
+
+Table~\ref{tab:decile_performance} shows improvements at both tails.
+In the lowest decile, with mean $z=-2.28$, NED reduces QLIKE by
+16.77\% and log-MSE by 12.76\%. In the highest decile, with mean
+$z=2.37$, the corresponding reductions are 12.91\% and 11.29\%.
+The $R^2$ gain is about 0.16 in each tail. These results are
+consistent with the correction helping when realized returns are
+large relative to the baseline forecast.
+
+The middle deciles qualify this interpretation. QLIKE improves
+throughout the distribution, but log-MSE rises in deciles three
+through eight. News therefore sharpens some aspects of level
+calibration while trading off squared log accuracy in more typical
+return states. Since the decile labels use future returns, this
+analysis describes where the model helped ex post; it does not
+establish that favorable states could have been selected in advance.
