@@ -1,0 +1,15 @@
+{
+  "window": 4,
+  "variant": "sentiment_recency",
+  "asset": "BTC",
+  "horizon": "4h",
+  "R2": 0.3822651873126188,
+  "DA": 0.6825089646536513,
+  "MSE": 0.6864010746069634,
+  "QLIKE": 0.45225127081996497,
+  "best_validation_loss": 0.23268774151802063,
+  "epochs": 35,
+  "N": 17569,
+  "elapsed_s": 19.079988894998678,
+  "p1_sha256": "41f9812836d153b85dce459610620a1c5359fe111ec4b8ed967b953d1aeb8dba"
+}

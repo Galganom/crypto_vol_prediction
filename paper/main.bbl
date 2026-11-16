@@ -1,0 +1,133 @@
+\begin{thebibliography}{17}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Andersen(1996)]{ANDERSEN_1996}
+Torben~G. Andersen.
+\newblock Return volatility and trading volume: An information flow
+  interpretation of stochastic volatility.
+\newblock \emph{The Journal of Finance}, 51\penalty0 (1):\penalty0 169–204,
+  March 1996.
+\newblock ISSN 1540-6261.
+\newblock \doi{10.1111/j.1540-6261.1996.tb05206.x}.
+\newblock URL \url{http://dx.doi.org/10.1111/j.1540-6261.1996.tb05206.x}.
+
+\bibitem[Andersen et~al.(2003)Andersen, Bollerslev, Diebold, and
+  Labys]{Andersen2003}
+Torben~G. Andersen, Tim Bollerslev, Francis~X. Diebold, and Paul Labys.
+\newblock Modeling and forecasting realized volatility.
+\newblock \emph{Econometrica}, 71\penalty0 (2):\penalty0 579–625, March 2003.
+\newblock ISSN 1468-0262.
+\newblock \doi{10.1111/1468-0262.00418}.
+\newblock URL \url{http://dx.doi.org/10.1111/1468-0262.00418}.
+
+\bibitem[Araci(2019)]{Araci2019}
+Dogu Araci.
+\newblock {FinBERT}: Financial sentiment analysis with pre-trained language
+  models, 2019.
+\newblock URL \url{https://arxiv.org/abs/1908.10063}.
+
+\bibitem[Audrino et~al.(2020)Audrino, Sigrist, and Ballinari]{Audrino2020}
+Francesco Audrino, Fabio Sigrist, and Daniele Ballinari.
+\newblock The impact of sentiment and attention measures on stock market
+  volatility.
+\newblock \emph{International Journal of Forecasting}, 36\penalty0
+  (2):\penalty0 334--357, 2020.
+
+\bibitem[Bacry et~al.(2015)Bacry, Mastromatteo, and Muzy]{Bacry2015}
+Emmanuel Bacry, Iacopo Mastromatteo, and Jean-Fran\c{c}ois Muzy.
+\newblock Hawkes processes in finance.
+\newblock \emph{Market Microstructure and Liquidity}, 1\penalty0 (1):\penalty0
+  1550005, 2015.
+
+\bibitem[Corsi(2008)]{Corsi_2008}
+F.~Corsi.
+\newblock A simple approximate long-memory model of realized volatility.
+\newblock \emph{Journal of Financial Econometrics}, 7\penalty0 (2):\penalty0
+  174–196, November 2008.
+\newblock ISSN 1479-8417.
+\newblock \doi{10.1093/jjfinec/nbp001}.
+\newblock URL \url{http://dx.doi.org/10.1093/jjfinec/nbp001}.
+
+\bibitem[Diebold and Mariano(1995)]{DM_1995}
+Francis~X Diebold and Roberto~S Mariano.
+\newblock Comparing predictive accuracy.
+\newblock \emph{Journal of Business \& Economic Statistics}, 13\penalty0
+  (3):\penalty0 253--263, 1995.
+
+\bibitem[Harvey et~al.(1997)Harvey, Leybourne, and Newbold]{Harvey_1997}
+David Harvey, Stephen Leybourne, and Paul Newbold.
+\newblock Testing the equality of prediction mean squared errors.
+\newblock \emph{International Journal of Forecasting}, 13\penalty0
+  (2):\penalty0 281–291, June 1997.
+\newblock ISSN 0169-2070.
+\newblock \doi{10.1016/s0169-2070(96)00719-4}.
+\newblock URL \url{http://dx.doi.org/10.1016/S0169-2070(96)00719-4}.
+
+\bibitem[Hawkes(1971)]{HAWKES1971}
+Alan~G. Hawkes.
+\newblock Spectra of some self-exciting and mutually exciting point processes.
+\newblock \emph{Biometrika}, 58\penalty0 (1):\penalty0 83–90, 1971.
+\newblock ISSN 1464-3510.
+\newblock \doi{10.1093/biomet/58.1.83}.
+\newblock URL \url{http://dx.doi.org/10.1093/biomet/58.1.83}.
+
+\bibitem[Kulakowski and Frasincar(2023)]{Kulakowski_2023}
+Mikolaj Kulakowski and Flavius Frasincar.
+\newblock Sentiment classification of cryptocurrency-related social media
+  posts.
+\newblock \emph{IEEE Intelligent Systems}, 38\penalty0 (4):\penalty0 5--9,
+  2023.
+
+\bibitem[Loshchilov and Hutter(2017)]{adamw}
+Ilya Loshchilov and Frank Hutter.
+\newblock Decoupled weight decay regularization, 2017.
+\newblock URL \url{https://arxiv.org/abs/1711.05101}.
+
+\bibitem[Mei and Eisner(2017)]{Mei2017}
+Hongyuan Mei and Jason Eisner.
+\newblock The neural {H}awkes process: A neurally self-modulating multivariate
+  point process.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~30, 2017.
+
+\bibitem[Nelson(1991)]{Nelson_1991}
+Daniel~B Nelson.
+\newblock Conditional heteroskedasticity in asset returns: A new approach.
+\newblock \emph{Econometrica}, 59\penalty0 (2):\penalty0 347--370, 1991.
+
+\bibitem[Patton(2011)]{Patton_2011}
+Andrew~J. Patton.
+\newblock Volatility forecast comparison using imperfect volatility proxies.
+\newblock \emph{Journal of Econometrics}, 160\penalty0 (1):\penalty0 246–256,
+  January 2011.
+\newblock ISSN 0304-4076.
+\newblock \doi{10.1016/j.jeconom.2010.03.034}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.jeconom.2010.03.034}.
+
+\bibitem[Patton and Sheppard(2015)]{Patton_2015}
+Andrew~J. Patton and Kevin Sheppard.
+\newblock Good volatility, bad volatility: Signed jumps and the persistence of
+  volatility.
+\newblock \emph{Review of Economics and Statistics}, 97\penalty0 (3):\penalty0
+  683–697, July 2015.
+\newblock ISSN 1530-9142.
+\newblock \doi{10.1162/rest_a_00503}.
+\newblock URL \url{http://dx.doi.org/10.1162/REST_a_00503}.
+
+\bibitem[Rahimikia et~al.(2023)Rahimikia, Zohren, and Poon]{Rahimikia2023}
+Eghbal Rahimikia, Stefan Zohren, and Ser-Huang Poon.
+\newblock Realised volatility forecasting: Machine learning via financial word
+  embedding.
+\newblock arXiv:2108.00480, 2023.
+
+\bibitem[Zuo et~al.(2020)Zuo, Jiang, Li, Zhao, and Zha]{Zuo2020}
+Simiao Zuo, Haoming Jiang, Zichong Li, Tuo Zhao, and Hongyuan Zha.
+\newblock Transformer {H}awkes process.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, pages
+  11692--11702, 2020.
+
+\end{thebibliography}

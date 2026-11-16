@@ -1,0 +1,11 @@
+{
+  "steps": 12,
+  "max_parameter_absolute_difference": 0.0,
+  "dropout_disabled_for_optimizer_equivalence": true,
+  "passed": true,
+  "dropout_masks_advance_between_replays": true,
+  "dropout_adjacent_mask_difference": [
+    0.33203125,
+    0.324951171875
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "paper/run_missing_experiments.py": "cc0b6cd5ee43db69bcc0f42ad1f2eca5d9ae668023914210557348230cfcd8cc",
+  "paper/classify_news_categories.py": "411163d50cd5d5f8d382f20a5f8f04c1faad528d2151232405227c82ce40d04b",
+  "paper/build_restored_analysis.py": "b64a6945ed3c8f0c4052d0f1900db5ce10a124ed1ebb06a98ab683bfd5dced83",
+  "ablations/relabel_news_categories.py": "5c473d105c446139e3feb33f0a4f56fb195485bad7ecb8dd61d8060a17ddacb4",
+  "ablations/decay_spec_ablation.py": "bc6ba069993b01257cd003431555122ca324afb72f3a4ab2ccbdc2f39b4e51c4",
+  "ablations/news_representation_compare.py": "a4bd0ee06ab07475da766e09f6cb808e78453367aab6c9aeca5c1814d50f5d30",
+  "ablations/zscore_decile_improvement.py": "a5f99f20ab96220f89514156953d98e64617c4b6b4638329522087d1cd4bf977",
+  "data/processed/btc_news_sentiment.npz": "bee791e0b6faa986acf5bf39c8d3f0e23b390131768f009beab2956e47083f8b"
+}

@@ -1,0 +1,61 @@
+\begin{landscape}
+\captionsetup{hypcap=false}
+\section*{Appendix}
+\begin{center}
+\scriptsize\setstretch{1.15}\setlength{\tabcolsep}{3pt}
+\captionof{table}{Expanding Window Results: Bitcoin (BTC)}\label{tab:expanding_btc}
+\begin{minipage}[t]{0.49\linewidth}\centering
+\textit{Panel A: 1-Hour RV}\par\smallskip
+\begin{adjustbox}{max width=\linewidth}\input{generated/original_appendix_btc_1h.tex}\end{adjustbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}\centering
+\textit{Panel B: 4-Hour RV}\par\smallskip
+\begin{adjustbox}{max width=\linewidth}\input{generated/original_appendix_btc_4h.tex}\end{adjustbox}
+\end{minipage}
+\par\medskip
+\begin{minipage}{\linewidth}\footnotesize
+\textit{Notes:} Definitions follow Table~\ref{tab:forecast_summary}.
+Parentheses on the NED row give percentage loss changes relative to
+TS-only; negative means improvement. $^*p<0.10$, $^{**}p<0.05$,
+$^{***}p<0.01$ from the corrected DM test within each window.
+\end{minipage}
+\end{center}
+\newpage
+\begin{center}
+\scriptsize\setstretch{1.15}\setlength{\tabcolsep}{3pt}
+\captionof{table}{Expanding Window Results: Ethereum (ETH)}\label{tab:expanding_eth}
+\begin{minipage}[t]{0.49\linewidth}\centering
+\textit{Panel A: 1-Hour RV}\par\smallskip
+\begin{adjustbox}{max width=\linewidth}\input{generated/original_appendix_eth_1h.tex}\end{adjustbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}\centering
+\textit{Panel B: 4-Hour RV}\par\smallskip
+\begin{adjustbox}{max width=\linewidth}\input{generated/original_appendix_eth_4h.tex}\end{adjustbox}
+\end{minipage}
+\par\medskip
+\begin{minipage}{\linewidth}\footnotesize
+\textit{Notes:} Metric definitions, percentage-change conventions,
+and significance levels are identical to Table~\ref{tab:expanding_btc}.
+\end{minipage}
+\end{center}
+\end{landscape}
+
+\subsection*{Sensitivity to lookback horizon}
+We repeat the BTC four-hour exponential-decay experiment with lookbacks
+of six, twelve, and twenty-four hours, keeping the P1 baseline fixed
+and refitting P2 at each horizon. All comparisons use the same six
+test periods and the same training objective, learning rate, batch
+size, and stopping rule. This separates a change in the available
+news history from a change in the time-series model.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Sensitivity to the news lookback (4-Hour RV, BTC)}\label{tab:lookback}
+\input{generated/original_lookback.tex}
+\tabnote{\textit{Notes:} Arithmetic means across six windows. The
+twelve-hour specification is the refitted exponential reference
+reported in Table~\ref{tab:decay_ablation}. These are separate P2
+fits, not test-time truncations of a fixed twelve-hour model.}
+\end{table}
+
+\input{sections/lookback_discussion}

@@ -1,0 +1,64 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper has asked whether irregularly arriving cryptocurrency news
+can be represented by article-specific magnitudes and temporal decay
+profiles that improve short-horizon volatility forecasts. NED maps
+a fixed text embedding into these two quantities, sums their decaying
+signals, and learns a bounded residual correction to a time-series
+variance forecast. The staged training procedure preserves a common
+no-news baseline and makes the incremental forecast comparison explicit.
+
+Across six expanding-window test periods, the main model improves
+Bitcoin QLIKE by 7.38\% at one hour and 10.83\% at four hours,
+alongside smaller but significant reductions in squared log error.
+The gains are present in every BTC test window and are strongest
+in the tails of the subsequent return distribution. For Ethereum,
+average QLIKE improvements are smaller, reverse in the 2025 windows,
+and are not accompanied by significant log-MSE improvements.
+The contrast illustrates that the value of a news correction depends
+on the asset, period, and evaluation loss.
+
+The same qualification applies to the choice of baseline. Adding a
+news residual to EGARCH improves log-MSE more than adding it to the
+stronger neural baseline, but worsens QLIKE. NED has the lowest QLIKE
+among the evaluated models for BTC four-hour forecasts; standalone
+EGARCH retains that position in the other three asset--horizon
+settings. These results favor evaluating news augmentation through
+several complementary measures rather than treating it as a uniform
+improvement in forecast quality.
+
+\input{sections/robustness_conclusion}
+
+The learned parameters also offer a useful description of the model's
+response to text. Most BTC four-hour article signals have short
+half-lives, with a median of 42.7 minutes, while a smaller group
+persists for several hours. Larger signals tend to decay more slowly,
+and negative sentiment is associated with larger magnitudes than
+positive sentiment. Macro news has the largest mean magnitude and
+longest median half-life among the event categories. The March 2024
+episode adds context to these patterns. Their interpretation remains
+conditional on the residual loading and calibration, and on the
+limits of automated filtering and classification.
+
+Several limitations suggest directions for further work. The news
+corpus comes from one English-language publisher and has unequal
+coverage of the two assets. Broader sources would help assess whether
+the cross-asset difference persists. Training labels overlap the
+validation boundary, and the current date bounds omit most of the
+last day of each evaluation period; an embargoed design with complete
+calendar endpoints would strengthen the chronology. The price features
+and news cutoff also use different points within the same bar, which
+should be reconciled in a deployment-oriented timing study. Finally,
+the single-seed ablations do not quantify optimization variability,
+and the interpretable signal decomposition does not identify causal
+news effects. Multiple-seed comparisons, placebo news assignments,
+and an intercept-only residual control would help distinguish
+content-specific information from general forecast recalibration.
+
+The contribution of NED is to make article timing and persistence
+explicit parts of a volatility forecast while retaining a compact
+description of the news correction. The evidence supports that
+mechanism for Bitcoin in the evaluated sample and defines the
+conditions under which its apparent advantages require further
+testing.

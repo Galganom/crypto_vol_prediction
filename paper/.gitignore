@@ -1,0 +1,9 @@
+*.aux
+*.log
+*.out
+*.blg
+*.xdv
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+# Retain main.bbl so the built reference list can accompany the source.

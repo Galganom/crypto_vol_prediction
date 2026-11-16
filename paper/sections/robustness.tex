@@ -1,0 +1,113 @@
+\section{Robustness and sensitivity analysis}
+\label{sec:robustness}
+
+The main specification combines a rich article representation with a
+particular temporal aggregation rule. This section asks how forecast
+accuracy changes when those components are varied. We focus on BTC
+four-hour forecasts and use all six expanding windows. Each experiment
+loads the same fitted first-phase TS-only model used in the main
+results, freezes its weights, and estimates a new second-phase news
+correction. The learning rate, loss, batch size, epoch limit, early
+stopping rule, and gradient clipping match the main NED specification.
+Thus, a difference between variants reflects the fitted news
+correction rather than a different first-phase baseline.
+
+We refit the full-dimensional exponential specification along with
+the alternatives. This provides a common reference trained with the
+same numerical implementation and shuffled batch sequence as the
+ablation models. It need not reproduce the main-results checkpoint
+exactly, since the latter uses a different batch-generation path.
+The experiments use one fixed training seed and report arithmetic
+means across the six test windows. Their differences are descriptive
+comparisons rather than estimates averaged over training seeds.
+
+\subsection{Alternative decay specifications}
+\label{sec:decay_ablation}
+
+We first replace the exponential kernel while retaining the
+768-dimensional input, LayerNorm, article head, residual map, and
+twelve-hour lookback. If $u_k$ is the second unconstrained output
+of the article head, the four article signals are
+\begin{align*}
+ \text{Constant:}\quad &s_k,\\
+ \text{Power-law:}\quad
+ &s_k(1+\Delta t_k/60)^{-\softplus(u_k)},\\
+ \text{Exponential:}\quad
+ &s_k\exp\{-\lambda_k\Delta t_k\},
+ \qquad \lambda_k=0.001+0.499\sigmoid(u_k),\\
+ \text{Linear:}\quad
+ &s_k\max\!\left\{0,1-\frac{\Delta t_k}{1+60\softplus(u_k)}\right\}.
+\end{align*}
+Article age $\Delta t_k$ is measured in minutes. The power-law
+specification fixes its time scale at sixty minutes and learns a
+positive exponent. The linear specification learns a positive
+duration exceeding one minute. All signals are truncated at the
+lookback boundary. The constant variant leaves its second output
+unused and provides no within-window discounting.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Alternative decay specifications (4-Hour RV, BTC)}
+\label{tab:decay_ablation}
+\begin{adjustbox}{max width=\textwidth}
+\input{generated/original_decay}
+\end{adjustbox}
+\tabnote{Results are averaged across six expanding windows.
+$\pm$ denotes the sample standard deviation of $R^2$ across windows.
+MSE and $R^2$ are calculated on log-RV; QLIKE and DA use levels.
+Parentheses give percentage changes relative to TS-only, with
+negative values indicating lower loss. Every news specification,
+including exponential, is fitted in the matched ablation experiment.}
+\end{table}
+
+\input{sections/decay_discussion}
+
+\subsection{Alternative news representations}
+\label{sec:news_representations}
+
+The second exercise varies the information supplied to the news
+correction. Panel A of Table~\ref{tab:news_representations} uses
+deterministic per-bar news aggregates without learned article decay.
+These are the log of one plus the twelve-hour article count,
+sentiment probabilities averaged with weights proportional to
+$1/(1+\Delta t_k)$, sentiment probabilities averaged over the current
+UTC calendar day up to the forecast cutoff, and the mean
+768-dimensional CryptoBERT embedding over the preceding twelve hours.
+The daily aggregate uses only articles already published; it is
+not an end-of-day sentiment measure.
+
+For these variants, a small residual head maps the bar-level news
+feature into a log-variance correction, clipped to $[-2,2]$.
+The count uses a linear map; the other inputs use a hidden layer
+of width sixteen. Except for the log-count, features are standardized
+using training-period moments. Empty sets are represented by zero
+before standardization. The price branch remains frozen, as in the
+article-decay models.
+
+Panel B retains the learned exponential article-decay mechanism
+and changes its input to the three FinBERT class probabilities,
+a 256-dimensional PCA projection of CryptoBERT, or the full
+768-dimensional CryptoBERT embedding. PCA is fitted separately in
+each expanding window using retained training-period articles only.
+All three article heads have hidden widths 128 and 32; LayerNorm
+is applied to the embedding inputs and omitted for sentiment
+probabilities. Thus the sentiment comparison uses a three-dimensional
+probability vector rather than a single signed score.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Alternative news representations (4-Hour RV, BTC)}
+\label{tab:news_representations}
+\begin{adjustbox}{max width=\textwidth}
+\input{generated/original_representations}
+\end{adjustbox}
+\tabnote{Results are arithmetic means across six windows. Parentheses
+show loss changes relative to the shared TS-only baseline (negative
+indicates improvement). Panel A uses bar-level news residuals without
+learned article decay. Panel B learns article-level $(s,\lambda)$
+and an aggregate residual map. All variants use frozen first-phase
+price weights. The full-dimensional entry is the same refitted
+exponential model as in Table~\ref{tab:decay_ablation}.}
+\end{table}
+
+\input{sections/representation_discussion}

@@ -1,0 +1,8 @@
+{
+  "verified_models": 72,
+  "forecast_observations": 7056,
+  "max_prediction_relative_error": 2.2087856705876874e-06,
+  "required_models": 72,
+  "complete": true,
+  "independent_cpu_reconstruction": true
+}

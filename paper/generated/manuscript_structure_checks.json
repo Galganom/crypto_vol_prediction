@@ -1,0 +1,80 @@
+{
+  "pdf_pages": 32,
+  "outline_headings": 37,
+  "outline_exact_match": true,
+  "source_files": 29,
+  "labels": 46,
+  "citations": 17,
+  "unresolved_references": 0,
+  "latex_warnings": 0,
+  "review_pages": [
+    {
+      "page": 1,
+      "contents": [],
+      "size": [
+        612.0,
+        792.0
+      ]
+    },
+    {
+      "page": 14,
+      "contents": [
+        "Out-of-Sample Forecast Performance"
+      ],
+      "size": [
+        612.0,
+        792.0
+      ]
+    },
+    {
+      "page": 23,
+      "contents": [
+        "Alternative decay specifications (4-Hour"
+      ],
+      "size": [
+        612.0,
+        792.0
+      ]
+    },
+    {
+      "page": 25,
+      "contents": [
+        "Alternative news representations (4-Hour"
+      ],
+      "size": [
+        612.0,
+        792.0
+      ]
+    },
+    {
+      "page": 30,
+      "contents": [
+        "Expanding Window Results:"
+      ],
+      "size": [
+        792.0,
+        612.0
+      ]
+    },
+    {
+      "page": 31,
+      "contents": [
+        "Expanding Window Results:"
+      ],
+      "size": [
+        792.0,
+        612.0
+      ]
+    },
+    {
+      "page": 32,
+      "contents": [
+        "Sensitivity to the news lookback"
+      ],
+      "size": [
+        612.0,
+        792.0
+      ]
+    }
+  ]
+}

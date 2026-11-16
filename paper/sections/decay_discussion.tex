@@ -1,0 +1,26 @@
+Table~\ref{tab:decay_ablation} shows that the constant kernel already
+improves the shared TS-only baseline. Its mean QLIKE is 0.59249,
+a reduction of 7.16\%, and its mean log-MSE is 0.80461,
+a reduction of 0.63\%. A model without within-window discounting
+can therefore improve forecast accuracy. The evidence does not
+support treating temporal decay as a necessary condition for any
+benefit from the news correction.
+
+All three decaying specifications improve further on both average
+losses. The refitted exponential model reduces QLIKE by 10.57\%
+and log-MSE by 2.48\% relative to TS-only. Power-law decay yields
+a slightly larger QLIKE reduction, 10.94\%, and a slightly smaller
+log-MSE reduction, 2.31\%. Linear decay has the lowest losses in
+this comparison: QLIKE is 0.54907 and log-MSE is 0.78077,
+corresponding to reductions of 13.96\% and 3.58\%. It also has
+the highest mean $R^2$, 0.440, and DA, 0.725.
+
+The comparison supports a role for temporal discounting beyond a
+constant aggregation of article magnitudes, while qualifying a
+stronger claim that the gain disappears without decay. It also
+shows that functional form can matter quantitatively. Exponential
+decay offers a smooth response and a direct half-life interpretation,
+but it is not the most accurate kernel in this experiment. Since
+each specification is estimated with one fixed seed, these rankings
+describe the fitted models rather than establishing an ordering
+that is invariant to optimization variability.

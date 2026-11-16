@@ -1,0 +1,303 @@
+{
+  "exact_match": true,
+  "original": [
+    [
+      "section",
+      "Introduction"
+    ],
+    [
+      "section",
+      "Methodology"
+    ],
+    [
+      "subsection",
+      "Data and preprocessing"
+    ],
+    [
+      "subsubsection",
+      "Price data and realized volatility"
+    ],
+    [
+      "subsubsection",
+      "Time-series features"
+    ],
+    [
+      "subsubsection",
+      "News corpus and reactive filtering"
+    ],
+    [
+      "subsubsection",
+      "CryptoBERT embeddings"
+    ],
+    [
+      "subsection",
+      "NED architecture"
+    ],
+    [
+      "subsubsection",
+      "Time-series branch"
+    ],
+    [
+      "subsubsection",
+      "News event branch"
+    ],
+    [
+      "subsubsection",
+      "Residual combination"
+    ],
+    [
+      "subsection",
+      "Training procedure"
+    ],
+    [
+      "subsubsection",
+      "Expanding window evaluation"
+    ],
+    [
+      "subsection",
+      "Baselines"
+    ],
+    [
+      "subsubsection",
+      "HAR"
+    ],
+    [
+      "subsubsection",
+      "EGARCH"
+    ],
+    [
+      "subsubsection",
+      "EGARCH+NED"
+    ],
+    [
+      "subsubsection",
+      "TS-only"
+    ],
+    [
+      "subsection",
+      "Evaluation metrics and statistical tests"
+    ],
+    [
+      "subsubsection",
+      "Coefficient of determination"
+    ],
+    [
+      "subsubsection",
+      "Directional accuracy"
+    ],
+    [
+      "subsubsection",
+      "QLIKE"
+    ],
+    [
+      "subsubsection",
+      "Mean squared error"
+    ],
+    [
+      "subsubsection",
+      "Diebold-Mariano test with small-sample correction"
+    ],
+    [
+      "section",
+      "Results"
+    ],
+    [
+      "subsection",
+      "Main Results"
+    ],
+    [
+      "subsection",
+      "Z-score analysis"
+    ],
+    [
+      "section",
+      "Economic Interpretation"
+    ],
+    [
+      "subsection",
+      "Timescale: How long does news move volatility?"
+    ],
+    [
+      "subsection",
+      "News category and impact heterogeneity"
+    ],
+    [
+      "subsection",
+      "Sentiment versus event content: What does CryptoBERT contribute?"
+    ],
+    [
+      "section",
+      "Robustness and sensitivity analysis"
+    ],
+    [
+      "subsection",
+      "Alternative decay specifications"
+    ],
+    [
+      "subsection",
+      "Alternative news representations"
+    ],
+    [
+      "section",
+      "Conclusion"
+    ],
+    [
+      "section*",
+      "Appendix"
+    ],
+    [
+      "subsection*",
+      "Sensitivity to lookback horizon"
+    ]
+  ],
+  "updated": [
+    [
+      "section",
+      "Introduction"
+    ],
+    [
+      "section",
+      "Methodology"
+    ],
+    [
+      "subsection",
+      "Data and preprocessing"
+    ],
+    [
+      "subsubsection",
+      "Price data and realized volatility"
+    ],
+    [
+      "subsubsection",
+      "Time-series features"
+    ],
+    [
+      "subsubsection",
+      "News corpus and reactive filtering"
+    ],
+    [
+      "subsubsection",
+      "CryptoBERT embeddings"
+    ],
+    [
+      "subsection",
+      "NED architecture"
+    ],
+    [
+      "subsubsection",
+      "Time-series branch"
+    ],
+    [
+      "subsubsection",
+      "News event branch"
+    ],
+    [
+      "subsubsection",
+      "Residual combination"
+    ],
+    [
+      "subsection",
+      "Training procedure"
+    ],
+    [
+      "subsubsection",
+      "Expanding window evaluation"
+    ],
+    [
+      "subsection",
+      "Baselines"
+    ],
+    [
+      "subsubsection",
+      "HAR"
+    ],
+    [
+      "subsubsection",
+      "EGARCH"
+    ],
+    [
+      "subsubsection",
+      "EGARCH+NED"
+    ],
+    [
+      "subsubsection",
+      "TS-only"
+    ],
+    [
+      "subsection",
+      "Evaluation metrics and statistical tests"
+    ],
+    [
+      "subsubsection",
+      "Coefficient of determination"
+    ],
+    [
+      "subsubsection",
+      "Directional accuracy"
+    ],
+    [
+      "subsubsection",
+      "QLIKE"
+    ],
+    [
+      "subsubsection",
+      "Mean squared error"
+    ],
+    [
+      "subsubsection",
+      "Diebold-Mariano test with small-sample correction"
+    ],
+    [
+      "section",
+      "Results"
+    ],
+    [
+      "subsection",
+      "Main Results"
+    ],
+    [
+      "subsection",
+      "Z-score analysis"
+    ],
+    [
+      "section",
+      "Economic Interpretation"
+    ],
+    [
+      "subsection",
+      "Timescale: How long does news move volatility?"
+    ],
+    [
+      "subsection",
+      "News category and impact heterogeneity"
+    ],
+    [
+      "subsection",
+      "Sentiment versus event content: What does CryptoBERT contribute?"
+    ],
+    [
+      "section",
+      "Robustness and sensitivity analysis"
+    ],
+    [
+      "subsection",
+      "Alternative decay specifications"
+    ],
+    [
+      "subsection",
+      "Alternative news representations"
+    ],
+    [
+      "section",
+      "Conclusion"
+    ],
+    [
+      "section*",
+      "Appendix"
+    ],
+    [
+      "subsection*",
+      "Sensitivity to lookback horizon"
+    ]
+  ]
+}

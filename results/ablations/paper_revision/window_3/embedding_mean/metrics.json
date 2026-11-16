@@ -1,0 +1,15 @@
+{
+  "window": 3,
+  "variant": "embedding_mean",
+  "asset": "BTC",
+  "horizon": "4h",
+  "R2": 0.45199111299537253,
+  "DA": 0.7307935777176728,
+  "MSE": 0.744250447858723,
+  "QLIKE": 0.496963080850363,
+  "best_validation_loss": 0.26242390275001526,
+  "epochs": 22,
+  "N": 17377,
+  "elapsed_s": 22.555256575000385,
+  "p1_sha256": "a444e8ffcc8b0d618f0f6bb3f58f7bebc3564cd1c065104dc931d43656943630"
+}

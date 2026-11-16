@@ -1,0 +1,16 @@
+\begin{tabular}{lrrr}
+\toprule
+Representation & $R^2$ & MSE & QLIKE \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{A. Without learned decay}} \\[3pt]
+TS-only (no news) & 0.419 & 0.810 & 0.638 \\
++ News count & 0.421 & 0.807\,(-0.4\%) & 0.602\,(-5.7\%) \\
++ Sentiment $\times$ recency & 0.420 & 0.808\,(-0.2\%) & 0.598\,(-6.3\%) \\
++ Daily agg.\ sentiment & 0.431 & 0.793\,(-2.0\%) & 0.581\,(-9.0\%) \\
++ CryptoBERT 768-dim mean-pool & 0.422 & 0.805\,(-0.5\%) & 0.596\,(-6.6\%) \\
+\addlinespace\multicolumn{4}{@{}l}{\textit{B. With learned $(s,\lambda)$ decay}} \\[3pt]
++ Sentiment & 0.433 & 0.791\,(-2.3\%) & 0.570\,(-10.7\%) \\
++ CryptoBERT 256-dim (PCA) & 0.437 & 0.785\,(-3.0\%) & 0.558\,(-12.6\%) \\
++ CryptoBERT 768-dim & 0.434 & 0.790\,(-2.5\%) & 0.571\,(-10.6\%) \\
+\bottomrule
+\end{tabular}

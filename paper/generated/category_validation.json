@@ -1,0 +1,13 @@
+{
+  "articles": 7845,
+  "unique_articles": 7845,
+  "categories": 12,
+  "source_counts": {
+    "modernbert_nli": 6520,
+    "editorial_regex": 712,
+    "low_conf_other": 613
+  },
+  "article_mapping_verified": true,
+  "confidence_rules_verified": true,
+  "labels_are_automated_not_human_validated": true
+}

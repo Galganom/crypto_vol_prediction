@@ -1,0 +1,115 @@
+\section{Introduction}\label{sec:introduction}
+
+Cryptocurrency markets absorb information at intraday frequencies. A
+regulatory action against an exchange, a macroeconomic announcement,
+or a disruption to trading infrastructure can coincide with a sharp
+change in volatility, while routine commentary may carry little new
+information. For short-horizon forecasting, the operational question
+is how to convert a stream of irregularly arriving text into a useful
+component of a volatility forecast. This requires attention both to
+what an article says and to how its relevance changes after publication.
+
+Two research traditions motivate our approach. The first, rooted in
+the point-process literature, represents events as discrete impulses
+whose effects accumulate and dissipate over time. Hawkes processes
+\citep{HAWKES1971} and their applications in finance \citep{Bacry2015}
+provide a natural vocabulary for these dynamics. Neural extensions
+allow richer dependence on event history \citep{Mei2017,Zuo2020}.
+The second tradition extracts information from financial text using
+sentiment classifiers and contextual representations, including FinBERT
+\citep{Araci2019}, CryptoBERT \citep{Kulakowski_2023}, and financial
+word embeddings \citep{Rahimikia2023}. Such representations complement
+the evidence that sentiment and attention can contribute to volatility
+forecasting \citep{Audrino2020}.
+
+These perspectives suggest that text representation and temporal
+aggregation should be considered together. A fixed-window average
+does not distinguish an article published moments ago from one near
+the beginning of the window. A common discount factor distinguishes
+their ages but assigns the same persistence to every article. Two
+articles published in the same hour, one describing an enforcement
+action and another offering routine market commentary, may warrant
+different magnitudes and durations of forecast adjustment. We ask
+whether these two quantities can be learned jointly, at the article
+level, from the content of the news.
+
+We propose News Event Decay (NED), a neural architecture that maps
+each article's pretrained CryptoBERT embedding into a positive
+magnitude $s_k$ and a decay rate $\lambda_k$. The news branch sums
+the signals $s_k\exp(-\lambda_k\Delta t_k)$ over a fixed lookback
+window and maps their aggregate into a bounded correction to a
+time-series forecast. The forecast is multiplicative in realized
+variance and additive in its logarithm. Although the aggregation is
+inspired by event-decay kernels, NED is a conditional forecasting
+model: it does not estimate an event-arrival intensity or a
+self-exciting point process.
+
+The separation between the time-series baseline and the news branch
+serves two purposes. It asks news to account for forecast information
+beyond a baseline already trained on price and volume history, and it
+retains an explicit description of how each article enters the
+aggregate signal. The final forecast also depends on a fitted residual
+loading, an intercept, and clipping. Consequently, article magnitudes
+are interpretable within the fitted correction, rather than as
+standalone estimates of causal volatility shocks.
+
+We evaluate one-hour and four-hour realized-variance forecasts on
+15-minute Bitcoin and Ethereum bars. Six expanding-window test periods
+cover January 2023 through December 2025. The price histories used for
+training begin in 2017 for Bitcoin and 2018 for Ethereum. CoinDesk
+provides the news corpus; a deterministic tag and title filter removes
+common price recaps before articles are aligned to forecast origins.
+We compare NED with HAR, EGARCH, an EGARCH+NED hybrid, and a TS-only
+model that is exactly the first-phase time-series component of NED.
+
+The main results establish a forecast benefit for Bitcoin. Relative
+to TS-only, NED reduces QLIKE by 7.38\% at one hour and 10.83\% at
+four hours, with corresponding log-MSE reductions of 0.99\% and
+3.11\%. The pooled loss differences are significant at the 1\%
+level under the Diebold--Mariano test with the small-sample correction
+of \citet{Harvey_1997}. Ethereum gains are smaller: QLIKE declines
+by 1.32\% and 2.04\%, while log-MSE differences are not significant.
+The contrast between assets limits the scope of a general claim
+about the forecasting value of this news source.
+
+A second finding concerns where the Bitcoin gains arise. Sorting
+four-hour forecasts by the subsequent return scaled by TS-only
+volatility reveals larger improvements in both return tails. In
+the central deciles, QLIKE improves modestly while log-MSE can
+deteriorate. Similarly, adding the news branch to EGARCH improves
+log-MSE but worsens QLIKE. News augmentation therefore changes the
+distribution of forecast errors in ways that a single accuracy
+measure does not fully describe.
+
+A third set of results examines what the article parameters represent.
+Across the BTC four-hour test sample, the median estimated half-life
+is 42.7 minutes, and larger internal signals tend to decay more
+slowly. The case study, event-category comparison, and sentiment
+analysis describe this heterogeneity from complementary perspectives.
+Macro news receives the largest mean magnitude and longest median
+half-life among the twelve categories.
+Negative-classified articles receive larger average magnitudes than
+positive-classified articles, but sentiment ambiguity does not produce
+a stable separation. These are properties of the learned predictive
+representation rather than identified structural responses.
+
+Finally, matched experiments examine the design choices behind the
+news branch. A constant kernel already improves QLIKE, and learned
+decay provides additional gains, with linear decay performing best
+in the kernel comparison. Sentiment with learned decay nearly
+matches the full-dimensional embedding, while a 256-component PCA
+representation improves on it in this run. These comparisons,
+together with lookback sensitivity, distinguish the usefulness of
+the news mechanism from the optimality of the main specification.
+All variants share the same fitted time-series baseline within each
+expanding window.
+
+The remainder of the paper proceeds as follows.
+Section~\ref{sec:methodology} describes the data, architecture,
+training procedure, baselines, and evaluation protocol.
+Section~\ref{sec:results} presents the main results and the Z-score
+analysis. Section~\ref{sec:economic} studies article persistence, news
+categories, and sentiment. Section~\ref{sec:robustness} compares
+alternative decay functions and news representations, with lookback
+sensitivity reported in the Appendix.
+Section~\ref{sec:conclusion} concludes.

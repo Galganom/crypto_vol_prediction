@@ -1,0 +1,121 @@
+check,asset,horizon,window,model,max_abs_error
+forecast_metrics,BTC,1h,1,HAR,4.91193752339e-11
+forecast_metrics,BTC,1h,1,EGARCH,4.99160712764e-11
+forecast_metrics,BTC,1h,1,EGARCH+NED,3.78660991451e-11
+forecast_metrics,BTC,1h,1,TS MLP,4.23220902768e-11
+forecast_metrics,BTC,1h,1,Main Model,3.32700533789e-11
+forecast_metrics,BTC,4h,1,HAR,3.09401393395e-11
+forecast_metrics,BTC,4h,1,EGARCH,4.28562740851e-11
+forecast_metrics,BTC,4h,1,EGARCH+NED,3.33837402167e-11
+forecast_metrics,BTC,4h,1,TS MLP,4.50784964912e-11
+forecast_metrics,BTC,4h,1,Main Model,4.86083395757e-11
+forecast_metrics,BTC,1h,2,HAR,3.8916203593e-11
+forecast_metrics,BTC,1h,2,EGARCH,4.34472319233e-11
+forecast_metrics,BTC,1h,2,EGARCH+NED,2.65808486333e-11
+forecast_metrics,BTC,1h,2,TS MLP,4.70430361332e-11
+forecast_metrics,BTC,1h,2,Main Model,4.55147031175e-11
+forecast_metrics,BTC,4h,2,HAR,2.09392503336e-11
+forecast_metrics,BTC,4h,2,EGARCH,3.29141158772e-11
+forecast_metrics,BTC,4h,2,EGARCH+NED,4.81313877643e-11
+forecast_metrics,BTC,4h,2,TS MLP,4.46106485086e-11
+forecast_metrics,BTC,4h,2,Main Model,2.47086795468e-11
+forecast_metrics,BTC,1h,3,HAR,3.36594085937e-11
+forecast_metrics,BTC,1h,3,EGARCH,4.93787233324e-11
+forecast_metrics,BTC,1h,3,EGARCH+NED,4.93420859726e-11
+forecast_metrics,BTC,1h,3,TS MLP,3.31989991054e-11
+forecast_metrics,BTC,1h,3,Main Model,1.81273884792e-11
+forecast_metrics,BTC,4h,3,HAR,4.89458855391e-11
+forecast_metrics,BTC,4h,3,EGARCH,1.42266476377e-11
+forecast_metrics,BTC,4h,3,EGARCH+NED,3.84838827472e-11
+forecast_metrics,BTC,4h,3,TS MLP,4.25274260252e-11
+forecast_metrics,BTC,4h,3,Main Model,4.53267978706e-11
+forecast_metrics,BTC,1h,4,HAR,4.2308601067e-11
+forecast_metrics,BTC,1h,4,EGARCH,4.09755562814e-11
+forecast_metrics,BTC,1h,4,EGARCH+NED,4.98543428762e-11
+forecast_metrics,BTC,1h,4,TS MLP,4.85587126065e-11
+forecast_metrics,BTC,1h,4,Main Model,3.26839111331e-11
+forecast_metrics,BTC,4h,4,HAR,3.30770966173e-11
+forecast_metrics,BTC,4h,4,EGARCH,4.29062341212e-11
+forecast_metrics,BTC,4h,4,EGARCH+NED,4.64740468331e-11
+forecast_metrics,BTC,4h,4,TS MLP,3.83629794598e-11
+forecast_metrics,BTC,4h,4,Main Model,4.34454694442e-11
+forecast_metrics,BTC,1h,5,HAR,4.16719991847e-11
+forecast_metrics,BTC,1h,5,EGARCH,2.54926635357e-11
+forecast_metrics,BTC,1h,5,EGARCH+NED,4.63730165379e-11
+forecast_metrics,BTC,1h,5,TS MLP,4.78421191552e-11
+forecast_metrics,BTC,1h,5,Main Model,4.85294027186e-11
+forecast_metrics,BTC,4h,5,HAR,4.79571937717e-11
+forecast_metrics,BTC,4h,5,EGARCH,4.89515095126e-11
+forecast_metrics,BTC,4h,5,EGARCH+NED,4.3508530112e-11
+forecast_metrics,BTC,4h,5,TS MLP,4.07560651894e-11
+forecast_metrics,BTC,4h,5,Main Model,4.45219416889e-11
+forecast_metrics,BTC,1h,6,HAR,4.98918129033e-11
+forecast_metrics,BTC,1h,6,EGARCH,3.12772030497e-11
+forecast_metrics,BTC,1h,6,EGARCH+NED,2.78402301213e-11
+forecast_metrics,BTC,1h,6,TS MLP,3.1580849047e-11
+forecast_metrics,BTC,1h,6,Main Model,1.41617828575e-11
+forecast_metrics,BTC,4h,6,HAR,4.99222885253e-11
+forecast_metrics,BTC,4h,6,EGARCH,2.42013631357e-11
+forecast_metrics,BTC,4h,6,EGARCH+NED,2.47537546016e-11
+forecast_metrics,BTC,4h,6,TS MLP,4.9490134213e-11
+forecast_metrics,BTC,4h,6,Main Model,4.03442834696e-11
+forecast_metrics,ETH,1h,1,HAR,2.9063196294e-11
+forecast_metrics,ETH,1h,1,EGARCH,3.40865113913e-11
+forecast_metrics,ETH,1h,1,EGARCH+NED,4.05011024718e-11
+forecast_metrics,ETH,1h,1,TS MLP,1.57444057791e-11
+forecast_metrics,ETH,1h,1,Main Model,3.50677265004e-11
+forecast_metrics,ETH,4h,1,HAR,3.9198866375e-11
+forecast_metrics,ETH,4h,1,EGARCH,2.74957834279e-11
+forecast_metrics,ETH,4h,1,EGARCH+NED,4.69363714561e-11
+forecast_metrics,ETH,4h,1,TS MLP,2.97060154253e-11
+forecast_metrics,ETH,4h,1,Main Model,4.73976413673e-11
+forecast_metrics,ETH,1h,2,HAR,3.12088133114e-11
+forecast_metrics,ETH,1h,2,EGARCH,4.63944438422e-11
+forecast_metrics,ETH,1h,2,EGARCH+NED,4.53967974323e-11
+forecast_metrics,ETH,1h,2,TS MLP,3.68968744446e-11
+forecast_metrics,ETH,1h,2,Main Model,4.31856772565e-11
+forecast_metrics,ETH,4h,2,HAR,4.65134597505e-11
+forecast_metrics,ETH,4h,2,EGARCH,4.21087054114e-11
+forecast_metrics,ETH,4h,2,EGARCH+NED,3.94055899022e-11
+forecast_metrics,ETH,4h,2,TS MLP,3.98419075509e-11
+forecast_metrics,ETH,4h,2,Main Model,3.75644515493e-11
+forecast_metrics,ETH,1h,3,HAR,3.85953283222e-11
+forecast_metrics,ETH,1h,3,EGARCH,4.89860686737e-11
+forecast_metrics,ETH,1h,3,EGARCH+NED,2.60689247966e-11
+forecast_metrics,ETH,1h,3,TS MLP,3.94764221312e-11
+forecast_metrics,ETH,1h,3,Main Model,3.12999626217e-11
+forecast_metrics,ETH,4h,3,HAR,4.97881735839e-11
+forecast_metrics,ETH,4h,3,EGARCH,4.01910726922e-11
+forecast_metrics,ETH,4h,3,EGARCH+NED,4.8670512065e-11
+forecast_metrics,ETH,4h,3,TS MLP,3.36053407324e-11
+forecast_metrics,ETH,4h,3,Main Model,3.56760176956e-11
+forecast_metrics,ETH,1h,4,HAR,4.03042044184e-11
+forecast_metrics,ETH,1h,4,EGARCH,2.24676527383e-11
+forecast_metrics,ETH,1h,4,EGARCH+NED,4.5085046807e-11
+forecast_metrics,ETH,1h,4,TS MLP,3.2906677383e-11
+forecast_metrics,ETH,1h,4,Main Model,4.91480189879e-11
+forecast_metrics,ETH,4h,4,HAR,4.4791587106e-11
+forecast_metrics,ETH,4h,4,EGARCH,4.19971835086e-11
+forecast_metrics,ETH,4h,4,EGARCH+NED,2.96933588828e-11
+forecast_metrics,ETH,4h,4,TS MLP,3.86589649182e-11
+forecast_metrics,ETH,4h,4,Main Model,4.71699346249e-11
+forecast_metrics,ETH,1h,5,HAR,4.40021352688e-11
+forecast_metrics,ETH,1h,5,EGARCH,4.94652097061e-11
+forecast_metrics,ETH,1h,5,EGARCH+NED,4.01815802853e-11
+forecast_metrics,ETH,1h,5,TS MLP,3.46218609337e-11
+forecast_metrics,ETH,1h,5,Main Model,4.46618853012e-11
+forecast_metrics,ETH,4h,5,HAR,4.78008743698e-11
+forecast_metrics,ETH,4h,5,EGARCH,4.9017012671e-11
+forecast_metrics,ETH,4h,5,EGARCH+NED,4.22014645451e-11
+forecast_metrics,ETH,4h,5,TS MLP,3.03430613968e-11
+forecast_metrics,ETH,4h,5,Main Model,4.91927609758e-11
+forecast_metrics,ETH,1h,6,HAR,1.93576266128e-11
+forecast_metrics,ETH,1h,6,EGARCH,3.24209548097e-11
+forecast_metrics,ETH,1h,6,EGARCH+NED,4.32067714939e-11
+forecast_metrics,ETH,1h,6,TS MLP,3.28148619388e-11
+forecast_metrics,ETH,1h,6,Main Model,4.43988179555e-11
+forecast_metrics,ETH,4h,6,HAR,2.7835733718e-11
+forecast_metrics,ETH,4h,6,EGARCH,4.33491020857e-11
+forecast_metrics,ETH,4h,6,EGARCH+NED,4.99182917224e-11
+forecast_metrics,ETH,4h,6,TS MLP,4.44885239759e-11
+forecast_metrics,ETH,4h,6,Main Model,3.44413386699e-11

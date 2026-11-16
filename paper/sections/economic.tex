@@ -1,0 +1,197 @@
+\section{Economic Interpretation}
+\label{sec:economic}
+
+The NED framework represents each article through two quantities: an
+impact magnitude $s_k$ and a decay rate $\lambda_k$. These parameters
+provide a way to examine which kinds of text the model associates with
+large and persistent adjustments to a volatility forecast. Their
+interpretation is conditional on the residual loading $a$, the intercept
+$b$, and the clipping operation in Equation~\eqref{eq:residual}.
+In particular, $s_k$ is an internal signal magnitude; the initial
+contribution to the unclipped log-variance correction is $a s_k$.
+The parameters describe predictive associations rather than causal
+responses to externally identified news shocks.
+
+We organize the analysis around three questions: how long does news move
+volatility (Section~\ref{sec:timescale}), how does news content shape the
+impact (Section~\ref{sec:categories}), and what dimension of the text
+representation does the model use (Section~\ref{sec:sentiment})?
+The analysis uses the BTC 4-hour model and the 7,845 retained articles
+that enter at least one of its out-of-sample forecasts across the six
+expanding windows. Each article contributes one parameter pair estimated
+by the corresponding window's fitted model.
+
+\subsection{Timescale: How long does news move volatility?}
+\label{sec:timescale}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/casestudy.pdf}
+\caption{News-driven forecast adjustment around 5 March 2024. The upper
+panel compares 4-hour annualized realized volatility with TS-only and NED
+forecasts. The numbered vertical markers identify the three articles
+with the largest remaining signals at 18:30 UTC. The lower panel stacks
+their learned signals, $s_k\exp(-\lambda_k\Delta t_k)$, and overlays the
+sum for all retained articles in the twelve-hour lookback. The dashed
+vertical line marks the selection time. The signals are inputs to the
+residual map, rather than additive contributions to annualized volatility.}
+\label{fig:casestudy}
+\end{figure}
+
+Figure~\ref{fig:casestudy} examines the same forecasting episode around
+Bitcoin's March 2024 record high. To select the displayed articles
+systematically, we fix the forecast timestamp at 5 March, 18:30 UTC,
+and rank eligible articles by their remaining signal
+$s_k\exp(-\lambda_k\Delta t_k)$. Table~\ref{tab:case_articles} reports
+the three highest-ranked articles. They discuss the record price, its
+possible implications, and the subsequent decline. The corresponding
+half-lives are approximately 148, 407, and 189 minutes. The
+forward-looking article therefore receives the most persistent response,
+while the decline report has the largest initial magnitude.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Articles highlighted in the forecasting episode}
+\label{tab:case_articles}
+\begin{adjustbox}{max width=\textwidth}
+\input{generated/case_articles}
+\end{adjustbox}
+\tabnote{Articles are ordered by remaining signal at 5 March 2024,
+18:30 UTC. Magnitudes and half-lives are extracted from the third
+expanding-window BTC 4-hour model.}
+\end{table}
+
+The news signals contribute to a separation between the NED and TS-only
+forecasts during the episode. The residual loading is positive
+($a=0.0468$), so a larger aggregate signal raises the variance forecast
+until the correction reaches its cap. The figure also makes clear why
+the analysis should not be read as a causal event study: a report of an
+ongoing price decline survives the deterministic recap filter, and
+realized variance is measured over an overlapping forward horizon.
+The episode illustrates the model's mechanism and the differences among
+article persistence estimates, rather than identifying an exogenous
+effect of any one publication.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/distribution.pdf}
+\caption{Joint distribution of learned article magnitude $s$ and decay
+rate $\lambda$ in the BTC 4-hour models. Each point is one of 7,845
+articles entering an out-of-sample forecast; the marginal distributions
+appear above and to the right. Decay rates are measured per minute and
+shown on a logarithmic axis. Larger magnitudes tend to be associated with
+slower decay.}
+\label{fig:joint}
+\end{figure}
+
+Figure~\ref{fig:joint} examines whether heterogeneous persistence also
+appears across the full test sample. The mean learned magnitude is 6.50
+and its median is 6.55. The median half-life is 42.7 minutes, with an
+interquartile range from 16.8 to 88.8 minutes. Only 3.4\% of articles
+have half-lives exceeding four hours. The model thus assigns most
+retained news a relatively short period of relevance, while allowing a
+smaller group to influence forecasts for several hours.
+
+Magnitude and decay rate exhibit a negative rank association
+(Spearman's $\rho=-0.687$). Articles with larger internal signals tend to
+retain those signals longer. This relationship is not imposed by an
+explicit constraint linking the two output coordinates, although both
+are produced by the same news head and optimized under the same loss.
+Pooling parameters across independently fitted windows also introduces
+variation in their scale. The association is therefore a descriptive
+property of the fitted news branch, rather than evidence that large
+economic shocks must necessarily dissipate more slowly.
+
+\subsection{News category and impact heterogeneity}
+\label{sec:categories}
+
+To examine whether the learned parameters vary across economically
+meaningful information types, we assign the retained test-sample
+articles to twelve mutually exclusive news categories. The category
+labels are constructed after reactive filtering and are used only for
+interpretation. They are not inputs to the volatility model and do not
+affect its training or forecast evaluation.
+
+Classification proceeds in two stages. First, deterministic title
+patterns identify recurring branded columns and newsletters and assign
+them to Newsletter Series. Second, the remaining articles are classified
+with the zero-shot natural language inference model
+\texttt{MoritzLaurer/\allowbreak ModernBERT-large-zeroshot-v2.0}.\footnote{Model and
+configuration: \url{https://huggingface.co/MoritzLaurer/ModernBERT-large-zeroshot-v2.0}.
+We fix checkpoint revision
+\texttt{a51e07b524299e309dd2b88d48b0cfa2bd9ec598}.}
+Its candidate labels are Macro, Geopolitical, Regulatory and Legal,
+Security and Crime, Institutional Flows, Protocol and Infrastructure,
+On-Chain Flows, Product Adoption, Market Commentary, Opinion and
+Editorial, and Other. Each label is accompanied by a short definition
+in a hypothesis about the event reported by the article. We apply
+softmax across the eleven entailment scores, assign the highest-scoring
+label, and use Other when that score is below 0.25. Article premises are
+truncated to fit the 512-token input limit.
+
+\begin{table}[htbp]
+\centering\small
+\caption{News category and learned impact heterogeneity (BTC, 4-hour)}
+\label{tab:news-taxonomy}
+\begin{adjustbox}{max width=\textwidth}
+\input{generated/original_categories}
+\end{adjustbox}
+\tabnote{Each of the 7,845 articles receives equal weight. Categories are
+ordered by mean $s$. The final column incorporates the residual loading
+from the article's expanding window and reports the mean initial
+unclipped log-variance contribution $a s$. Half-lives are measured in
+minutes. Labels are automatically generated descriptive annotations.}
+\end{table}
+
+\input{sections/category_discussion}
+
+\subsection{Sentiment versus event content: What does CryptoBERT contribute?}
+\label{sec:sentiment}
+
+An article representation can encode both the direction of a statement
+and the nature of the event it describes. To examine their relationship
+to the learned news parameters, we use the precomputed three-class
+probabilities from \texttt{ProsusAI/finbert} \citep{Araci2019}.
+These sentiment scores are distinct from the CryptoBERT embeddings
+used by the main forecasting model. For each article, an individual
+class is decisive when its probability exceeds 0.60; otherwise the
+article is assigned to the ambiguous group.
+
+\begin{table}[htbp]
+\centering\small
+\caption{FinBERT sentiment and learned article magnitude (BTC, 4-hour)}
+\label{tab:sentiment-vs-s-finbert}
+\begin{adjustbox}{max width=\textwidth}
+\input{generated/original_sentiment}
+\end{adjustbox}
+\tabnote{A decisive class has probability greater than 0.60. All other
+articles are ambiguous. Probabilities are matched to articles using
+their original asset-specific row indices and verified publication
+timestamps. Each article receives equal weight.}
+\end{table}
+
+Table~\ref{tab:sentiment-vs-s-finbert} shows that negative-decisive
+articles have a mean magnitude of 7.29, compared with 6.94 for
+positive-decisive articles and 5.58 for neutral-decisive articles.
+Their median half-life is also longer: 52.8 minutes for negative,
+46.9 minutes for positive, and 33.4 minutes for neutral articles.
+A two-sided Mann--Whitney comparison between negative and positive
+magnitudes yields $p=1.86\times10^{-7}$. The difference remains
+significant at decisiveness thresholds of 0.50 and 0.70. These
+comparisons indicate a polarity-related asymmetry in the fitted
+parameters, but do not identify the leverage mechanism of an
+asset-pricing model.
+
+Ambiguous articles have a mean magnitude of 6.38 and a median half-life
+of 44.7 minutes. Their magnitude distribution does not differ
+significantly from the combined decisive group at the 0.60 cutoff
+($p=0.130$). Moreover, this comparison changes with the decisiveness
+threshold. The evidence therefore supports a negative--positive
+difference more clearly than a general claim that ambiguity itself
+induces a distinct volatility response.
+
+The sentiment comparison describes how the full model organizes its
+article signals; it does not determine whether sentiment alone would
+be sufficient for forecasting. Section~\ref{sec:news_representations}
+addresses that separate question by replacing the article
+representation and refitting the news branch under matched conditions.

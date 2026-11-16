@@ -1,0 +1,14 @@
+The ablations qualify a simple claim that either temporal decay or
+encoder richness is sufficient to explain the gains. A constant
+article kernel already reduces QLIKE by 7.16\%; learned decay
+improves further, with linear decay producing the lowest losses in
+the kernel comparison. Sentiment probabilities combined with learned
+decay nearly match the full-dimensional CryptoBERT reference, and
+the 256-component PCA representation improves on it in this run.
+These results support compact text representations and explicit
+temporal weighting as useful design choices, while showing that
+the exponential, full-dimensional specification is not uniquely
+favored by the forecast comparison.
+Forecast improvements also persist with lookbacks of six, twelve,
+and twenty-four hours, with six hours giving the lowest mean losses
+in the lookback comparison.

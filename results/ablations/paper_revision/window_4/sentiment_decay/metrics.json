@@ -1,0 +1,15 @@
+{
+  "window": 4,
+  "variant": "sentiment_decay",
+  "asset": "BTC",
+  "horizon": "4h",
+  "R2": 0.3973680636707221,
+  "DA": 0.6871193579600433,
+  "MSE": 0.6696193903810747,
+  "QLIKE": 0.4365746867764887,
+  "best_validation_loss": 0.2274579405784607,
+  "epochs": 35,
+  "N": 17569,
+  "elapsed_s": 31.848984886000835,
+  "p1_sha256": "41f9812836d153b85dce459610620a1c5359fe111ec4b8ed967b953d1aeb8dba"
+}
