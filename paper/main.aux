@@ -1,0 +1,158 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand*\HyPL@Entry[1]{}
+\HyPL@Entry{0<</S/D>>}
+\providecommand \oddpage@label [2]{}
+\citation{HAWKES1971}
+\citation{Bacry2015}
+\citation{Mei2017,Zuo2020}
+\citation{Araci2019}
+\citation{Kulakowski_2023}
+\citation{Rahimikia2023}
+\citation{Audrino2020}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{2}{Introduction}{section.1}{}}
+\citation{Harvey_1997}
+\citation{Andersen2003}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{4}{section.2}\protected@file@percent }
+\newlabel{sec:methodology}{{2}{4}{Methodology}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Data and preprocessing}{4}{subsection.2.1}\protected@file@percent }
+\newlabel{sec:data}{{2.1}{4}{Data and preprocessing}{subsection.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Price data and realized volatility}{4}{subsubsection.2.1.1}\protected@file@percent }
+\newlabel{eq:rv}{{2}{4}{Price data and realized volatility}{equation.2.2}{}}
+\citation{Corsi_2008}
+\citation{Patton_2015}
+\citation{ANDERSEN_1996}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Time-series features}{5}{subsubsection.2.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Time-series input features\relax }}{5}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:ts_features}{{1}{5}{Time-series input features\relax }{table.caption.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}News corpus and reactive filtering}{5}{subsubsection.2.1.3}\protected@file@percent }
+\citation{Kulakowski_2023}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}CryptoBERT embeddings}{6}{subsubsection.2.1.4}\protected@file@percent }
+\newlabel{sec:cryptobert}{{2.1.4}{6}{CryptoBERT embeddings}{subsubsection.2.1.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The NED architecture. The first training phase estimates the time-series baseline; the second freezes its weights and learns the article-dependent news correction. The final forecast is produced by the second-phase model selected on validation loss.\relax }}{7}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{7}{The NED architecture. The first training phase estimates the time-series baseline; the second freezes its weights and learns the article-dependent news correction. The final forecast is produced by the second-phase model selected on validation loss.\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Event signal accumulation. Each article contributes a decaying signal with magnitude $s_k$ and rate $\lambda _k$. The aggregate is the sum of the active article kernels. Curves illustrate the mechanism and are not empirical parameter estimates; the horizontal scale and the displayed rates use hours. The model is inspired by Hawkes-type kernels but does not fit a self-exciting arrival intensity.\relax }}{7}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:decay_stacking}{{2}{7}{Event signal accumulation. Each article contributes a decaying signal with magnitude $s_k$ and rate $\lambda _k$. The aggregate is the sum of the active article kernels. Curves illustrate the mechanism and are not empirical parameter estimates; the horizontal scale and the displayed rates use hours. The model is inspired by Hawkes-type kernels but does not fit a self-exciting arrival intensity.\relax }{figure.caption.3}{}}
+\citation{HAWKES1971}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}NED architecture}{8}{subsection.2.2}\protected@file@percent }
+\newlabel{sec:architecture}{{2.2}{8}{NED architecture}{subsection.2.2}{}}
+\newlabel{eq:residual}{{3}{8}{NED architecture}{equation.2.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Time-series branch}{8}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}News event branch}{8}{subsubsection.2.2.2}\protected@file@percent }
+\newlabel{eq:impact_head}{{5}{8}{News event branch}{equation.2.5}{}}
+\newlabel{eq:decay}{{6}{8}{News event branch}{equation.2.6}{}}
+\citation{adamw}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Residual combination}{9}{subsubsection.2.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Training procedure}{9}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:training}{{2.3}{9}{Training procedure}{subsection.2.3}{}}
+\newlabel{eq:loss}{{9}{9}{Training procedure}{equation.2.9}{}}
+\citation{Corsi_2008}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Training phase configuration\relax }}{10}{table.caption.4}\protected@file@percent }
+\newlabel{tab:training_phases}{{2}{10}{Training phase configuration\relax }{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Expanding window evaluation}{10}{subsubsection.2.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Baselines}{10}{subsection.2.4}\protected@file@percent }
+\newlabel{sec:baselines}{{2.4}{10}{Baselines}{subsection.2.4}{}}
+\citation{Nelson_1991}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}HAR}{11}{subsubsection.2.4.1}\protected@file@percent }
+\newlabel{eq:har}{{10}{11}{HAR}{equation.2.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}EGARCH}{11}{subsubsection.2.4.2}\protected@file@percent }
+\newlabel{eq:egarch}{{11}{11}{EGARCH}{equation.2.11}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3}EGARCH+NED}{11}{subsubsection.2.4.3}\protected@file@percent }
+\newlabel{eq:egarch_ned}{{12}{11}{EGARCH+NED}{equation.2.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.4}TS-only}{12}{subsubsection.2.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Evaluation metrics and statistical tests}{12}{subsection.2.5}\protected@file@percent }
+\newlabel{sec:metrics}{{2.5}{12}{Evaluation metrics and statistical tests}{subsection.2.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1}Coefficient of determination}{12}{subsubsection.2.5.1}\protected@file@percent }
+\newlabel{eq:r2}{{13}{12}{Coefficient of determination}{equation.2.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2}Directional accuracy}{12}{subsubsection.2.5.2}\protected@file@percent }
+\newlabel{eq:da}{{14}{12}{Directional accuracy}{equation.2.14}{}}
+\citation{Patton_2011}
+\citation{DM_1995}
+\citation{Harvey_1997}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.3}QLIKE}{13}{subsubsection.2.5.3}\protected@file@percent }
+\newlabel{eq:qlike}{{15}{13}{QLIKE}{equation.2.15}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.4}Mean squared error}{13}{subsubsection.2.5.4}\protected@file@percent }
+\newlabel{eq:mse}{{16}{13}{Mean squared error}{equation.2.16}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.5}Diebold-Mariano test with small-sample correction}{13}{subsubsection.2.5.5}\protected@file@percent }
+\newlabel{eq:dm}{{17}{13}{Diebold-Mariano test with small-sample correction}{equation.2.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{14}{section.3}\protected@file@percent }
+\newlabel{sec:results}{{3}{14}{Results}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Main Results}{14}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Out-of-Sample Forecast Performance\relax }}{14}{table.caption.5}\protected@file@percent }
+\newlabel{tab:forecast_summary}{{3}{14}{Out-of-Sample Forecast Performance\relax }{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Z-score analysis}{16}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Forecast performance by standardized-return decile (4-Hour RV, BTC)\relax }}{16}{table.caption.6}\protected@file@percent }
+\newlabel{tab:decile_performance}{{4}{16}{Forecast performance by standardized-return decile (4-Hour RV, BTC)\relax }{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Economic Interpretation}{17}{section.4}\protected@file@percent }
+\newlabel{sec:economic}{{4}{17}{Economic Interpretation}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Timescale: How long does news move volatility?}{17}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:timescale}{{4.1}{17}{Timescale: How long does news move volatility?}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Articles highlighted in the forecasting episode\relax }}{17}{table.caption.8}\protected@file@percent }
+\newlabel{tab:case_articles}{{5}{17}{Articles highlighted in the forecasting episode\relax }{table.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces News-driven forecast adjustment around 5 March 2024. The upper panel compares 4-hour annualized realized volatility with TS-only and NED forecasts. The numbered vertical markers identify the three articles with the largest remaining signals at 18:30 UTC. The lower panel stacks their learned signals, $s_k\qopname  \relax o{exp}(-\lambda _k\Delta t_k)$, and overlays the sum for all retained articles in the twelve-hour lookback. The dashed vertical line marks the selection time. The signals are inputs to the residual map, rather than additive contributions to annualized volatility.\relax }}{18}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:casestudy}{{3}{18}{News-driven forecast adjustment around 5 March 2024. The upper panel compares 4-hour annualized realized volatility with TS-only and NED forecasts. The numbered vertical markers identify the three articles with the largest remaining signals at 18:30 UTC. The lower panel stacks their learned signals, $s_k\exp (-\lambda _k\Delta t_k)$, and overlays the sum for all retained articles in the twelve-hour lookback. The dashed vertical line marks the selection time. The signals are inputs to the residual map, rather than additive contributions to annualized volatility.\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Joint distribution of learned article magnitude $s$ and decay rate $\lambda $ in the BTC 4-hour models. Each point is one of 7,845 articles entering an out-of-sample forecast; the marginal distributions appear above and to the right. Decay rates are measured per minute and shown on a logarithmic axis. Larger magnitudes tend to be associated with slower decay.\relax }}{19}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:joint}{{4}{19}{Joint distribution of learned article magnitude $s$ and decay rate $\lambda $ in the BTC 4-hour models. Each point is one of 7,845 articles entering an out-of-sample forecast; the marginal distributions appear above and to the right. Decay rates are measured per minute and shown on a logarithmic axis. Larger magnitudes tend to be associated with slower decay.\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}News category and impact heterogeneity}{20}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:categories}{{4.2}{20}{News category and impact heterogeneity}{subsection.4.2}{}}
+\citation{Araci2019}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces News category and learned impact heterogeneity (BTC, 4-hour)\relax }}{21}{table.caption.10}\protected@file@percent }
+\newlabel{tab:news-taxonomy}{{6}{21}{News category and learned impact heterogeneity (BTC, 4-hour)\relax }{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Sentiment versus event content: What does CryptoBERT contribute?}{21}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:sentiment}{{4.3}{21}{Sentiment versus event content: What does CryptoBERT contribute?}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces FinBERT sentiment and learned article magnitude (BTC, 4-hour)\relax }}{22}{table.caption.11}\protected@file@percent }
+\newlabel{tab:sentiment-vs-s-finbert}{{7}{22}{FinBERT sentiment and learned article magnitude (BTC, 4-hour)\relax }{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Robustness and sensitivity analysis}{22}{section.5}\protected@file@percent }
+\newlabel{sec:robustness}{{5}{22}{Robustness and sensitivity analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Alternative decay specifications}{23}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:decay_ablation}{{5.1}{23}{Alternative decay specifications}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Alternative decay specifications (4-Hour RV, BTC)\relax }}{23}{table.caption.12}\protected@file@percent }
+\newlabel{tab:decay_ablation}{{8}{23}{Alternative decay specifications (4-Hour RV, BTC)\relax }{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Alternative news representations}{24}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:news_representations}{{5.2}{24}{Alternative news representations}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Alternative news representations (4-Hour RV, BTC)\relax }}{25}{table.caption.13}\protected@file@percent }
+\newlabel{tab:news_representations}{{9}{25}{Alternative news representations (4-Hour RV, BTC)\relax }{table.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{26}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{26}{Conclusion}{section.6}{}}
+\bibstyle{plainnat}
+\bibdata{refs}
+\bibcite{ANDERSEN_1996}{{1}{1996}{{Andersen}}{{}}}
+\bibcite{Andersen2003}{{2}{2003}{{Andersen et~al.}}{{Andersen, Bollerslev, Diebold, and Labys}}}
+\bibcite{Araci2019}{{3}{2019}{{Araci}}{{}}}
+\bibcite{Audrino2020}{{4}{2020}{{Audrino et~al.}}{{Audrino, Sigrist, and Ballinari}}}
+\bibcite{Bacry2015}{{5}{2015}{{Bacry et~al.}}{{Bacry, Mastromatteo, and Muzy}}}
+\bibcite{Corsi_2008}{{6}{2008}{{Corsi}}{{}}}
+\bibcite{DM_1995}{{7}{1995}{{Diebold and Mariano}}{{}}}
+\bibcite{Harvey_1997}{{8}{1997}{{Harvey et~al.}}{{Harvey, Leybourne, and Newbold}}}
+\bibcite{HAWKES1971}{{9}{1971}{{Hawkes}}{{}}}
+\bibcite{Kulakowski_2023}{{10}{2023}{{Kulakowski and Frasincar}}{{}}}
+\bibcite{adamw}{{11}{2017}{{Loshchilov and Hutter}}{{}}}
+\bibcite{Mei2017}{{12}{2017}{{Mei and Eisner}}{{}}}
+\bibcite{Nelson_1991}{{13}{1991}{{Nelson}}{{}}}
+\bibcite{Patton_2011}{{14}{2011}{{Patton}}{{}}}
+\bibcite{Patton_2015}{{15}{2015}{{Patton and Sheppard}}{{}}}
+\bibcite{Rahimikia2023}{{16}{2023}{{Rahimikia et~al.}}{{Rahimikia, Zohren, and Poon}}}
+\bibcite{Zuo2020}{{17}{2020}{{Zuo et~al.}}{{Zuo, Jiang, Li, Zhao, and Zha}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Expanding Window Results: Bitcoin (BTC)\relax }}{30}{table.10}\protected@file@percent }
+\newlabel{tab:expanding_btc}{{10}{30}{Expanding Window Results: Bitcoin (BTC)\relax }{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Expanding Window Results: Ethereum (ETH)\relax }}{31}{table.11}\protected@file@percent }
+\newlabel{tab:expanding_eth}{{11}{31}{Expanding Window Results: Ethereum (ETH)\relax }{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Sensitivity to the news lookback (4-Hour RV, BTC)\relax }}{32}{table.caption.17}\protected@file@percent }
+\newlabel{tab:lookback}{{12}{32}{Sensitivity to the news lookback (4-Hour RV, BTC)\relax }{table.caption.17}{}}
+\gdef \@abspage@last{32}
